@@ -317,7 +317,7 @@ stack_Jet_Pt.Write()
 
 c9.cd()
 h_ptavg.Draw()
-h_ptavg.GetXaxis().SetTitle("Pt of all Jets (>=2 jets)")
+h_ptavg.GetXaxis().SetTitle("Pt avg (>=2 jets)")
 h_ptavg.Write()
 
 c10.cd()
