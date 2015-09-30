@@ -322,7 +322,7 @@ c8.cd()
 stack_Jet_Pt.Draw()
 stack_Jet_Pt.GetXaxis().SetTitle("Pt two hardest Jets")
 stack_Jet_Pt.Write()
-c8.SaveAs("pt_2hardesthets.png")
+c8.SaveAs("pt_2hardestjets.png")
 
 c9.cd()
 h_ptavg.Draw()
