@@ -62,14 +62,7 @@ for i in xrange(n):
       h_pt3.Fill(tree_qcd.Jet_Pt[2])
       h_pt3overavg.Fill(tree_qcd.Jet_Pt[2]/pt_avg)
     
-    if abs(tree_qcd.Jet_Flav[0])==4:
-      h_pthardestjet_c.Fill(tree_qcd.Jet_Pt[0])
-	    
-    elif abs(tree_qcd.Jet_Flav[0])==5: 
-      h_pthardestjet_b.Fill(tree_qcd.Jet_Pt[0])
-	  
-    elif abs(tree_qcd.Jet_Flav[0])!=5 and abs(tree_qcd.Jet_Flav[0])!=4:
-      h_pthardestjet_lf.Fill(tree_qcd.Jet_Pt[0])
+    
     
     for j in xrange(tree_qcd.N_Jets):
       if abs(tree_qcd.Jet_Flav[j])==4:  
@@ -90,6 +83,14 @@ for i in xrange(n):
       #csv tagging
       for j in xrange(2):
 	if abs(tree_qcd.Jet_Eta[0])<2.1 and abs(tree_qcd.Jet_Eta[1])<2.1 :
+	  
+	  if abs(tree_qcd.Jet_Flav[0])==4:
+	    h_pthardestjet_c.Fill(tree_qcd.Jet_Pt[0])	    
+	  elif abs(tree_qcd.Jet_Flav[0])==5: 
+	    h_pthardestjet_b.Fill(tree_qcd.Jet_Pt[0])	  
+	  elif abs(tree_qcd.Jet_Flav[0])!=5 and abs(tree_qcd.Jet_Flav[0])!=4:
+	    h_pthardestjet_lf.Fill(tree_qcd.Jet_Pt[0])
+	    
 	  if abs(tree_qcd.Jet_Flav[j])==4:h_pt_c.Fill(tree_qcd.Jet_Pt[j])
 	  elif abs(tree_qcd.Jet_Flav[j])==5:h_pt_b.Fill(tree_qcd.Jet_Pt[j])
 	  elif abs(tree_qcd.Jet_Flav[j])!=5 and abs(tree_qcd.Jet_Flav[j])!=4:h_pt_lf.Fill(tree_qcd.Jet_Pt[j])
