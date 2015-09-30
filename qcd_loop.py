@@ -79,104 +79,104 @@ for i in xrange(n):
  
       
     if dphi> 2.7:
-      pt_avg=tree_qcd.PtAve
-      #csv tagging
-      for j in xrange(2):
-	if abs(tree_qcd.Jet_Eta[0])<2.1 and abs(tree_qcd.Jet_Eta[1])<2.1 :
+      
+      if abs(tree_qcd.Jet_Eta[0])<2.1 and abs(tree_qcd.Jet_Eta[1])<2.1 :
 	  
-	  if abs(tree_qcd.Jet_Flav[0])==4:
-	    h_pthardestjet_c.Fill(tree_qcd.Jet_Pt[0])	    
-	  elif abs(tree_qcd.Jet_Flav[0])==5: 
-	    h_pthardestjet_b.Fill(tree_qcd.Jet_Pt[0])	  
-	  elif abs(tree_qcd.Jet_Flav[0])!=5 and abs(tree_qcd.Jet_Flav[0])!=4:
-	    h_pthardestjet_lf.Fill(tree_qcd.Jet_Pt[0])
-	    
-	  if abs(tree_qcd.Jet_Flav[j])==4:h_pt_c.Fill(tree_qcd.Jet_Pt[j])
-	  elif abs(tree_qcd.Jet_Flav[j])==5:h_pt_b.Fill(tree_qcd.Jet_Pt[j])
-	  elif abs(tree_qcd.Jet_Flav[j])!=5 and abs(tree_qcd.Jet_Flav[j])!=4:h_pt_lf.Fill(tree_qcd.Jet_Pt[j])
-	  if tree_qcd.Jet_CSV[j]>0.97:	      
-		if tree_qcd.N_Jets >=3:
-		  if tree_qcd.Jet_Pt[2]/pt_avg < 0.4:
-		      if j==0:
-			if abs(tree_qcd.Jet_Flav[1])==4: h_CSV_taggedhigh_c.Fill(tree_qcd.Jet_CSV[1])
-			elif abs(tree_qcd.Jet_Flav[1])==5: h_CSV_taggedhigh_b.Fill(tree_qcd.Jet_CSV[1])
-			elif abs(tree_qcd.Jet_Flav[1])!=4 and abs(tree_qcd.Jet_Flav[1])!=5: h_CSV_taggedhigh_lf.Fill(tree_qcd.Jet_CSV[1])
-		      elif j==1:
-			if abs(tree_qcd.Jet_Flav[0])==4: h_CSV_taggedhigh_c.Fill(tree_qcd.Jet_CSV[0])
-			elif abs(tree_qcd.Jet_Flav[0])==5: h_CSV_taggedhigh_b.Fill(tree_qcd.Jet_CSV[0])
-			elif abs(tree_qcd.Jet_Flav[0])!=4 and abs(tree_qcd.Jet_Flav[0])!=5: h_CSV_taggedhigh_lf.Fill(tree_qcd.Jet_CSV[0])
-		elif j==0:
-		  if abs(tree_qcd.Jet_Flav[1])==4: h_CSV_taggedhigh_c.Fill(tree_qcd.Jet_CSV[1])
-		  elif abs(tree_qcd.Jet_Flav[1])==5: h_CSV_taggedhigh_b.Fill(tree_qcd.Jet_CSV[1])
-		  elif abs(tree_qcd.Jet_Flav[1])!=4 and abs(tree_qcd.Jet_Flav[1])!=5: h_CSV_taggedhigh_lf.Fill(tree_qcd.Jet_CSV[1])
-		elif j==1:
-		  if abs(tree_qcd.Jet_Flav[0])==4: h_CSV_taggedhigh_c.Fill(tree_qcd.Jet_CSV[0])
-		  elif abs(tree_qcd.Jet_Flav[0])==5: h_CSV_taggedhigh_b.Fill(tree_qcd.Jet_CSV[0])
-		  elif abs(tree_qcd.Jet_Flav[0])!=4 and abs(tree_qcd.Jet_Flav[0])!=5: h_CSV_taggedhigh_lf.Fill(tree_qcd.Jet_CSV[0])
-		  
-	  if tree_qcd.Jet_CSV[j]<0.605:		      
-		if tree_qcd.N_Jets >=3:
-		  if tree_qcd.Jet_Pt[2]/pt_avg < 0.4:
-		      if j==0:
-			if abs(tree_qcd.Jet_Flav[1])==4: h_CSV_taggedlow_c.Fill(tree_qcd.Jet_CSV[1])
-			elif abs(tree_qcd.Jet_Flav[1])==5: h_CSV_taggedlow_b.Fill(tree_qcd.Jet_CSV[1])
-			elif abs(tree_qcd.Jet_Flav[1])!=4 and abs(tree_qcd.Jet_Flav[1])!=5: h_CSV_taggedlow_lf.Fill(tree_qcd.Jet_CSV[1])
-		      elif j==1:
-			if abs(tree_qcd.Jet_Flav[0])==4: h_CSV_taggedlow_c.Fill(tree_qcd.Jet_CSV[0])
-			elif abs(tree_qcd.Jet_Flav[0])==5: h_CSV_taggedlow_b.Fill(tree_qcd.Jet_CSV[0])
-			elif abs(tree_qcd.Jet_Flav[0])!=4 and abs(tree_qcd.Jet_Flav[0])!=5: h_CSV_taggedlow_lf.Fill(tree_qcd.Jet_CSV[0])
-		elif j==0:
-		  if abs(tree_qcd.Jet_Flav[1])==4: h_CSV_taggedlow_c.Fill(tree_qcd.Jet_CSV[1])
-		  elif abs(tree_qcd.Jet_Flav[1])==5: h_CSV_taggedlow_b.Fill(tree_qcd.Jet_CSV[1])
-		  elif abs(tree_qcd.Jet_Flav[1])!=4 and abs(tree_qcd.Jet_Flav[1])!=5: h_CSV_taggedlow_lf.Fill(tree_qcd.Jet_CSV[1])
-		elif j==1:
-		  if abs(tree_qcd.Jet_Flav[0])==4: h_CSV_taggedlow_c.Fill(tree_qcd.Jet_CSV[0])
-		  elif abs(tree_qcd.Jet_Flav[0])==5: h_CSV_taggedlow_b.Fill(tree_qcd.Jet_CSV[0])
-		  elif abs(tree_qcd.Jet_Flav[0])!=4 and abs(tree_qcd.Jet_Flav[0])!=5: h_CSV_taggedlow_lf.Fill(tree_qcd.Jet_CSV[0])
-	  #True tagging	
-	  if abs(tree_qcd.Jet_Flav[j])==5:	      
-		if tree_qcd.N_Jets >=3:
-		  if tree_qcd.Jet_Pt[2]/pt_avg < 0.4:
-		      if j==0:
-			h_flav_probeJet.Fill(abs(tree_qcd.Jet_Flav[1]))
-			if abs(tree_qcd.Jet_Flav[1])==4: h_CSV_true_taggedhigh_c.Fill(tree_qcd.Jet_CSV[1])
-			elif abs(tree_qcd.Jet_Flav[1])==5: h_CSV_true_taggedhigh_b.Fill(tree_qcd.Jet_CSV[1])
-			elif abs(tree_qcd.Jet_Flav[1])!=4 and abs(tree_qcd.Jet_Flav[1])!=5: h_CSV_true_taggedhigh_lf.Fill(tree_qcd.Jet_CSV[1])
-		      elif j==1:
-			h_flav_probeJet.Fill(abs(tree_qcd.Jet_Flav[0]))
-			if abs(tree_qcd.Jet_Flav[0])==4: h_CSV_true_taggedhigh_c.Fill(tree_qcd.Jet_CSV[0])
-			elif abs(tree_qcd.Jet_Flav[0])==5: h_CSV_true_taggedhigh_b.Fill(tree_qcd.Jet_CSV[0])
-			elif abs(tree_qcd.Jet_Flav[0])!=4 and abs(tree_qcd.Jet_Flav[0])!=5: h_CSV_true_taggedhigh_lf.Fill(tree_qcd.Jet_CSV[0])
-		elif j==0:
-		  h_flav_probeJet.Fill(abs(tree_qcd.Jet_Flav[1]))
-		  if abs(tree_qcd.Jet_Flav[1])==4: h_CSV_true_taggedhigh_c.Fill(tree_qcd.Jet_CSV[1])
-		  elif abs(tree_qcd.Jet_Flav[1])==5: h_CSV_true_taggedhigh_b.Fill(tree_qcd.Jet_CSV[1])
-		  elif abs(tree_qcd.Jet_Flav[1])!=4 and abs(tree_qcd.Jet_Flav[1])!=5: h_CSV_true_taggedhigh_lf.Fill(tree_qcd.Jet_CSV[1])
-		elif j==1:
-		  h_flav_probeJet.Fill(abs(tree_qcd.Jet_Flav[0]))
-		  if abs(tree_qcd.Jet_Flav[0])==4: h_CSV_true_taggedhigh_c.Fill(tree_qcd.Jet_CSV[0])
-		  elif abs(tree_qcd.Jet_Flav[0])==5: h_CSV_true_taggedhigh_b.Fill(tree_qcd.Jet_CSV[0])
-		  elif abs(tree_qcd.Jet_Flav[0])!=4 and abs(tree_qcd.Jet_Flav[0])!=5: h_CSV_true_taggedhigh_lf.Fill(tree_qcd.Jet_CSV[0])
-		  
-	  if abs(tree_qcd.Jet_Flav[j])!=5:		      
-		if tree_qcd.N_Jets >=3:
-		  if tree_qcd.Jet_Pt[2]/pt_avg < 0.4:
-		      if j==0:
-			if abs(tree_qcd.Jet_Flav[1])==4: h_CSV_true_taggedlow_c.Fill(tree_qcd.Jet_CSV[1])
-			elif abs(tree_qcd.Jet_Flav[1])==5: h_CSV_true_taggedlow_b.Fill(tree_qcd.Jet_CSV[1])
-			elif abs(tree_qcd.Jet_Flav[1])!=4 and abs(tree_qcd.Jet_Flav[1])!=5: h_CSV_true_taggedlow_lf.Fill(tree_qcd.Jet_CSV[1])
-		      elif j==1:
-			if abs(tree_qcd.Jet_Flav[0])==4: h_CSV_true_taggedlow_c.Fill(tree_qcd.Jet_CSV[0])
-			elif abs(tree_qcd.Jet_Flav[0])==5: h_CSV_true_taggedlow_b.Fill(tree_qcd.Jet_CSV[0])
-			elif abs(tree_qcd.Jet_Flav[0])!=4 and abs(tree_qcd.Jet_Flav[0])!=5: h_CSV_true_taggedlow_lf.Fill(tree_qcd.Jet_CSV[0])
-		elif j==0:
-		  if abs(tree_qcd.Jet_Flav[1])==4: h_CSV_true_taggedlow_c.Fill(tree_qcd.Jet_CSV[1])
-		  elif abs(tree_qcd.Jet_Flav[1])==5: h_CSV_true_taggedlow_b.Fill(tree_qcd.Jet_CSV[1])
-		  elif abs(tree_qcd.Jet_Flav[1])!=4 and abs(tree_qcd.Jet_Flav[1])!=5: h_CSV_true_taggedlow_lf.Fill(tree_qcd.Jet_CSV[1])
-		elif j==1:
-		  if abs(tree_qcd.Jet_Flav[0])==4: h_CSV_true_taggedlow_c.Fill(tree_qcd.Jet_CSV[0])
-		  elif abs(tree_qcd.Jet_Flav[0])==5: h_CSV_true_taggedlow_b.Fill(tree_qcd.Jet_CSV[0])
-		  elif abs(tree_qcd.Jet_Flav[0])!=4 and abs(tree_qcd.Jet_Flav[0])!=5: h_CSV_true_taggedlow_lf.Fill(tree_qcd.Jet_CSV[0])
+	if abs(tree_qcd.Jet_Flav[0])==4:
+	      h_pthardestjet_c.Fill(tree_qcd.Jet_Pt[0])	    
+	elif abs(tree_qcd.Jet_Flav[0])==5: 
+	      h_pthardestjet_b.Fill(tree_qcd.Jet_Pt[0])	  
+	elif abs(tree_qcd.Jet_Flav[0])!=5 and abs(tree_qcd.Jet_Flav[0])!=4:
+	      h_pthardestjet_lf.Fill(tree_qcd.Jet_Pt[0])
+	#pt_avg=tree_qcd.PtAve
+      csv tagging
+      for j in xrange(2):	    
+	if abs(tree_qcd.Jet_Flav[j])==4:h_pt_c.Fill(tree_qcd.Jet_Pt[j])
+	elif abs(tree_qcd.Jet_Flav[j])==5:h_pt_b.Fill(tree_qcd.Jet_Pt[j])
+	elif abs(tree_qcd.Jet_Flav[j])!=5 and abs(tree_qcd.Jet_Flav[j])!=4:h_pt_lf.Fill(tree_qcd.Jet_Pt[j])
+	if tree_qcd.Jet_CSV[j]>0.97:	      
+	      if tree_qcd.N_Jets >=3:
+		if tree_qcd.Jet_Pt[2]/pt_avg < 0.4:
+		    if j==0:
+		      if abs(tree_qcd.Jet_Flav[1])==4: h_CSV_taggedhigh_c.Fill(tree_qcd.Jet_CSV[1])
+		      elif abs(tree_qcd.Jet_Flav[1])==5: h_CSV_taggedhigh_b.Fill(tree_qcd.Jet_CSV[1])
+		      elif abs(tree_qcd.Jet_Flav[1])!=4 and abs(tree_qcd.Jet_Flav[1])!=5: h_CSV_taggedhigh_lf.Fill(tree_qcd.Jet_CSV[1])
+		    elif j==1:
+		      if abs(tree_qcd.Jet_Flav[0])==4: h_CSV_taggedhigh_c.Fill(tree_qcd.Jet_CSV[0])
+		      elif abs(tree_qcd.Jet_Flav[0])==5: h_CSV_taggedhigh_b.Fill(tree_qcd.Jet_CSV[0])
+		      elif abs(tree_qcd.Jet_Flav[0])!=4 and abs(tree_qcd.Jet_Flav[0])!=5: h_CSV_taggedhigh_lf.Fill(tree_qcd.Jet_CSV[0])
+	      elif j==0:
+		if abs(tree_qcd.Jet_Flav[1])==4: h_CSV_taggedhigh_c.Fill(tree_qcd.Jet_CSV[1])
+		elif abs(tree_qcd.Jet_Flav[1])==5: h_CSV_taggedhigh_b.Fill(tree_qcd.Jet_CSV[1])
+		elif abs(tree_qcd.Jet_Flav[1])!=4 and abs(tree_qcd.Jet_Flav[1])!=5: h_CSV_taggedhigh_lf.Fill(tree_qcd.Jet_CSV[1])
+	      elif j==1:
+		if abs(tree_qcd.Jet_Flav[0])==4: h_CSV_taggedhigh_c.Fill(tree_qcd.Jet_CSV[0])
+		elif abs(tree_qcd.Jet_Flav[0])==5: h_CSV_taggedhigh_b.Fill(tree_qcd.Jet_CSV[0])
+		elif abs(tree_qcd.Jet_Flav[0])!=4 and abs(tree_qcd.Jet_Flav[0])!=5: h_CSV_taggedhigh_lf.Fill(tree_qcd.Jet_CSV[0])
+		
+	if tree_qcd.Jet_CSV[j]<0.605:		      
+	      if tree_qcd.N_Jets >=3:
+		if tree_qcd.Jet_Pt[2]/pt_avg < 0.4:
+		    if j==0:
+		      if abs(tree_qcd.Jet_Flav[1])==4: h_CSV_taggedlow_c.Fill(tree_qcd.Jet_CSV[1])
+		      elif abs(tree_qcd.Jet_Flav[1])==5: h_CSV_taggedlow_b.Fill(tree_qcd.Jet_CSV[1])
+		      elif abs(tree_qcd.Jet_Flav[1])!=4 and abs(tree_qcd.Jet_Flav[1])!=5: h_CSV_taggedlow_lf.Fill(tree_qcd.Jet_CSV[1])
+		    elif j==1:
+		      if abs(tree_qcd.Jet_Flav[0])==4: h_CSV_taggedlow_c.Fill(tree_qcd.Jet_CSV[0])
+		      elif abs(tree_qcd.Jet_Flav[0])==5: h_CSV_taggedlow_b.Fill(tree_qcd.Jet_CSV[0])
+		      elif abs(tree_qcd.Jet_Flav[0])!=4 and abs(tree_qcd.Jet_Flav[0])!=5: h_CSV_taggedlow_lf.Fill(tree_qcd.Jet_CSV[0])
+	      elif j==0:
+		if abs(tree_qcd.Jet_Flav[1])==4: h_CSV_taggedlow_c.Fill(tree_qcd.Jet_CSV[1])
+		elif abs(tree_qcd.Jet_Flav[1])==5: h_CSV_taggedlow_b.Fill(tree_qcd.Jet_CSV[1])
+		elif abs(tree_qcd.Jet_Flav[1])!=4 and abs(tree_qcd.Jet_Flav[1])!=5: h_CSV_taggedlow_lf.Fill(tree_qcd.Jet_CSV[1])
+	      elif j==1:
+		if abs(tree_qcd.Jet_Flav[0])==4: h_CSV_taggedlow_c.Fill(tree_qcd.Jet_CSV[0])
+		elif abs(tree_qcd.Jet_Flav[0])==5: h_CSV_taggedlow_b.Fill(tree_qcd.Jet_CSV[0])
+		elif abs(tree_qcd.Jet_Flav[0])!=4 and abs(tree_qcd.Jet_Flav[0])!=5: h_CSV_taggedlow_lf.Fill(tree_qcd.Jet_CSV[0])
+	#True tagging	
+	if abs(tree_qcd.Jet_Flav[j])==5:	      
+	      if tree_qcd.N_Jets >=3:
+		if tree_qcd.Jet_Pt[2]/pt_avg < 0.4:
+		    if j==0:
+		      h_flav_probeJet.Fill(abs(tree_qcd.Jet_Flav[1]))
+		      if abs(tree_qcd.Jet_Flav[1])==4: h_CSV_true_taggedhigh_c.Fill(tree_qcd.Jet_CSV[1])
+		      elif abs(tree_qcd.Jet_Flav[1])==5: h_CSV_true_taggedhigh_b.Fill(tree_qcd.Jet_CSV[1])
+		      elif abs(tree_qcd.Jet_Flav[1])!=4 and abs(tree_qcd.Jet_Flav[1])!=5: h_CSV_true_taggedhigh_lf.Fill(tree_qcd.Jet_CSV[1])
+		    elif j==1:
+		      h_flav_probeJet.Fill(abs(tree_qcd.Jet_Flav[0]))
+		      if abs(tree_qcd.Jet_Flav[0])==4: h_CSV_true_taggedhigh_c.Fill(tree_qcd.Jet_CSV[0])
+		      elif abs(tree_qcd.Jet_Flav[0])==5: h_CSV_true_taggedhigh_b.Fill(tree_qcd.Jet_CSV[0])
+		      elif abs(tree_qcd.Jet_Flav[0])!=4 and abs(tree_qcd.Jet_Flav[0])!=5: h_CSV_true_taggedhigh_lf.Fill(tree_qcd.Jet_CSV[0])
+	      elif j==0:
+		h_flav_probeJet.Fill(abs(tree_qcd.Jet_Flav[1]))
+		if abs(tree_qcd.Jet_Flav[1])==4: h_CSV_true_taggedhigh_c.Fill(tree_qcd.Jet_CSV[1])
+		elif abs(tree_qcd.Jet_Flav[1])==5: h_CSV_true_taggedhigh_b.Fill(tree_qcd.Jet_CSV[1])
+		elif abs(tree_qcd.Jet_Flav[1])!=4 and abs(tree_qcd.Jet_Flav[1])!=5: h_CSV_true_taggedhigh_lf.Fill(tree_qcd.Jet_CSV[1])
+	      elif j==1:
+		h_flav_probeJet.Fill(abs(tree_qcd.Jet_Flav[0]))
+		if abs(tree_qcd.Jet_Flav[0])==4: h_CSV_true_taggedhigh_c.Fill(tree_qcd.Jet_CSV[0])
+		elif abs(tree_qcd.Jet_Flav[0])==5: h_CSV_true_taggedhigh_b.Fill(tree_qcd.Jet_CSV[0])
+		elif abs(tree_qcd.Jet_Flav[0])!=4 and abs(tree_qcd.Jet_Flav[0])!=5: h_CSV_true_taggedhigh_lf.Fill(tree_qcd.Jet_CSV[0])
+		
+	if abs(tree_qcd.Jet_Flav[j])!=5:		      
+	      if tree_qcd.N_Jets >=3:
+		if tree_qcd.Jet_Pt[2]/pt_avg < 0.4:
+		    if j==0:
+		      if abs(tree_qcd.Jet_Flav[1])==4: h_CSV_true_taggedlow_c.Fill(tree_qcd.Jet_CSV[1])
+		      elif abs(tree_qcd.Jet_Flav[1])==5: h_CSV_true_taggedlow_b.Fill(tree_qcd.Jet_CSV[1])
+		      elif abs(tree_qcd.Jet_Flav[1])!=4 and abs(tree_qcd.Jet_Flav[1])!=5: h_CSV_true_taggedlow_lf.Fill(tree_qcd.Jet_CSV[1])
+		    elif j==1:
+		      if abs(tree_qcd.Jet_Flav[0])==4: h_CSV_true_taggedlow_c.Fill(tree_qcd.Jet_CSV[0])
+		      elif abs(tree_qcd.Jet_Flav[0])==5: h_CSV_true_taggedlow_b.Fill(tree_qcd.Jet_CSV[0])
+		      elif abs(tree_qcd.Jet_Flav[0])!=4 and abs(tree_qcd.Jet_Flav[0])!=5: h_CSV_true_taggedlow_lf.Fill(tree_qcd.Jet_CSV[0])
+	      elif j==0:
+		if abs(tree_qcd.Jet_Flav[1])==4: h_CSV_true_taggedlow_c.Fill(tree_qcd.Jet_CSV[1])
+		elif abs(tree_qcd.Jet_Flav[1])==5: h_CSV_true_taggedlow_b.Fill(tree_qcd.Jet_CSV[1])
+		elif abs(tree_qcd.Jet_Flav[1])!=4 and abs(tree_qcd.Jet_Flav[1])!=5: h_CSV_true_taggedlow_lf.Fill(tree_qcd.Jet_CSV[1])
+	      elif j==1:
+		if abs(tree_qcd.Jet_Flav[0])==4: h_CSV_true_taggedlow_c.Fill(tree_qcd.Jet_CSV[0])
+		elif abs(tree_qcd.Jet_Flav[0])==5: h_CSV_true_taggedlow_b.Fill(tree_qcd.Jet_CSV[0])
+		elif abs(tree_qcd.Jet_Flav[0])!=4 and abs(tree_qcd.Jet_Flav[0])!=5: h_CSV_true_taggedlow_lf.Fill(tree_qcd.Jet_CSV[0])
 		
 		
  
@@ -333,7 +333,7 @@ c9.SaveAs("ptavg.png")
 
 c10.cd()
 stack_pthardestjet.Draw()
-stack_pthardestjet.GetXaxis().SetTitle("Pt of hardest Jet (>=2 jets)")
+stack_pthardestjet.GetXaxis().SetTitle("Pt of hardest Jet")
 stack_pthardestjet.Write()
 c10.SaveAs("pt_hardestjet.png")
 print "b: ", h_pthardestjet_b.Integral()
