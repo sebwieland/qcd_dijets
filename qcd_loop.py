@@ -1,9 +1,70 @@
 from ROOT import *
-import math
+#import math
+
+def makeleg(backhistos,datahist,backnames):
+  leg=TLegend(0.75,0.4,0.9,0.8)
+  leg.AddEntry(datahist,"data")
+  for i in xrange(len(backhistos)):
+    leg.AddEntry(backhistos[i],backnames[i],"f")
+  leg.SetFillStyle(0)
+  leg.SetBorderSize(0)
+  return leg
+
+def makeratio(stack,datahist,xtitle):
+  back=stack.GetStack().Last()
+  ratio=datahist.Clone()
+  ratio.SetTitle("")
+  ratio.SetXTitle(xtitle)
+  ratio.Sumw2()
+  ratio.SetStats(0)
+  ratio.Divide(back)
+  ratio.SetMarkerStyle(20)
+  SetOwnership(ratio,0)
+  ratio.Draw("E0")
+  ratio.SetMaximum(1.6)
+  ratio.SetMinimum(0.4)
+  return ratio
+  
+def set_ratioattributes(ratio,xmin,xmax,nbins,xtitle):
+  ratio.GetYaxis().SetNdivisions(510)
+  ratio.GetYaxis().SetLabelSize(0.1)
+  
+  ratio.GetXaxis().SetTitle(xtitle)
+  ratio.GetXaxis().SetTitleSize(0.11)
+  if nbins<15:
+    ratio.GetXaxis().SetNdivisions(nbins,0,0)
+  else: ratio.GetXaxis().SetNdivisions(nbins/2,0,0)
+  ratio.GetXaxis().SetLabelSize(0.1)
+
+def makepadhist(log,norm):
+  padhist=TPad("pad_hist","pad_hist",0,0.3,1,1)
+  SetOwnership(padhist,0)
+  padhist.SetBottomMargin(0)
+  padhist.Draw()
+  padhist.cd()
+  if log==True and norm==False :
+    padhist.SetLogy() 
+  
+def makepadratio():
+  pad_ratio=TPad("pad_ratio","pad_ratio",0,0,1,0.3)
+  SetOwnership(pad_ratio,0)
+  pad_ratio.SetTopMargin(0)
+  pad_ratio.SetBottomMargin(0.3)
+  pad_ratio.Draw()
+  pad_ratio.cd()
+
+
+
+
 #f_qcd=TFile("/storage/8/tpfotzer/BEANTrees/2015B_newGT/MC_QCD_MuEnriched_Tree.root")
 f_qcd=TFile("/nfs/dust/cms/user/matsch/ttHNtuples/Spring15/DiJets_QCD_Pt_300to470_TuneCUETP8M1_13TeV_pythia8.root")
+#f_data=TFile("/nfs/dust/cms/user/matsch/ttHNtuples/Spring15/DiJets_QCD_Pt_300to470_TuneCUETP8M1_13TeV_pythia8.root")
 f_histos=TFile("histos.root","RECREATE")
 pt3cut=0.05
+
+h_CSV_hightagged_data=TH1F("h_CSV_hightagged_data","h_CSV_hightagged_data",11,-0.2,1)
+h_CSV_lowtagged_data=TH1F("h_CSV_lowtagged_data","h_CSV_lowtagged_data",11,-0.2,1)
+
 
 h_dphi=TH1F("h_dphi","h_dphi",45,0,3.5)
 h_pt3=TH1F("h_pt3","h_pt3",80,0,350)
@@ -25,9 +86,9 @@ h_NJets_lf=TH1F("h_NJets_lf","h_NJets_lf",16,-0.5,15.5)
 h_NJets_b=TH1F("h_NJets_b","h_NJets_b",16,-0.5,15.5)
 h_NJets_c=TH1F("h_NJets_c","h_NJets_c",16,-0.5,15.5)
 
-h_CSV_lf=TH1F("h_CSV_lf","h_NCSV_lf",11,-0.2,1)
-h_CSV_b=TH1F("h_CSV_b","h_NCSV_b",11,-0.2,1)
-h_CSV_c=TH1F("h_CSV_c","h_NCSVM_c",11,-0.2,1)
+h_CSV_lf=TH1F("h_CSV_lf","h_CSV_lf",11,-0.2,1)
+h_CSV_b=TH1F("h_CSV_b","h_CSV_b",11,-0.2,1)
+h_CSV_c=TH1F("h_CSV_c","h_CSV_c",11,-0.2,1)
 
 h_CSV_taggedhigh_lf=TH1F("h_CSV_taggedhigh_lf","h_CSV_taggedhigh_lf",11,-0.2,1)
 h_CSV_taggedhigh_b=TH1F("h_CSV_taggedhigh_b","h_CSV_taggedhigh_b",11,-0.2,1)
@@ -46,9 +107,11 @@ h_CSV_true_taggedlow_b=TH1F("h_CSV_true_taggedlow_b","h_CSV_true_taggedlow_b",11
 h_CSV_true_taggedlow_c=TH1F("h_CSV_true_taggedlow_c","h_CSV_true_taggedlow_c",11,-0.2,1)
 
 tree_qcd=f_qcd.Get("MVATree")
-n=tree_qcd.GetEntries()
+tree_data=f_data.get("MVATree")
 
-print n, " Events to Analyse"
+#select MC
+n=tree_qcd.GetEntries()
+print n, " MC Events to Analyse"
 for i in xrange(n):
   if i%10000==0: print "analyzing event Nr. ", i
   #if i >20000: break
@@ -79,10 +142,8 @@ for i in xrange(n):
 	h_CSV_lf.Fill(tree_qcd.Jet_CSV[j])
  
       
-    if dphi> 2.7:
-      
-      if abs(tree_qcd.Jet_Eta[0])<2.1 and abs(tree_qcd.Jet_Eta[1])<2.1 :
-	  
+    if dphi> 2.7:      
+      if abs(tree_qcd.Jet_Eta[0])<2.1 and abs(tree_qcd.Jet_Eta[1])<2.1 :	  
 	if abs(tree_qcd.Jet_Flav[0])==4:
 	      h_pthardestjet_c.Fill(tree_qcd.Jet_Pt[0])	    
 	elif abs(tree_qcd.Jet_Flav[0])==5: 
@@ -179,7 +240,44 @@ for i in xrange(n):
 		elif abs(tree_qcd.Jet_Flav[0])==5: h_CSV_true_taggedlow_b.Fill(tree_qcd.Jet_CSV[0])
 		elif abs(tree_qcd.Jet_Flav[0])!=4 and abs(tree_qcd.Jet_Flav[0])!=5: h_CSV_true_taggedlow_lf.Fill(tree_qcd.Jet_CSV[0])
 		
+
+
+#select data
+n_data=tree_qcd.GetEntries()
+print n_data, " Data Events to Analyse"
+for i in xrange(n_data):
+  if i%10000==0: print "analyzing event Nr. ", i
+  #if i >20000: break
+  tree_data.GetEntry(i)  
+  dphi_data=tree_data.DeltaPhi
+  if dphi_data>2.7:
+    ptavg_data=tree_data.PtAve
+    for j in xrange(2):
+      if tree_data.Jet_CSV[j]>0.97:	      
+	      if tree_data.N_Jets >=3:
+		if tree_data.Jet_Pt[2]/pt_avg_data < pt3cut:
+		    if j==0:
+		      h_CSV_hightagged_data.Fill(tree_data.CSV[1])
+		    elif j==1:
+		       h_CSV_hightagged_data.Fill(tree_data.CSV[0])
+	      elif j==0:
+		 h_CSV_hightagged_data.Fill(tree_data.CSV[1])
+	      elif j==1:
+		 h_CSV_hightagged_data.Fill(tree_data.CSV[0])
 		
+	if tree_data.Jet_CSV[j]<0.605:		      
+	      if tree_data.N_Jets >=3:
+		if tree_data.Jet_Pt[2]/pt_avg_data < pt3cut:
+		    if j==0:
+		      h_CSV_lowtagged_data.Fill(tree_data.CSV[1])
+		    elif j==1:
+		      h_CSV_lowtagged_data.Fill(tree_data.CSV[0])
+	      elif j==0:
+		h_CSV_lowtagged_data.Fill(tree_data.CSV[1])
+	      elif j==1:
+		h_CSV_lowtagged_data.Fill(tree_data.CSV[0])
+      
+    
  
     
 	    
@@ -276,6 +374,7 @@ c10=TCanvas()
 c11=TCanvas()
 c12=TCanvas()
 c13=TCanvas()
+c14=TCanvas()
 
 
 c1.cd()
@@ -358,6 +457,53 @@ h_flav_probeJet.Draw()
 h_flav_probeJet.GetXaxis().SetTitle("Flav of probe Jet (HF, truth tagged)")
 h_flav_probeJet.Write()
 c13.SaveAs("flav_probejet.png")
+
+#plot and define CSV ratio plot
+line=TLine(xmin,1,xmax,1)
+line.SetLineColor(kBlack)
+
+xmin=-0.2
+xmax=1
+nbins=11
+
+text="CMS private Work"
+cutlabel="Dijet selection"
+text = TLatex()
+text.SetNDC()
+text.SetTextFont(42)
+text.SetTextSize(0.05)
+
+#LF
+xtitle_low="CSV probe Jet (LF)"
+c14.cd()
+makepadhist(log=False,norm=False)
+stack_CSVtaggedlow.Draw()
+h_CSV_lowtagged_data.Draw("SAMEE0")
+text.DrawLatex(0.175, 0.863, text)
+text.DrawLatex(0.175, 0.815, cutlabel)
+
+c14.cd()
+makepadratio()
+ratio_LF=makeratio(stack_CSVtaggedlow,h_CSV_lowtagged_data,xtitle_low)
+set_ratioattributes(ratio_LF,xmin,xmax,nbins,xtitle_low)
+line.Draw() 
+
+#HF
+xtitle_high="CSV probe Jet (HF)"
+c15.cd()
+makepadhist(log=False,norm=False)
+stack_CSVtaggedhigh.Draw()
+h_CSV_hightagged_data.Draw("SAMEE0")
+text.DrawLatex(0.175, 0.863, text)
+text.DrawLatex(0.175, 0.815, cutlabel)
+
+c15.cd()
+makepadratio()
+ratio_HF=makeratio(stack_CSVtaggedhigh,h_CSV_hightagged_data,xtitle_high)
+set_ratioattributes(ratio_HF,xmin,xmax,nbins,xtitle_high)
+line.Draw() 
+
+
 
 
 raw_input("Press a Key...")
