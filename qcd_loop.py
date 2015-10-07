@@ -3,6 +3,7 @@ import math
 #f_qcd=TFile("/storage/8/tpfotzer/BEANTrees/2015B_newGT/MC_QCD_MuEnriched_Tree.root")
 f_qcd=TFile("/nfs/dust/cms/user/matsch/ttHNtuples/Spring15/DiJets_QCD_Pt_300to470_TuneCUETP8M1_13TeV_pythia8.root")
 f_histos=TFile("histos.root","RECREATE")
+pt3cut=0.05
 
 h_dphi=TH1F("h_dphi","h_dphi",45,0,3.5)
 h_pt3=TH1F("h_pt3","h_pt3",80,0,350)
@@ -89,14 +90,14 @@ for i in xrange(n):
 	elif abs(tree_qcd.Jet_Flav[0])!=5 and abs(tree_qcd.Jet_Flav[0])!=4:
 	      h_pthardestjet_lf.Fill(tree_qcd.Jet_Pt[0])
 	#pt_avg=tree_qcd.PtAve
-      csv tagging
+      #csv tagging
       for j in xrange(2):	    
 	if abs(tree_qcd.Jet_Flav[j])==4:h_pt_c.Fill(tree_qcd.Jet_Pt[j])
 	elif abs(tree_qcd.Jet_Flav[j])==5:h_pt_b.Fill(tree_qcd.Jet_Pt[j])
 	elif abs(tree_qcd.Jet_Flav[j])!=5 and abs(tree_qcd.Jet_Flav[j])!=4:h_pt_lf.Fill(tree_qcd.Jet_Pt[j])
 	if tree_qcd.Jet_CSV[j]>0.97:	      
 	      if tree_qcd.N_Jets >=3:
-		if tree_qcd.Jet_Pt[2]/pt_avg < 0.4:
+		if tree_qcd.Jet_Pt[2]/pt_avg < pt3cut:
 		    if j==0:
 		      if abs(tree_qcd.Jet_Flav[1])==4: h_CSV_taggedhigh_c.Fill(tree_qcd.Jet_CSV[1])
 		      elif abs(tree_qcd.Jet_Flav[1])==5: h_CSV_taggedhigh_b.Fill(tree_qcd.Jet_CSV[1])
@@ -116,7 +117,7 @@ for i in xrange(n):
 		
 	if tree_qcd.Jet_CSV[j]<0.605:		      
 	      if tree_qcd.N_Jets >=3:
-		if tree_qcd.Jet_Pt[2]/pt_avg < 0.4:
+		if tree_qcd.Jet_Pt[2]/pt_avg < pt3cut:
 		    if j==0:
 		      if abs(tree_qcd.Jet_Flav[1])==4: h_CSV_taggedlow_c.Fill(tree_qcd.Jet_CSV[1])
 		      elif abs(tree_qcd.Jet_Flav[1])==5: h_CSV_taggedlow_b.Fill(tree_qcd.Jet_CSV[1])
@@ -136,7 +137,7 @@ for i in xrange(n):
 	#True tagging	
 	if abs(tree_qcd.Jet_Flav[j])==5:	      
 	      if tree_qcd.N_Jets >=3:
-		if tree_qcd.Jet_Pt[2]/pt_avg < 0.4:
+		if tree_qcd.Jet_Pt[2]/pt_avg < pt3cut:
 		    if j==0:
 		      h_flav_probeJet.Fill(abs(tree_qcd.Jet_Flav[1]))
 		      if abs(tree_qcd.Jet_Flav[1])==4: h_CSV_true_taggedhigh_c.Fill(tree_qcd.Jet_CSV[1])
@@ -160,7 +161,7 @@ for i in xrange(n):
 		
 	if abs(tree_qcd.Jet_Flav[j])!=5:		      
 	      if tree_qcd.N_Jets >=3:
-		if tree_qcd.Jet_Pt[2]/pt_avg < 0.4:
+		if tree_qcd.Jet_Pt[2]/pt_avg < pt3cut:
 		    if j==0:
 		      if abs(tree_qcd.Jet_Flav[1])==4: h_CSV_true_taggedlow_c.Fill(tree_qcd.Jet_CSV[1])
 		      elif abs(tree_qcd.Jet_Flav[1])==5: h_CSV_true_taggedlow_b.Fill(tree_qcd.Jet_CSV[1])
