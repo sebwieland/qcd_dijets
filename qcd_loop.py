@@ -472,13 +472,17 @@ text = TLatex()
 text.SetNDC()
 text.SetTextFont(42)
 text.SetTextSize(0.05)
+backhistos=[h_CSV_taggedhigh_b,h_CSV_taggedhigh_c,h_CSV_taggedhigh_lf]
+backnames=["b","c","LF"]
 
 #LF
 xtitle_low="CSV probe Jet (LF)"
+leg_low=makeleg(backhistos,h_CSV_lowtagged_data,backnames)
 c14.cd()
 makepadhist(log=False,norm=False)
 stack_CSVtaggedlow.Draw()
 h_CSV_lowtagged_data.Draw("SAMEE0")
+leg_low.Draw()
 text.DrawLatex(0.175, 0.863, text)
 text.DrawLatex(0.175, 0.815, cutlabel)
 
@@ -486,14 +490,17 @@ c14.cd()
 makepadratio()
 ratio_LF=makeratio(stack_CSVtaggedlow,h_CSV_lowtagged_data,xtitle_low)
 set_ratioattributes(ratio_LF,xmin,xmax,nbins,xtitle_low)
-line.Draw() 
+line.Draw()
+c14.SaveAs("flav_probejet_ratio_LF.png")
 
 #HF
 xtitle_high="CSV probe Jet (HF)"
+leg_high=makeleg(backhistos,h_CSV_hightagged_data,backnames)
 c15.cd()
 makepadhist(log=False,norm=False)
 stack_CSVtaggedhigh.Draw()
 h_CSV_hightagged_data.Draw("SAMEE0")
+leg_high.Draw()
 text.DrawLatex(0.175, 0.863, text)
 text.DrawLatex(0.175, 0.815, cutlabel)
 
@@ -502,6 +509,8 @@ makepadratio()
 ratio_HF=makeratio(stack_CSVtaggedhigh,h_CSV_hightagged_data,xtitle_high)
 set_ratioattributes(ratio_HF,xmin,xmax,nbins,xtitle_high)
 line.Draw() 
+c15.SaveAs("flav_probejet_ratio_HF.png")
+
 
 
 
