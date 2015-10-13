@@ -204,12 +204,66 @@ for (long iEntry=0;iEntry<nentries;iEntry++) {
 		  else if (abs(Jet_Flav[0])!=4 && abs(Jet_Flav[0])!=5) h_CSV_taggedlow_lf->Fill(Jet_CSV[0]);
 		}
 	  }
+	  //true tagging	  
+	  if (abs(Jet_Flav[j])==5){
+		if (N_Jets >=3){
+		  if (Jet_Pt[2]/pt_avg < pt3cut){
+		      if (j==0){
+			if (abs(Jet_Flav[1])==4) h_CSV_true_taggedhigh_c->Fill(Jet_CSV[1]);
+			else if (abs(Jet_Flav[1])==5) h_CSV_true_taggedhigh_b->Fill(Jet_CSV[1]);
+			else if (abs(Jet_Flav[1])!=4 && abs(Jet_Flav[1])!=5) h_CSV_true_taggedhigh_lf->Fill(Jet_CSV[1]);
+		      }
+		      else if (j==1){
+			if (abs(Jet_Flav[0])==4) h_CSV_true_taggedhigh_c->Fill(Jet_CSV[0]);
+			else if (abs(Jet_Flav[0])==5) h_CSV_true_taggedhigh_b->Fill(Jet_CSV[0]);
+			else if (abs(Jet_Flav[0])!=4 && abs(Jet_Flav[0])!=5) h_CSV_true_taggedhigh_lf->Fill(Jet_CSV[0]);
+		      }
+		}
+		}
+		else if (j==0){
+		  if (abs(Jet_Flav[1])==4) h_CSV_true_taggedhigh_c->Fill(Jet_CSV[1]);
+		  else if (abs(Jet_Flav[1])==5) h_CSV_true_taggedhigh_b->Fill(Jet_CSV[1]);
+		  else if (abs(Jet_Flav[1])!=4 && abs(Jet_Flav[1])!=5) h_CSV_true_taggedhigh_lf->Fill(Jet_CSV[1]);
+		}
+		else if (j==1){
+		  if (abs(Jet_Flav[0])==4) h_CSV_true_taggedhigh_c->Fill(Jet_CSV[0]);
+		  else if (abs(Jet_Flav[0])==5) h_CSV_true_taggedhigh_b->Fill(Jet_CSV[0]);
+		  else if (abs(Jet_Flav[0])!=4 && abs(Jet_Flav[0])!=5) h_CSV_true_taggedhigh_lf->Fill(Jet_CSV[0]);
+		}
+	  }
+		  
+	  else if (abs(Jet_Flav[j])!=5){
+		if (N_Jets >=3){
+		  if (Jet_Pt[2]/pt_avg < pt3cut){
+		      if (j==0){
+			if (abs(Jet_Flav[1])==4) h_CSV_true_taggedlow_c->Fill(Jet_CSV[1]);
+			else if (abs(Jet_Flav[1])==5) h_CSV_true_taggedlow_b->Fill(Jet_CSV[1]);
+			else if (abs(Jet_Flav[1])!=4 && abs(Jet_Flav[1])!=5) h_CSV_true_taggedlow_lf->Fill(Jet_CSV[1]);
+		      }
+		      else if (j==1){
+			if (abs(Jet_Flav[0])==4) h_CSV_true_taggedlow_c->Fill(Jet_CSV[0]);
+			else if (abs(Jet_Flav[0])==5) h_CSV_true_taggedlow_b->Fill(Jet_CSV[0]);
+			else if (abs(Jet_Flav[0])!=4 && abs(Jet_Flav[0])!=5) h_CSV_true_taggedlow_lf->Fill(Jet_CSV[0]);
+		      }
+		  }
+		}
+		else if (j==0){
+		  if (abs(Jet_Flav[1])==4) h_CSV_true_taggedlow_c->Fill(Jet_CSV[1]);
+		  else if (abs(Jet_Flav[1])==5) h_CSV_true_taggedlow_b->Fill(Jet_CSV[1]);
+		  else if (abs(Jet_Flav[1])!=4 && abs(Jet_Flav[1])!=5) h_CSV_true_taggedlow_lf->Fill(Jet_CSV[1]);
+		}
+		else if (j==1){
+		  if (abs(Jet_Flav[0])==4) h_CSV_true_taggedlow_c->Fill(Jet_CSV[0]);
+		  else if (abs(Jet_Flav[0])==5) h_CSV_true_taggedlow_b->Fill(Jet_CSV[0]);
+		  else if (abs(Jet_Flav[0])!=4 && abs(Jet_Flav[0])!=5) h_CSV_true_taggedlow_lf->Fill(Jet_CSV[0]);
+		}
 	}
 	}
 	}
     }
 //   cout << iEntry;
   } // end of event loop
+}
 // write histos
   
 cout << "write histos to file";
