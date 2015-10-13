@@ -30,32 +30,33 @@ void qcd_dijet(){
 //   }
 //   chain->SetBranchStatus("*",0);
 
-TFile* f_qcd= new TFile("/nfs/dust/cms/user/matsch/ttHNtuples/Spring15/DiJets_QCD_Pt_300to470_TuneCUETP8M1_13TeV_pythia8.root");
+// TFile* f_qcd= new TFile("/nfs/dust/cms/user/matsch/ttHNtuples/Spring15/DiJets_QCD_Pt_300to470_TuneCUETP8M1_13TeV_pythia8.root");
+// TTree* tree_qcd = (TTree*)f_qcd->Get("MVATree");
 
-// TChain* tree_qcd = new TChain("MVATree");
-TTree* tree_qcd = (TTree*)f_qcd->Get("MVATree");
-// tree_qcd->AddFile("/nfs/dust/cms/user/matsch/ttHNtuples/Spring15/DiJets_QCD_Pt_300to470_TuneCUETP8M1_13TeV_pythia8_v2_1.root");
-// tree_qcd->AddFile("/nfs/dust/cms/user/matsch/ttHNtuples/Spring15/DiJets_QCD_Pt_300to470_TuneCUETP8M1_13TeV_pythia8_v2_2-pre.root");
+TChain* tree_qcd = new TChain("MVATree");
+
+tree_qcd->AddFile("/nfs/dust/cms/user/matsch/ttHNtuples/Spring15/DiJets_QCD_Pt_300to470_TuneCUETP8M1_13TeV_pythia8_v2_1.root");
+tree_qcd->AddFile("/nfs/dust/cms/user/matsch/ttHNtuples/Spring15/DiJets_QCD_Pt_300to470_TuneCUETP8M1_13TeV_pythia8_v2_2-pre.root");
 // tree_qcd-> SetBranchStatus("*",0);
 
 // initialize variables from tree
 
 int N_Jets;
 tree_qcd->SetBranchAddress("N_Jets",&N_Jets);
-float* Jet_Pt = new float[50];
+float* Jet_Pt = new float[120];
 tree_qcd->SetBranchAddress("Jet_Pt",Jet_Pt);
-float* Jet_Phi = new float[50];
+float* Jet_Phi = new float[120];
 tree_qcd->SetBranchAddress("Jet_Phi",Jet_Phi);
 float DeltaPhi;
 tree_qcd->SetBranchAddress("DeltaPhi",&DeltaPhi);
 float PtAve;
 tree_qcd->SetBranchAddress("PtAve",&PtAve);
-float* Jet_Eta = new float[50];
+float* Jet_Eta = new float[120];
 tree_qcd->SetBranchAddress("Jet_Eta",Jet_Eta);  
-float* Jet_CSV = new float[50];
+float* Jet_CSV = new float[120];
 tree_qcd->SetBranchAddress("Jet_CSV",Jet_CSV);
-float* Jet_Flav = new float[50];
-tree_qcd->SetBranchAddress("Jet_Flav",Jet_Flav);
+float* Jet_Flav = new float[120];
+tree_qcd->SetBranchAddress("Jet_PartonFlav",Jet_Flav);
 
 
 // define histos  
@@ -64,6 +65,7 @@ TH1F* h_pt3=new TH1F("h_pt3","h_pt3",80,0,350);
 TH1F* h_pt3overavg=new TH1F("h_pt3overavg","h_pt3overavg",20,0,2);
 
 TH1F* h_flav_probeJet=new TH1F("h_flav_probeJet","h_flav_probeJet",50,0,23);
+TH1F* h_partonFlav=new TH1F("h_partonFlav","h_partonFlav",50,0,23);
 
 TH1F* h_ptavg=new TH1F("h_ptavg","h_ptavg",80,0,500);
 
@@ -121,6 +123,7 @@ for (long iEntry=0;iEntry<nentries;iEntry++) {
       h_pt3overavg->Fill(Jet_Pt[2]/pt_avg);
       }  
     for (int j=0;j< N_Jets;j++){
+       h_partonFlav->Fill(Jet_Flav[j]);
       if (abs(Jet_Flav[j])==4){  
 	h_NJets_c->Fill(N_Jets);
 	h_CSV_c->Fill(Jet_CSV[j]);
@@ -309,11 +312,13 @@ h_CSV_true_taggedlow_lf->Write();
 h_CSV_true_taggedlow_b->Write();
 h_CSV_true_taggedlow_c->Write();
 
+h_partonFlav->Write();
+
 outfile->Close();
 
 
   }
 
   int main(){
-    qcd_dijet();
+    qcd_dijet();    
   }
