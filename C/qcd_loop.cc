@@ -1,5 +1,9 @@
 // #include "TChain.h"
+#include "Rtypes.h"
+#include "TStyle.h"
 #include "TBranch.h"
+#include "TCanvas.h"
+#include "THStack.h"
 #include "TChain.h"
 #include "TTree.h"
 #include "TLorentzVector.h"
@@ -269,16 +273,14 @@ for (long iEntry=0;iEntry<nentries;iEntry++) {
 }
 // write histos
   
-cout << "write histos to file";
+cout << "write histos to file"<<endl;
 TFile* outfile=new TFile("outfile.root","RECREATE");    
+gStyle->SetFillStyle(1001);
 
-h_dphi->Write();
-h_pt3->Write();
-h_pt3overavg->Write();
+
+
 
 h_flav_probeJet->Write();
-
-h_ptavg->Write();
 
 h_pthardestjet_lf->Write();
 h_pthardestjet_b->Write();
@@ -314,8 +316,184 @@ h_CSV_true_taggedlow_c->Write();
 
 h_partonFlav->Write();
 
-outfile->Close();
 
+
+
+h_NJets_lf->SetFillColor(kGreen);
+h_NJets_b->SetFillColor(kRed);
+h_NJets_c->SetFillColor(kBlue);
+
+h_CSV_lf->SetFillColor(kGreen);
+h_CSV_b->SetFillColor(kRed);
+h_CSV_c->SetFillColor(kBlue);
+
+h_CSV_taggedhigh_lf->SetFillColor(kGreen);
+h_CSV_taggedhigh_b->SetFillColor(kRed);
+h_CSV_taggedhigh_c->SetFillColor(kBlue);
+
+h_CSV_taggedlow_lf->SetFillColor(kGreen);
+h_CSV_taggedlow_b->SetFillColor(kRed);
+h_CSV_taggedlow_c->SetFillColor(kBlue);
+
+h_CSV_true_taggedhigh_lf->SetFillColor(kGreen);
+h_CSV_true_taggedhigh_b->SetFillColor(kRed);
+h_CSV_true_taggedhigh_c->SetFillColor(kBlue);
+
+h_CSV_true_taggedlow_lf->SetFillColor(kGreen);
+h_CSV_true_taggedlow_b->SetFillColor(kRed);
+h_CSV_true_taggedlow_c->SetFillColor(kBlue);
+
+h_pt_lf->SetFillColor(kGreen);
+h_pt_b->SetFillColor(kRed);
+h_pt_c->SetFillColor(kBlue);
+
+h_pthardestjet_lf->SetFillColor(kGreen);
+h_pthardestjet_b->SetFillColor(kRed);
+h_pthardestjet_c->SetFillColor(kBlue);
+
+
+THStack* stack_NJets=new THStack();
+// THStack* stack_NBTagsM=new THStack();
+THStack* stack_CSV=new THStack();
+// THStack* stack_CSVtagged=new THStack();
+THStack* stack_Jet_Pt=new THStack();
+THStack* stack_CSVtaggedlow=new THStack();
+THStack* stack_CSVtaggedhigh=new THStack();
+THStack* stack_pthardestjet=new THStack();
+THStack* stack_true_CSVtaggedlow=new THStack();
+THStack* stack_true_CSVtaggedhigh=new THStack();
+
+
+stack_NJets->Add(h_NJets_b);
+stack_NJets->Add(h_NJets_c);
+stack_NJets->Add(h_NJets_lf);
+
+stack_CSV->Add(h_CSV_b);
+stack_CSV->Add(h_CSV_c);
+stack_CSV->Add(h_CSV_lf);
+
+stack_CSVtaggedhigh->Add(h_CSV_taggedhigh_b);
+stack_CSVtaggedhigh->Add(h_CSV_taggedhigh_c);
+stack_CSVtaggedhigh->Add(h_CSV_taggedhigh_lf);
+
+stack_CSVtaggedlow->Add(h_CSV_taggedlow_b);
+stack_CSVtaggedlow->Add(h_CSV_taggedlow_c);
+stack_CSVtaggedlow->Add(h_CSV_taggedlow_lf);
+
+stack_Jet_Pt->Add(h_pt_b);
+stack_Jet_Pt->Add(h_pt_c);
+stack_Jet_Pt->Add(h_pt_lf);
+
+stack_pthardestjet->Add(h_pthardestjet_b);
+stack_pthardestjet->Add(h_pthardestjet_c);
+stack_pthardestjet->Add(h_pthardestjet_lf);
+
+stack_true_CSVtaggedhigh->Add(h_CSV_true_taggedhigh_b);
+stack_true_CSVtaggedhigh->Add(h_CSV_true_taggedhigh_c);
+stack_true_CSVtaggedhigh->Add(h_CSV_true_taggedhigh_lf);
+
+stack_true_CSVtaggedlow->Add(h_CSV_true_taggedlow_b);
+stack_true_CSVtaggedlow->Add(h_CSV_true_taggedlow_c);
+stack_true_CSVtaggedlow->Add(h_CSV_true_taggedlow_lf);
+
+
+TCanvas* c1=new TCanvas();
+TCanvas* c2=new TCanvas();
+TCanvas* c3=new TCanvas();
+TCanvas* c4=new TCanvas();
+TCanvas* c5=new TCanvas();
+TCanvas* c6=new TCanvas();
+TCanvas* c7=new TCanvas();
+TCanvas* c8=new TCanvas();
+TCanvas* c9=new TCanvas();
+TCanvas* c10=new TCanvas();
+TCanvas* c11=new TCanvas();
+TCanvas* c12=new TCanvas();
+TCanvas* c13=new TCanvas();
+
+
+c1->cd();
+stack_CSV->Draw("hist");
+stack_CSV->GetXaxis()->SetTitle("CSV of all Jets (>=2 jets, w/o dphi and PtAvg cut) ");
+stack_CSV->Write();
+c1->SaveAs("CSV_alljets.png");
+
+c2->cd();
+h_dphi->Draw("HIST");
+h_dphi->GetXaxis()->SetTitle("d_phi of 2 hardest Jets (>=2 jets)");
+h_dphi->Write();
+c2->SaveAs("d_phi.png");
+
+c3->cd();
+stack_NJets->Draw("HIST");
+stack_NJets->GetXaxis()->SetTitle("N Jets (w/o dphi and PtAvg cut)");
+stack_NJets->Write();
+c3->SaveAs("N_Jets.png");
+
+c4->cd();
+stack_CSVtaggedhigh->Draw("HIST");
+stack_CSVtaggedhigh->GetXaxis()->SetTitle("CSV probe Jet (HF)");
+stack_CSVtaggedhigh->Write();
+c4->SaveAs("CSV_probejet_HF.png");
+
+c5->cd();
+stack_CSVtaggedlow->Draw("HIST");
+stack_CSVtaggedlow->GetXaxis()->SetTitle("CSV probe Jet (LF)");
+stack_CSVtaggedlow->Write();
+c5->SaveAs("CSV_probejet_LF.png");
+
+c6->cd();
+h_pt3->Draw("HIST");
+h_pt3->GetXaxis()->SetTitle("Jet_Pt[2]");
+h_pt3->Write();
+c6->SaveAs("Jet_Pt2.png");
+
+c7->cd();
+h_pt3overavg->Draw("HIST");
+h_pt3overavg->GetXaxis()->SetTitle("pt3 over pt_avg");
+h_pt3overavg->Write();
+c7->SaveAs("pt3overavg.png");
+
+c8->cd();
+stack_Jet_Pt->Draw("HIST");
+stack_Jet_Pt->GetXaxis()->SetTitle("Pt two hardest Jets");
+stack_Jet_Pt->Write();
+c8->SaveAs("pt_2hardestjets.png");
+
+c9->cd();
+h_ptavg->Draw("HIST");
+h_ptavg->GetXaxis()->SetTitle("Pt avg (>=2 jets)");
+h_ptavg->Write();
+c9->SaveAs("ptavg.png");
+
+c10->cd();
+stack_pthardestjet->Draw("hist");
+stack_pthardestjet->GetXaxis()->SetTitle("Pt of hardest Jet");
+stack_pthardestjet->Write();
+c10->SaveAs("pt_hardestjet.png");
+cout << "b: "<< h_pthardestjet_b->Integral()<<endl;
+cout <<  "lf: "<< h_pthardestjet_lf->Integral()<<endl;
+cout << "c: "<< h_pthardestjet_c->Integral()<<endl;
+
+c11->cd();
+stack_true_CSVtaggedhigh->Draw("HIST");
+stack_true_CSVtaggedhigh->GetXaxis()->SetTitle("CSV probe Jet (HF, truth tagged)");
+stack_true_CSVtaggedhigh->Write();
+c11->SaveAs("CSV_probejet_HF_truthtagged.png");
+
+c12->cd();
+stack_true_CSVtaggedlow->Draw("HIST");
+stack_true_CSVtaggedlow->GetXaxis()->SetTitle("CSV probe Jet (LF, truth tagged)");
+stack_true_CSVtaggedlow->Write();
+c12->SaveAs("CSV_probejet_LF_truthtagged.png");
+
+c13->cd();
+h_flav_probeJet->Draw("HIST");
+h_flav_probeJet->GetXaxis()->SetTitle("Flav of probe Jet (HF, truth tagged)");
+h_flav_probeJet->Write();
+c13->SaveAs("flav_probejet.png");
+
+outfile->Close();
 
   }
 
