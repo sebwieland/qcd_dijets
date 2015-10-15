@@ -24,19 +24,6 @@ void qcd_dijet(){
   TH1F::SetDefaultSumw2();
   
   // open files
-//   TChain* chain = new TChain("MVATree");
-//   char* filenames = getenv ("FILENAMES");
-//   char* outfilename = getenv ("OUTFILENAME");
-//   string buf;
-//   stringstream ss(filenames); 
-//   while (ss >> buf){
-//     chain->Add(buf.c_str());
-//   }
-//   chain->SetBranchStatus("*",0);
-
-// TFile* f_qcd= new TFile("/nfs/dust/cms/user/matsch/ttHNtuples/Spring15/DiJets_QCD_Pt_300to470_TuneCUETP8M1_13TeV_pythia8.root");
-// TTree* tree_qcd = (TTree*)f_qcd->Get("MVATree");
-
 TChain* tree_qcd = new TChain("MVATree");
 
 tree_qcd->AddFile("/nfs/dust/cms/user/matsch/ttHNtuples/Spring15/DiJets_QCD_Pt_300to470_TuneCUETP8M1_13TeV_pythia8_v2_1.root");
@@ -120,10 +107,14 @@ TH1F* h_NSV_part5_had5=new TH1F("h_NSV_part5_had5","h_NSV_part5_had5",4,0,4);
 TH1F* h_tagjet_partflav=new TH1F("h_tagjet_partflav","h_tagjet_partflav",50,0,23);
 TH1F* h_tagjet_hadflav=new TH1F("h_tagjet_hadflav","h_tagjet_hadflav",50,0,23);
 
+TH1F* h_tagjet_partflav_wo_SVMassCut=new TH1F("h_tagjet_partflav_wo_SVMassCut","h_tagjet_partflav_wo_SVMassCut",50,0,23);
+
 float dphi;
 float pt_avg;
 float pt3cut;
-long nentries ;
+long nentries;
+float SVMassCut;
+SVMassCut=2;
 pt3cut=0.1;
 // loop over all events
 nentries = tree_qcd->GetEntries(); 
@@ -183,7 +174,25 @@ for (long iEntry=0;iEntry<nentries;iEntry++) {
 	  else if (abs(Jet_PartFlav[j])==5) h_pt_b->Fill(Jet_Pt[j]);
 	  else if (abs(Jet_PartFlav[j])!=5 && abs(Jet_PartFlav[j])!=4) h_pt_lf->Fill(Jet_Pt[j]);
 	  //csv tagging
-	  if (Jet_CSV[j]>0.97 && Jet_SumSVMass[j]<2 ){
+	  if (Jet_CSV[j]>0.97){
+	    if (N_Jets >=3){
+		  if (Jet_Pt[2]/pt_avg < pt3cut){
+		      if (j==0){
+			h_tagjet_partflav_wo_SVMassCut->Fill(abs(Jet_PartFlav[0]));
+		      }
+		      else if (j==1){
+			h_tagjet_partflav_wo_SVMassCut->Fill(abs(Jet_PartFlav[1]));
+		      }
+		}
+	    }
+	    else if (j==0){
+		  h_tagjet_partflav_wo_SVMassCut->Fill(abs(Jet_PartFlav[0]));
+		}
+	    else if (j==1){
+		  h_tagjet_partflav_wo_SVMassCut->Fill(abs(Jet_PartFlav[1]));
+		}
+		
+	    if (Jet_SumSVMass[j]<SVMassCut){
 		if (N_Jets >=3){
 		  if (Jet_Pt[2]/pt_avg < pt3cut){
 		      if (j==0){
@@ -215,7 +224,8 @@ for (long iEntry=0;iEntry<nentries;iEntry++) {
 		  if (abs(Jet_PartFlav[0])==4) h_CSV_taggedhigh_c->Fill(Jet_CSV[0]);
 		  else if (abs(Jet_PartFlav[0])==5) h_CSV_taggedhigh_b->Fill(Jet_CSV[0]);
 		  else if (abs(Jet_PartFlav[0])!=4 && abs(Jet_PartFlav[0])!=5) h_CSV_taggedhigh_lf->Fill(Jet_CSV[0]);
-		}
+		}	  
+	    }
 	  }
 		  
 	  else if (Jet_CSV[j]<0.605){
@@ -431,23 +441,6 @@ stack_true_CSVtaggedlow->Add(h_CSV_true_taggedlow_lf);
 
 
 TCanvas* c1=new TCanvas();
-TCanvas* c2=new TCanvas();
-TCanvas* c3=new TCanvas();
-TCanvas* c4=new TCanvas();
-TCanvas* c5=new TCanvas();
-TCanvas* c6=new TCanvas();
-TCanvas* c7=new TCanvas();
-TCanvas* c8=new TCanvas();
-TCanvas* c9=new TCanvas();
-TCanvas* c10=new TCanvas();
-TCanvas* c11=new TCanvas();
-TCanvas* c12=new TCanvas();
-TCanvas* c13=new TCanvas();
-TCanvas* c14=new TCanvas();
-TCanvas* c15=new TCanvas();
-TCanvas* c16=new TCanvas();
-TCanvas* c17=new TCanvas();
-
 
 c1->cd();
 stack_CSV->Draw("hist");
@@ -455,123 +448,147 @@ stack_CSV->GetXaxis()->SetTitle("CSV of all Jets (>=2 jets, w/o dphi and PtAvg c
 stack_CSV->Write();
 c1->SaveAs("CSV_alljets.png");
 
-c2->cd();
+
 h_dphi->Draw("HIST");
 h_dphi->GetXaxis()->SetTitle("d_phi of 2 hardest Jets (>=2 jets)");
 h_dphi->Write();
-c2->SaveAs("d_phi.png");
+c1->SaveAs("d_phi.png");
 
-c3->cd();
+
 stack_NJets->Draw("HIST");
 stack_NJets->GetXaxis()->SetTitle("N Jets (w/o dphi and PtAvg cut)");
 stack_NJets->Write();
-c3->SaveAs("N_Jets.png");
+c1->SaveAs("N_Jets.png");
 
-c4->cd();
+
 stack_CSVtaggedhigh->Draw("HIST");
 stack_CSVtaggedhigh->GetXaxis()->SetTitle("CSV probe Jet (HF)");
 stack_CSVtaggedhigh->Write();
-c4->SaveAs("CSV_probejet_HF.png");
+c1->SaveAs("CSV_probejet_HF.png");
 
-c5->cd();
+
 stack_CSVtaggedlow->Draw("HIST");
 stack_CSVtaggedlow->GetXaxis()->SetTitle("CSV probe Jet (LF)");
 stack_CSVtaggedlow->Write();
-c5->SaveAs("CSV_probejet_LF.png");
+c1->SaveAs("CSV_probejet_LF.png");
 
-c6->cd();
+;
 h_pt3->Draw("HIST");
 h_pt3->GetXaxis()->SetTitle("Jet_Pt[2]");
 h_pt3->Write();
-c6->SaveAs("Jet_Pt2.png");
+c1->SaveAs("Jet_Pt2.png");
 
-c7->cd();
+
 h_pt3overavg->Draw("HIST");
 h_pt3overavg->GetXaxis()->SetTitle("pt3 over pt_avg");
 h_pt3overavg->Write();
-c7->SaveAs("pt3overavg.png");
+c1->SaveAs("pt3overavg.png");
 
-c8->cd();
+
 stack_Jet_Pt->Draw("HIST");
 stack_Jet_Pt->GetXaxis()->SetTitle("Pt two hardest Jets");
 stack_Jet_Pt->Write();
-c8->SaveAs("pt_2hardestjets.png");
+c1->SaveAs("pt_2hardestjets.png");
 
-c9->cd();
+
 h_ptavg->Draw("HIST");
 h_ptavg->GetXaxis()->SetTitle("Pt avg (>=2 jets)");
 h_ptavg->Write();
-c9->SaveAs("ptavg.png");
+c1->SaveAs("ptavg.png");
 
-c10->cd();
+
 stack_pthardestjet->Draw("hist");
 stack_pthardestjet->GetXaxis()->SetTitle("Pt of hardest Jet");
 stack_pthardestjet->Write();
-c10->SaveAs("pt_hardestjet.png");
+c1->SaveAs("pt_hardestjet.png");
 cout << "b: "<< h_pthardestjet_b->Integral()<<endl;
 cout <<  "lf: "<< h_pthardestjet_lf->Integral()<<endl;
 cout << "c: "<< h_pthardestjet_c->Integral()<<endl;
 
-c11->cd();
+
 stack_true_CSVtaggedhigh->Draw("HIST");
 stack_true_CSVtaggedhigh->GetXaxis()->SetTitle("CSV probe Jet (HF, truth tagged)");
 stack_true_CSVtaggedhigh->Write();
-c11->SaveAs("CSV_probejet_HF_truthtagged.png");
+c1->SaveAs("CSV_probejet_HF_truthtagged.png");
 
-c12->cd();
+
 stack_true_CSVtaggedlow->Draw("HIST");
 stack_true_CSVtaggedlow->GetXaxis()->SetTitle("CSV probe Jet (LF, truth tagged)");
 stack_true_CSVtaggedlow->Write();
-c12->SaveAs("CSV_probejet_LF_truthtagged.png");
+c1->SaveAs("CSV_probejet_LF_truthtagged.png");
 
-c13->cd();
+
 h_flav_probeJet->Draw("HIST");
 h_flav_probeJet->GetXaxis()->SetTitle("Flav of probe Jet (HF, truth tagged)");
 h_flav_probeJet->Write();
-c13->SaveAs("flav_probejet.png");
+c1->SaveAs("flav_probejet.png");
 
-c14->cd();
+
 h_SumSVMass_part21_had5->Draw("HIST");
 h_SumSVMass_part21_had5->Write();
 h_SumSVMass_part21_had5->GetXaxis()->SetTitle("SumSVMass part21, had5");
-c14->SaveAs("SumSVMass_part21_had5.png");
+c1->SaveAs("SumSVMass_part21_had5.png");
 
-c15->cd();
+
 h_SumSVMass_part5_had5->Draw("HIST");
 h_SumSVMass_part5_had5->Write();
 h_SumSVMass_part5_had5->GetXaxis()->SetTitle("SumSVMass part5, had5");
-c15->SaveAs("SumSVMass_part5_had5.png");
+c1->SaveAs("SumSVMass_part5_had5.png");
 
-c16->cd();
+
 h_NSV_part21_had5->Draw("HIST");
 h_NSV_part21_had5->Write();
 h_NSV_part21_had5->GetXaxis()->SetTitle("NSV part21, had5");
-c16->SaveAs("NSV_part21_had5.png");
+c1->SaveAs("NSV_part21_had5.png");
 
-c17->cd();
+
 h_NSV_part5_had5->Draw("HIST");
 h_NSV_part5_had5->Write();
 h_NSV_part5_had5->GetXaxis()->SetTitle("NSV part5, had5");
-c17->SaveAs("NSV_part5_had5.png");
+c1->SaveAs("NSV_part5_had5.png");
 
-// c17->cd();
+
 h_tagjet_hadflav->Draw("HIST");
 h_tagjet_hadflav->Write();
 h_tagjet_hadflav->GetXaxis()->SetTitle("tag Jet hadron flavor");
-c17->SaveAs("tagjet_hadflav.png");
+c1->SaveAs("tagjet_hadflav.png");
 
 h_tagjet_partflav->Draw("HIST");
 h_tagjet_partflav->Write();
 h_tagjet_partflav->GetXaxis()->SetTitle("tag Jet parton flavor");
-c17->SaveAs("tagjet_partflav.png");
+c1->SaveAs("tagjet_partflav.png");
 
-float b;
-float purity;
-b=h_tagjet_partflav->GetBinContent(h_tagjet_partflav->FindBin(4));
-purity=b/h_tagjet_partflav->Integral();
+h_tagjet_partflav_wo_SVMassCut->Draw("HIST");
+h_tagjet_partflav_wo_SVMassCut->Write();
+h_tagjet_partflav_wo_SVMassCut->GetXaxis()->SetTitle("tag Jet parton flavor w/o SVMassCut");
+c1->SaveAs("tagjet_partflav_wo_SVMassCut.png");
 
 
-cout <<"purity: "<< purity << endl;
+//HF SVMassCut eff and purity
+float b_w_SVMassCut;
+float b_wo_SVMassCut;
+float purity_w_SVMassCut;
+float purity_wo_SVMassCut;
+float eff;
+b_w_SVMassCut=h_tagjet_partflav->GetBinContent(h_tagjet_partflav->FindBin(4));
+b_wo_SVMassCut=h_tagjet_partflav_wo_SVMassCut->GetBinContent(h_tagjet_partflav_wo_SVMassCut->FindBin(4));
+purity_w_SVMassCut=b_w_SVMassCut/h_tagjet_partflav->Integral();
+purity_wo_SVMassCut=b_wo_SVMassCut/h_tagjet_partflav_wo_SVMassCut->Integral();
+eff=b_w_SVMassCut/b_wo_SVMassCut;
+
+cout << "HF:" <<endl;
+cout <<"purity with SVMassCut @ "<<SVMassCut<<": "<< purity_w_SVMassCut << endl;
+cout <<"purity without SVMassCut @ "<<SVMassCut<<": "<< purity_wo_SVMassCut << endl;
+cout <<"efficiency for SVMassCut @ "<<SVMassCut<<": "<< eff << endl;
+
+//LF Purity 
+float purity_lf;
+float lf;
+lf=h_CSV_taggedlow_c->Integral()+h_CSV_taggedlow_lf->Integral();
+purity_lf=lf/(h_CSV_taggedlow_c->Integral()+h_CSV_taggedlow_lf->Integral()+h_CSV_taggedlow_b->Integral());
+
+cout << "LF:" << endl;
+cout <<"purity: "<< purity_lf <<endl;
 outfile->Close();
 
   }
