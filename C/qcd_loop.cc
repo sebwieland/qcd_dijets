@@ -1,5 +1,9 @@
 // #include "TChain.h"
 #include "Rtypes.h"
+#include "TLegend.h"
+#include "TPad.h"
+#include "TLine.h"
+#include "TLatex.h"
 #include "TStyle.h"
 #include "TBranch.h"
 #include "TCanvas.h"
@@ -109,6 +113,8 @@ TH1F* h_tagjet_hadflav=new TH1F("h_tagjet_hadflav","h_tagjet_hadflav",50,0,23);
 
 TH1F* h_tagjet_partflav_wo_SVMassCut=new TH1F("h_tagjet_partflav_wo_SVMassCut","h_tagjet_partflav_wo_SVMassCut",50,0,23);
 
+TH1F* h_CSV_data_lf=new TH1F("h_CSV_data_lf","h_CSV_data_lf",11,-0.2,1);
+
 float dphi;
 float pt_avg;
 float pt3cut;
@@ -118,11 +124,11 @@ SVMassCut=2;
 pt3cut=0.1;
 // loop over all events
 nentries = tree_qcd->GetEntries(); 
-cout << "total number of events: " << nentries << endl;
+cout << "total number of MC events: " << nentries << endl;
 for (long iEntry=0;iEntry<nentries;iEntry++) {
 
   if(iEntry%100000==0) cout << "analyzing event " << iEntry << endl;
-//   if(iEntry>100000) break;
+  if(iEntry>10000) break;
   tree_qcd->GetEntry(iEntry);
   if(N_Jets >=2){
     dphi=DeltaPhi;
@@ -360,8 +366,6 @@ h_CSV_true_taggedlow_c->Write();
 h_partonFlav->Write();
 
 
-
-
 h_NJets_lf->SetFillColor(kGreen);
 h_NJets_b->SetFillColor(kRed);
 h_NJets_c->SetFillColor(kBlue);
@@ -589,6 +593,120 @@ purity_lf=lf/(h_CSV_taggedlow_c->Integral()+h_CSV_taggedlow_lf->Integral()+h_CSV
 
 cout << "LF:" << endl;
 cout <<"purity: "<< purity_lf <<endl;
+
+//data selection
+bool data=true;
+if (data==true){
+  TChain* tree_data = new TChain("MVATree");
+  tree_data->AddFile("/nfs/dust/cms/user/matsch/ttHNtuples/Spring15/DiJets_QCD_Pt_300to470_TuneCUETP8M1_13TeV_pythia8.root");
+  
+  float nentries_data = tree_data->GetEntries(); 
+  cout << "total number of data events: " << nentries_data << endl;
+  for (long iEntry=0;iEntry<nentries_data;iEntry++) {
+    if(iEntry%100000==0) cout << "analyzing event " << iEntry << endl;
+  //   if(iEntry>100000) break;
+    tree_data->GetEntry(iEntry);
+    //LF tagging
+    for(int j=0;j<2;j++){
+      if (Jet_CSV[j]<0.605){
+	if (N_Jets >=3){
+	  if (Jet_Pt[2]/pt_avg < pt3cut){
+	      if (j==0){
+		h_CSV_data_lf->Fill(Jet_CSV[0]);
+	      }
+	      else if (j==1){
+		h_CSV_data_lf->Fill(Jet_CSV[1]);
+	      }
+	  }
+	}
+	else if (j==0){
+	  h_CSV_data_lf->Fill(Jet_CSV[0]);
+	  cout << "event with csv <0.6 filled" << endl;
+	}
+	else if (j==1){
+	  h_CSV_data_lf->Fill(Jet_CSV[1]);
+	}
+      }  
+    }
+  }
+}
+
+
+// plot and define CSV ratio plot
+
+if (data==true){
+  cout << h_CSV_data_lf->Integral() << " events in data  selected" << endl;
+  float xmin=-0.2;
+  float xmax=1;
+  float nbins=11;
+  TLine* line=new TLine(xmin,1,xmax,1);
+  line->SetLineColor(kBlack);
+  char text_cms[]="CMS private Work";
+  char cutlabel[]="Dijet selection";
+  TLatex* text=new TLatex();
+  text-> SetNDC();
+  text-> SetTextFont(42);
+  text-> SetTextSize(0.05);
+  
+  //LF
+  char xtitle_lf[]="CSV probe Jet (LF)";
+  //makelegend
+  TLegend* leg_lf=new TLegend(0.75,0.4,0.9,0.8);
+  leg_lf->AddEntry(h_CSV_data_lf,"data");
+  leg_lf->AddEntry(h_CSV_taggedlow_b,"b");
+  leg_lf->AddEntry(h_CSV_taggedlow_c,"c");
+  leg_lf->AddEntry(h_CSV_taggedlow_lf,"lf");
+  leg_lf->SetFillStyle(0);
+  leg_lf->SetBorderSize(0);
+  
+  c1->cd();
+  //makepadhist
+  TPad* padhist_lf=new TPad("padhist_lf","padhist_lf",0,0.3,1,1);
+  padhist_lf->SetBottomMargin(0);
+  padhist_lf->Draw();
+  padhist_lf->cd();
+  //draw histos
+  stack_CSVtaggedlow->Draw("hist");
+  h_CSV_data_lf->Draw("SAMEE0");
+  leg_lf->Draw();
+  text->DrawLatex(0.175, 0.863, text_cms);
+  text->DrawLatex(0.175, 0.815, cutlabel);
+  c1->cd();
+  //makepadratio
+  TPad* padratio_lf=new TPad("padratio_lf","padratio_lf",0,0,1,0.3);
+  padratio_lf->SetTopMargin(0);
+  padratio_lf->SetBottomMargin(0);
+  padratio_lf->Draw();
+  padratio_lf->cd();
+  //makeratio
+
+  TH1F* mc=(TH1F*)stack_CSVtaggedlow->GetStack()->Last();
+  TH1F* ratio_lf=(TH1F*)h_CSV_data_lf->Clone();
+  ratio_lf->SetTitle("");
+  ratio_lf->SetXTitle(xtitle_lf);
+  ratio_lf->Sumw2();
+  ratio_lf->SetStats(0);
+  ratio_lf->Divide(mc);
+  ratio_lf->SetMarkerStyle(20);
+  ratio_lf->Draw("E0");
+  ratio_lf->SetMaximum(1.6);
+  ratio_lf->SetMinimum(0.4);
+  //set_ratioattributes//   
+  ratio_lf->GetYaxis()->SetNdivisions(510);
+  ratio_lf->GetYaxis()->SetLabelSize(0.1);
+  ratio_lf->GetXaxis()->SetTitle(xtitle_lf);
+  ratio_lf->GetXaxis()->SetTitleSize(0.11);
+  ratio_lf->GetXaxis()->SetNdivisions(nbins,0,0);
+  ratio_lf->GetXaxis()->SetLabelSize(0.1);
+  
+  line->Draw();
+  c1->SaveAs("CSV_ratio_lf.png");
+  c1->Write(); 
+} 
+
+
+
+
 outfile->Close();
 
   }
