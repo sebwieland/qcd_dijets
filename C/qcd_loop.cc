@@ -25,7 +25,7 @@ using namespace std;
 
 
 void qcd_dijet(){
-  TH1F::SetDefaultSumw2();
+//   TH1F::SetDefaultSumw2();
   
   // open files
 TChain* tree_qcd = new TChain("MVATree");
@@ -128,7 +128,7 @@ cout << "total number of MC events: " << nentries << endl;
 for (long iEntry=0;iEntry<nentries;iEntry++) {
 
   if(iEntry%100000==0) cout << "analyzing event " << iEntry << endl;
-  if(iEntry>10000) break;
+//   if(iEntry>10000) break;
   tree_qcd->GetEntry(iEntry);
   if(N_Jets >=2){
     dphi=DeltaPhi;
@@ -593,123 +593,160 @@ purity_lf=lf/(h_CSV_taggedlow_c->Integral()+h_CSV_taggedlow_lf->Integral()+h_CSV
 
 cout << "LF:" << endl;
 cout <<"purity: "<< purity_lf <<endl;
+// tree_qcd->~TChain();
 
 //data selection
-bool data=true;
-if (data==true){
-  TChain* tree_data = new TChain("MVATree");
-  tree_data->AddFile("/nfs/dust/cms/user/matsch/ttHNtuples/Spring15/DiJets_QCD_Pt_300to470_TuneCUETP8M1_13TeV_pythia8.root");
-  
-  float nentries_data = tree_data->GetEntries(); 
-  cout << "total number of data events: " << nentries_data << endl;
-  for (long iEntry=0;iEntry<nentries_data;iEntry++) {
-    if(iEntry%100000==0) cout << "analyzing event " << iEntry << endl;
-  //   if(iEntry>100000) break;
-    tree_data->GetEntry(iEntry);
-    //LF tagging
-    for(int j=0;j<2;j++){
-      if (Jet_CSV[j]<0.605){
-	if (N_Jets >=3){
+TChain* tree_data = new TChain("MVATree");
+tree_data->AddFile("/nfs/dust/cms/user/matsch/ttHNtuples/Spring15/DiJets_QCD_Pt_300to470_TuneCUETP8M1_13TeV_pythia8_v2_1.root");
+
+float* Jet_CSV_data = new float[120];
+tree_data->SetBranchAddress("Jet_CSV",Jet_CSV_data);
+int N_Jets_data;
+tree_data->SetBranchAddress("N_Jets",&N_Jets_data);
+
+float nentries_data = tree_data->GetEntries(); 
+cout << "total number of data events: " << nentries_data << endl;
+for (long iEntry=0;iEntry<nentries_data;iEntry++) {
+  if(iEntry%100000==0) cout << "analyzing event " << iEntry << endl;
+//   if(iEntry>100000) break;
+  tree_data->GetEntry(iEntry);
+  //LF tagging
+
+  for(int j=0;j<2;j++){
+    if (Jet_CSV_data[j]<0.605){//      
+	if (N_Jets_data >=3 ){
 	  if (Jet_Pt[2]/pt_avg < pt3cut){
-	      if (j==0){
-		h_CSV_data_lf->Fill(Jet_CSV[0]);
-	      }
-	      else if (j==1){
-		h_CSV_data_lf->Fill(Jet_CSV[1]);
-	      }
+	    if (j==0){h_CSV_data_lf->Fill(Jet_CSV[1]);}
+	    if (j==1){h_CSV_data_lf->Fill(Jet_CSV[0]);}
 	  }
 	}
-	else if (j==0){
-	  h_CSV_data_lf->Fill(Jet_CSV[0]);
-	  cout << "event with csv <0.6 filled" << endl;
-	}
-	else if (j==1){
-	  h_CSV_data_lf->Fill(Jet_CSV[1]);
-	}
-      }  
+      if (j==0){
+	h_CSV_data_lf->Fill(Jet_CSV_data[1]);
+// 	  cout << "event with csv <0.6 filled" << endl;
+      }
+      else if (j==1){
+	h_CSV_data_lf->Fill(Jet_CSV_data[0]);
+// 	  cout << "event with csv <0.6 filled" << endl;
+      }        
     }
   }
 }
 
 
+
 // plot and define CSV ratio plot
+float dataevents_lf=h_CSV_data_lf->Integral();
+cout << dataevents_lf  << " events in data  selected" << endl;
+float xmin=-0.2;
+float xmax=1;
+float nbins=11;
+TLine* line=new TLine(xmin,1,xmax,1);
+line->SetLineColor(kBlack);
+char text_cms[]="CMS private Work";
+char cutlabel[]="Dijet selection";
+TLatex* text=new TLatex();
+text-> SetNDC();
+text-> SetTextFont(42);
+text-> SetTextSize(0.05);
 
-if (data==true){
-  cout << h_CSV_data_lf->Integral() << " events in data  selected" << endl;
-  float xmin=-0.2;
-  float xmax=1;
-  float nbins=11;
-  TLine* line=new TLine(xmin,1,xmax,1);
-  line->SetLineColor(kBlack);
-  char text_cms[]="CMS private Work";
-  char cutlabel[]="Dijet selection";
-  TLatex* text=new TLatex();
-  text-> SetNDC();
-  text-> SetTextFont(42);
-  text-> SetTextSize(0.05);
-  
-  //LF
-  char xtitle_lf[]="CSV probe Jet (LF)";
-  //makelegend
-  TLegend* leg_lf=new TLegend(0.75,0.4,0.9,0.8);
-  leg_lf->AddEntry(h_CSV_data_lf,"data");
-  leg_lf->AddEntry(h_CSV_taggedlow_b,"b");
-  leg_lf->AddEntry(h_CSV_taggedlow_c,"c");
-  leg_lf->AddEntry(h_CSV_taggedlow_lf,"lf");
-  leg_lf->SetFillStyle(0);
-  leg_lf->SetBorderSize(0);
-  
-  c1->cd();
-  //makepadhist
-  TPad* padhist_lf=new TPad("padhist_lf","padhist_lf",0,0.3,1,1);
-  padhist_lf->SetBottomMargin(0);
-  padhist_lf->Draw();
-  padhist_lf->cd();
-  //draw histos
-  stack_CSVtaggedlow->Draw("hist");
-  h_CSV_data_lf->Draw("SAMEE0");
-  leg_lf->Draw();
-  text->DrawLatex(0.175, 0.863, text_cms);
-  text->DrawLatex(0.175, 0.815, cutlabel);
-  c1->cd();
-  //makepadratio
-  TPad* padratio_lf=new TPad("padratio_lf","padratio_lf",0,0,1,0.3);
-  padratio_lf->SetTopMargin(0);
-  padratio_lf->SetBottomMargin(0);
-  padratio_lf->Draw();
-  padratio_lf->cd();
-  //makeratio
+//LF
+char xtitle_lf[]="CSV probe Jet (LF)";
+//makelegend
+TLegend* leg_lf=new TLegend(0.75,0.4,0.9,0.8);
+leg_lf->AddEntry(h_CSV_data_lf,"data");
+leg_lf->AddEntry(h_CSV_taggedlow_b,"b");
+leg_lf->AddEntry(h_CSV_taggedlow_c,"c");
+leg_lf->AddEntry(h_CSV_taggedlow_lf,"lf");
+leg_lf->SetFillStyle(0);
+leg_lf->SetBorderSize(0);
 
-  TH1F* mc=(TH1F*)stack_CSVtaggedlow->GetStack()->Last();
-  TH1F* ratio_lf=(TH1F*)h_CSV_data_lf->Clone();
-  ratio_lf->SetTitle("");
-  ratio_lf->SetXTitle(xtitle_lf);
-  ratio_lf->Sumw2();
-  ratio_lf->SetStats(0);
-  ratio_lf->Divide(mc);
-  ratio_lf->SetMarkerStyle(20);
-  ratio_lf->Draw("E0");
-  ratio_lf->SetMaximum(1.6);
-  ratio_lf->SetMinimum(0.4);
-  //set_ratioattributes//   
-  ratio_lf->GetYaxis()->SetNdivisions(510);
-  ratio_lf->GetYaxis()->SetLabelSize(0.1);
-  ratio_lf->GetXaxis()->SetTitle(xtitle_lf);
-  ratio_lf->GetXaxis()->SetTitleSize(0.11);
-  ratio_lf->GetXaxis()->SetNdivisions(nbins,0,0);
-  ratio_lf->GetXaxis()->SetLabelSize(0.1);
-  
-  line->Draw();
-  c1->SaveAs("CSV_ratio_lf.png");
-  c1->Write(); 
-} 
+c1->cd();
+//makepadhist
+TPad* padhist_lf=new TPad("padhist_lf","padhist_lf",0,0.3,1,1);
+padhist_lf->SetBottomMargin(0);
+padhist_lf->Draw();
+padhist_lf->cd();
+
+//normalize to data event yield
+TH1F* mc=(TH1F*)stack_CSVtaggedlow->GetStack()->Last();  
+float mcevents_lf=mc->Integral();
+cout << "mcevents before normalization: " << mcevents_lf << endl;
+float normratio_lf;
+if (mcevents_lf!=0) normratio_lf=dataevents_lf/mcevents_lf;
+  else normratio_lf=1;
+h_CSV_taggedlow_b->Scale(normratio_lf);
+h_CSV_taggedlow_c->Scale(normratio_lf);
+h_CSV_taggedlow_lf->Scale(normratio_lf);
+THStack* mc_stack_lf_normalized=new THStack();
+mc_stack_lf_normalized->Add(h_CSV_taggedlow_b);
+mc_stack_lf_normalized->Add(h_CSV_taggedlow_c);
+mc_stack_lf_normalized->Add(h_CSV_taggedlow_lf);
+TH1F* mc_norm=(TH1F*)mc_stack_lf_normalized->GetStack()->Last();
+cout << "mcevents after normalization: " << mc_norm->Integral() << endl;
+
+//draw histos
+h_CSV_data_lf->Sumw2();
+mc_stack_lf_normalized->Draw("hist");
+h_CSV_data_lf->SetMarkerStyle(20);
+h_CSV_data_lf->Draw("SAMEE0");
+leg_lf->Draw();
+text->DrawLatex(0.175, 0.863, text_cms);
+text->DrawLatex(0.175, 0.815, cutlabel);
+c1->cd();
+//makepadratio
+TPad* padratio_lf=new TPad("padratio_lf","padratio_lf",0,0,1,0.3);
+padratio_lf->SetTopMargin(0);
+padratio_lf->SetBottomMargin(1.1);
+padratio_lf->Draw();
+padratio_lf->cd();
+//makeratio    
+TH1F* ratio_lf=(TH1F*)h_CSV_data_lf->Clone(); 
+ratio_lf->SetTitle("");
+ratio_lf->SetXTitle(xtitle_lf);
+ratio_lf->Sumw2();
+ratio_lf->SetStats(0);
+ratio_lf->Divide(mc_norm);
+ratio_lf->SetMarkerStyle(20);
+ratio_lf->Draw("SAMEE0");
+ratio_lf->SetMaximum(1.6);
+ratio_lf->SetMinimum(0.4);
+cout << ratio_lf->Integral() << endl;
+//set_ratioattributes//   
+ratio_lf->GetYaxis()->SetNdivisions(510);
+ratio_lf->GetYaxis()->SetLabelSize(0.1);
+ratio_lf->GetXaxis()->SetTitle(xtitle_lf);
+ratio_lf->GetXaxis()->SetTitleSize(0.11);
+ratio_lf->GetXaxis()->SetNdivisions(nbins,0,0);
+ratio_lf->GetXaxis()->SetLabelSize(0.1);
+
+line->Draw();
+c1->SaveAs("CSV_ratio_lf.png");
+c1->Write(); 
+
+c1->cd();
+// ratio_lf->GetYaxis()->SetNdivisions(510);
+ratio_lf->GetYaxis()->SetLabelSize(0.04);
+ratio_lf->GetXaxis()->SetTitle(xtitle_lf);
+ratio_lf->GetXaxis()->SetTitleSize(0.04);
+ratio_lf->GetXaxis()->SetNdivisions(11,0,0);
+ratio_lf->GetXaxis()->SetLabelSize(0.04);
+
+ratio_lf->Draw("E0");
+line->Draw();
+ratio_lf->Write();
+ratio_lf->GetXaxis()->SetTitle("LFSF");
+c1->SaveAs("LFSF.png");
+
+
+
 
 
 
 
 outfile->Close();
 
-  }
+
+}
 
   int main(){
     qcd_dijet();    
