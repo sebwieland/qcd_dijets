@@ -198,7 +198,7 @@ for (long iEntry=0;iEntry<nentries;iEntry++) {
 		  h_tagjet_partflav_wo_SVMassCut->Fill(abs(Jet_PartFlav[1]));
 		}
 		
-	    if (Jet_SumSVMass[j]<SVMassCut){
+	    if (Jet_SumSVMass[j]<SVMassCut && Jet_NSV[j]==1){
 		if (N_Jets >=3){
 		  if (Jet_Pt[2]/pt_avg < pt3cut){
 		      if (j==0){
@@ -639,7 +639,7 @@ float dataevents_lf=h_CSV_data_lf->Integral();
 cout << dataevents_lf  << " events in data  selected" << endl;
 float xmin=-0.2;
 float xmax=1;
-float nbins=11;
+// float nbins=11;
 TLine* line=new TLine(xmin,1,xmax,1);
 line->SetLineColor(kBlack);
 char text_cms[]="CMS private Work";
@@ -716,7 +716,8 @@ ratio_lf->GetYaxis()->SetNdivisions(510);
 ratio_lf->GetYaxis()->SetLabelSize(0.1);
 ratio_lf->GetXaxis()->SetTitle(xtitle_lf);
 ratio_lf->GetXaxis()->SetTitleSize(0.11);
-ratio_lf->GetXaxis()->SetNdivisions(nbins,0,0);
+ratio_lf->GetXaxis()->SetNdivisions(510);
+// ratio_lf->GetXaxis()->SetNdivisions(nbins,0,0);
 ratio_lf->GetXaxis()->SetLabelSize(0.1);
 
 line->Draw();
@@ -728,19 +729,16 @@ c1->cd();
 ratio_lf->GetYaxis()->SetLabelSize(0.04);
 ratio_lf->GetXaxis()->SetTitle(xtitle_lf);
 ratio_lf->GetXaxis()->SetTitleSize(0.04);
-ratio_lf->GetXaxis()->SetNdivisions(11,0,0);
+ratio_lf->GetXaxis()->SetNdivisions(510);
 ratio_lf->GetXaxis()->SetLabelSize(0.04);
 
+gStyle->SetOptFit();
+ratio_lf->Fit("pol6","LF","",0,1);
 ratio_lf->Draw("E0");
 line->Draw();
 ratio_lf->Write();
 ratio_lf->GetXaxis()->SetTitle("LFSF");
 c1->SaveAs("LFSF.png");
-
-
-
-
-
 
 
 outfile->Close();
