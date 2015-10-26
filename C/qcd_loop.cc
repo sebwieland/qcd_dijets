@@ -534,9 +534,9 @@ c1->SaveAs("pt_2hardestjets.png");
 
 
 h_ptavg->Draw("HIST");
-h_ptavg->GetXaxis()->SetTitle("Pt avg (>=2 jets)");
+h_ptavg->GetXaxis()->SetTitle("Pt avg (MC)");
 h_ptavg->Write();
-c1->SaveAs("ptavg.png");
+c1->SaveAs("ptavg_mc.png");
 
 stack_pt2ndhardestjet->Draw("hist");
 stack_pt2ndhardestjet->GetXaxis()->SetTitle("Pt of 2nd hardest Jet");
