@@ -260,7 +260,7 @@ for (long iEntry=0;iEntry<nentries;iEntry++) {
 	    }
 	  }
 		  
-	  else if (Jet_CSV[j]<0.605){
+	  else if (Jet_CSV[j]<0.605  ){
 		if (N_Jets >=3){
 		  if (Jet_Pt[2]/pt_avg < pt3cut){
 		      if (j==0){
@@ -664,6 +664,8 @@ int N_Jets_data;
 tree_data->SetBranchAddress("N_Jets",&N_Jets_data);
 float* Jet_Eta_data = new float[120];
 tree_data->SetBranchAddress("Jet_Eta",Jet_Eta_data); 
+int trigg_PFJet60_vX;
+tree_data->SetBranchAddress("Triggered_HLT_PFJet60_vX",&trigg_PFJet60_vX);
 
 
 float nentries_data = tree_data->GetEntries(); 
@@ -673,22 +675,24 @@ for (long iEntry=0;iEntry<nentries_data;iEntry++) {
 //   if(iEntry>2000000) break;
   tree_data->GetEntry(iEntry);
   if (dphidata > dphicut){
-    if (abs(Jet_Eta_data[0])<2.1 && abs(Jet_Eta_data[1])<2.1){
-      for(int j=0;j<2;j++){      
-	    //LF tagging
-	if (Jet_CSV_data[j]<0.605){      
-	  if (N_Jets_data >=3 ){
-	      if (Jet_Pt_data[2]/pt_avg_data < pt3cut){
-		if (j==0){h_CSV_data_lf->Fill(Jet_CSV_data[1]);}
-		else if (j==1){h_CSV_data_lf->Fill(Jet_CSV_data[0]);}
+    if (N_Jets_data>=2){
+      if (abs(Jet_Eta_data[0])<2.1 && abs(Jet_Eta_data[1])<2.1){
+	for(int j=0;j<2;j++){      
+	      //LF tagging
+	  if (Jet_CSV_data[j]<0.605 ){      
+	    if (N_Jets_data >=3 ){
+		if (Jet_Pt_data[2]/pt_avg_data < pt3cut){
+		  if (j==0){h_CSV_data_lf->Fill(Jet_CSV_data[1]);}
+		  else if (j==1){h_CSV_data_lf->Fill(Jet_CSV_data[0]);}
+		}
 	      }
+	    if (j==0 && N_Jets_data == 2){
+	      h_CSV_data_lf->Fill(Jet_CSV_data[1]);
 	    }
-	  if (j==0 && N_Jets_data == 2){
-	    h_CSV_data_lf->Fill(Jet_CSV_data[1]);
+	    if (j==1 && N_Jets_data == 2){
+	      h_CSV_data_lf->Fill(Jet_CSV_data[0]);
+	    }        
 	  }
-	  if (j==1 && N_Jets_data == 2){
-	    h_CSV_data_lf->Fill(Jet_CSV_data[0]);
-	  }        
 	}
       }
     }

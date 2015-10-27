@@ -29,10 +29,12 @@ void triggerstudies(){
   TH1F* h_ptavg_DiPFJetAve60_vX=new TH1F("h_ptavg_DiPFJetAve60_vX","h_ptavg_DiPFJetAve60_vX",100,0,200);
   TH1F* h_ptavg_PFJet60_vX=new TH1F("h_ptavg_PFJet60_vX","h_ptavg_PFJet60_vX",100,0,200);
   TH1F* h_ptavg_DiPFJetAve60_HFJEC_vX=new TH1F("h_ptavg_DiPFJetAve60_HFJEC_vX","h_ptavg_DiPFJetAve60_HFJEC_vX",100,0,200);
+  TH1F* h_ptavg_DiPFJetAve80_vX=new TH1F("h_ptavg_PFJetAve80_vX","h_ptavg_PFJetAve80_vX",100,0,200);
   
   TH1F* h_pt0_DiPFJetAve60_vX=new TH1F("h_pt0_DiPFJetAve60_vX","h_pt0_DiPFJetAve60_vX",100,0,200);
   TH1F* h_pt0_DiPFJetAve60_HFJEC_vX=new TH1F("h_pt0_DiPFJetAve60_HFJEC_vX","h_pt0_DiPFJetAve60_HFJEC_vX",100,0,200);
   TH1F* h_pt0_PFJet60_vX=new TH1F("h_pt0_PFJet60_vX","h_pt0_PFJet60_vX",100,0,200);
+  TH1F* h_pt0_DiPFJetAve80_vX=new TH1F("h_pt0_PFJetAve80_vX","h_pt0_PFJetAve80_vX",100,0,200);
   
   
   
@@ -69,6 +71,8 @@ void triggerstudies(){
   tree_data->SetBranchAddress("Triggered_HLT_DiPFJetAve60_HFJEC_vX",&trigg_DiPFJetAve60_HFJEC_vX);
   int trigg_PFJet60_vX;
   tree_data->SetBranchAddress("Triggered_HLT_PFJet60_vX",&trigg_PFJet60_vX);
+  int trigg_DiPFJetAve80_vX=0;
+  tree_data->SetBranchAddress("Triggered_HLT_DiPFJetAve80_vX",&trigg_DiPFJetAve80_vX);
   
   
   
@@ -95,6 +99,10 @@ void triggerstudies(){
 	if (trigg_PFJet60_vX==1){
 	  h_ptavg_PFJet60_vX->Fill(PtAvg);
 	  h_pt0_PFJet60_vX->Fill(Jet_Pt[0]);	  
+	}
+	if (trigg_DiPFJetAve80_vX==1){
+	  h_ptavg_DiPFJetAve80_vX->Fill(PtAvg);
+	  h_pt0_DiPFJetAve80_vX->Fill(Jet_Pt[0]);	  
 	}
       }
     }
@@ -127,6 +135,14 @@ h_ptavg_PFJet60_vX->GetXaxis()->SetTitle("triggered PFJet60_vX");
 h_ptavg_PFJet60_vX->Write();
 c1->SaveAs("ptavg_triggered PFJet60_vX.png");
 
+h_ptavg_DiPFJetAve80_vX->Draw("hist");
+h_ptavg_DiPFJetAve80_vX->GetXaxis()->SetTitle("triggered DiPFJetAve80_vX");
+h_ptavg_DiPFJetAve80_vX->Write();
+c1->SaveAs("ptavg_triggeredDiPFJetAve80_vX.png");
+
+
+
+
 h_pt0_DiPFJetAve60_vX->Draw("hist");
 h_pt0_DiPFJetAve60_vX->GetXaxis()->SetTitle("pt hardest Jet, DiPFJetAve60_vX triggered");
 h_pt0_DiPFJetAve60_vX->Write();
@@ -138,9 +154,14 @@ h_pt0_DiPFJetAve60_HFJEC_vX->Write();
 c1->SaveAs("h_pt0_DiPFJetAve60_HFJEC_vX.png");
 
 h_pt0_PFJet60_vX->Draw("hist");
-h_pt0_PFJet60_vX->GetXaxis()->SetTitle("pt hardest Jet, PFJet80_vX triggered");
+h_pt0_PFJet60_vX->GetXaxis()->SetTitle("pt hardest Jet, PFJet60_vX triggered");
 h_pt0_PFJet60_vX->Write();
 c1->SaveAs("h_pt0_PFJet60_vX.png");
+
+h_pt0_DiPFJetAve80_vX->Draw("hist");
+h_pt0_DiPFJetAve80_vX->GetXaxis()->SetTitle("pt hardest Jet, DiPFJetAve80_vX triggered");
+h_pt0_DiPFJetAve80_vX->Write();
+c1->SaveAs("h_pt0_DiPFJetAve80_vX.png");
 
 
 outfile->Close();
