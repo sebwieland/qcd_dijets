@@ -1,0 +1,270 @@
+counting events in /nfs/dust/cms/user/matsch/ttHNtuples/Spring15/v3/QCD_Pt_5to10_TuneCUETP8M1_13TeV_pythia8_v3.root
+total number of MC events: 175424
+analyzing event 0
+analyzing event 100000
+11 Events selected
+counting events in /nfs/dust/cms/user/matsch/ttHNtuples/Spring15/v3/QCD_Pt_10to15_TuneCUETP8M1_13TeV_pythia8_v3.root
+total number of MC events: 203020
+analyzing event 0
+analyzing event 100000
+analyzing event 200000
+13 Events selected
+counting events in /nfs/dust/cms/user/matsch/ttHNtuples/Spring15/v3/QCD_Pt_15to30_TuneCUETP8M1_13TeV_pythia8_v3.root
+total number of MC events: 648721
+analyzing event 0
+analyzing event 100000
+analyzing event 200000
+analyzing event 300000
+analyzing event 400000
+analyzing event 500000
+analyzing event 600000
+62 Events selected
+counting events in /nfs/dust/cms/user/matsch/ttHNtuples/Spring15/v3/QCD_Pt_30to50_TuneCUETP8M1_13TeV_pythia8_v3.root
+total number of MC events: 2436098
+analyzing event 0
+analyzing event 100000
+analyzing event 200000
+analyzing event 300000
+analyzing event 400000
+analyzing event 500000
+analyzing event 600000
+analyzing event 700000
+analyzing event 800000
+analyzing event 900000
+analyzing event 1000000
+analyzing event 1100000
+analyzing event 1200000
+analyzing event 1300000
+analyzing event 1400000
+analyzing event 1500000
+analyzing event 1600000
+analyzing event 1700000
+analyzing event 1800000
+analyzing event 1900000
+analyzing event 2000000
+analyzing event 2100000
+analyzing event 2200000
+analyzing event 2300000
+analyzing event 2400000
+283 Events selected
+counting events in /nfs/dust/cms/user/matsch/ttHNtuples/Spring15/v3/QCD_Pt_50to80_TuneCUETP8M1_13TeV_pythia8_v3.root
+total number of MC events: 3260913
+analyzing event 0
+analyzing event 100000
+analyzing event 200000
+analyzing event 300000
+analyzing event 400000
+analyzing event 500000
+analyzing event 600000
+analyzing event 700000
+analyzing event 800000
+analyzing event 900000
+analyzing event 1000000
+analyzing event 1100000
+analyzing event 1200000
+analyzing event 1300000
+analyzing event 1400000
+analyzing event 1500000
+analyzing event 1600000
+analyzing event 1700000
+analyzing event 1800000
+analyzing event 1900000
+analyzing event 2000000
+analyzing event 2100000
+analyzing event 2200000
+analyzing event 2300000
+analyzing event 2400000
+analyzing event 2500000
+analyzing event 2600000
+analyzing event 2700000
+analyzing event 2800000
+analyzing event 2900000
+analyzing event 3000000
+analyzing event 3100000
+analyzing event 3200000
+617 Events selected
+counting events in /nfs/dust/cms/user/matsch/ttHNtuples/Spring15/v3/QCD_Pt_80to120_TuneCUETP8M1_13TeV_pythia8_v3.root
+total number of MC events: 2343752
+analyzing event 0
+analyzing event 100000
+analyzing event 200000
+analyzing event 300000
+analyzing event 400000
+analyzing event 500000
+analyzing event 600000
+analyzing event 700000
+analyzing event 800000
+analyzing event 900000
+analyzing event 1000000
+analyzing event 1100000
+analyzing event 1200000
+analyzing event 1300000
+analyzing event 1400000
+analyzing event 1500000
+analyzing event 1600000
+analyzing event 1700000
+analyzing event 1800000
+analyzing event 1900000
+analyzing event 2000000
+analyzing event 2100000
+analyzing event 2200000
+analyzing event 2300000
+9242 Events selected
+counting events in /nfs/dust/cms/user/matsch/ttHNtuples/Spring15/v3/QCD_Pt_120to170_TuneCUETP8M1_13TeV_pythia8_v3.root
+total number of MC events: 2373932
+analyzing event 0
+analyzing event 100000
+analyzing event 200000
+analyzing event 300000
+analyzing event 400000
+analyzing event 500000
+analyzing event 600000
+analyzing event 700000
+analyzing event 800000
+analyzing event 900000
+analyzing event 1000000
+analyzing event 1100000
+analyzing event 1200000
+analyzing event 1300000
+analyzing event 1400000
+analyzing event 1500000
+analyzing event 1600000
+analyzing event 1700000
+analyzing event 1800000
+analyzing event 1900000
+analyzing event 2000000
+analyzing event 2100000
+analyzing event 2200000
+analyzing event 2300000
+65526 Events selected
+counting events in /nfs/dust/cms/user/matsch/ttHNtuples/Spring15/v3/QCD_Pt_170to300_TuneCUETP8M1_13TeV_pythia8_v3.root
+total number of MC events: 2324492
+analyzing event 0
+analyzing event 100000
+analyzing event 200000
+analyzing event 300000
+analyzing event 400000
+analyzing event 500000
+analyzing event 600000
+analyzing event 700000
+analyzing event 800000
+analyzing event 900000
+analyzing event 1000000
+analyzing event 1100000
+analyzing event 1200000
+analyzing event 1300000
+analyzing event 1400000
+analyzing event 1500000
+analyzing event 1600000
+analyzing event 1700000
+analyzing event 1800000
+analyzing event 1900000
+analyzing event 2000000
+analyzing event 2100000
+analyzing event 2200000
+analyzing event 2300000
+190821 Events selected
+counting events in /nfs/dust/cms/user/matsch/ttHNtuples/Spring15/v3/QCD_Pt_300to470_TuneCUETP8M1_13TeV_pythia8_v3.root
+total number of MC events: 2037949
+analyzing event 0
+analyzing event 100000
+analyzing event 200000
+analyzing event 300000
+analyzing event 400000
+analyzing event 500000
+analyzing event 600000
+analyzing event 700000
+analyzing event 800000
+analyzing event 900000
+analyzing event 1000000
+analyzing event 1100000
+analyzing event 1200000
+analyzing event 1300000
+analyzing event 1400000
+analyzing event 1500000
+analyzing event 1600000
+analyzing event 1700000
+analyzing event 1800000
+analyzing event 1900000
+analyzing event 2000000
+354221 Events selected
+counting events in /nfs/dust/cms/user/matsch/ttHNtuples/Spring15/v3/QCD_Pt_470to600_TuneCUETP8M1_13TeV_pythia8_v3.root
+total number of MC events: 1348508
+analyzing event 0
+analyzing event 100000
+analyzing event 200000
+analyzing event 300000
+analyzing event 400000
+analyzing event 500000
+analyzing event 600000
+analyzing event 700000
+analyzing event 800000
+analyzing event 900000
+analyzing event 1000000
+analyzing event 1100000
+analyzing event 1200000
+analyzing event 1300000
+342722 Events selected
+counting events in /nfs/dust/cms/user/matsch/ttHNtuples/Spring15/v3/QCD_Pt_600to800_TuneCUETP8M1_13TeV_pythia8_v3.root
+total number of MC events: 1369238
+analyzing event 0
+analyzing event 100000
+analyzing event 200000
+analyzing event 300000
+analyzing event 400000
+analyzing event 500000
+analyzing event 600000
+analyzing event 700000
+analyzing event 800000
+analyzing event 900000
+analyzing event 1000000
+analyzing event 1100000
+analyzing event 1200000
+analyzing event 1300000
+427363 Events selected
+counting events in /nfs/dust/cms/user/matsch/ttHNtuples/Spring15/v3/QCD_Pt_800to1000_TuneCUETP8M1_13TeV_pythia8_v3.root
+total number of MC events: 1353232
+analyzing event 0
+analyzing event 100000
+analyzing event 200000
+analyzing event 300000
+analyzing event 400000
+analyzing event 500000
+analyzing event 600000
+analyzing event 700000
+analyzing event 800000
+analyzing event 900000
+analyzing event 1000000
+analyzing event 1100000
+analyzing event 1200000
+analyzing event 1300000
+510079 Events selected
+counting events in /nfs/dust/cms/user/matsch/ttHNtuples/Spring15/v3/QCD_Pt_1000to1400_TuneCUETP8M1_13TeV_pythia8_v3.root
+total number of MC events: 1040488
+analyzing event 0
+analyzing event 100000
+analyzing event 200000
+analyzing event 300000
+analyzing event 400000
+analyzing event 500000
+analyzing event 600000
+analyzing event 700000
+analyzing event 800000
+analyzing event 900000
+analyzing event 1000000
+456430 Events selected
+counting events in /nfs/dust/cms/user/matsch/ttHNtuples/Spring15/v3/QCD_Pt_1400to1800_TuneCUETP8M1_13TeV_pythia8_v3.root
+total number of MC events: 138504
+analyzing event 0
+analyzing event 100000
+72634 Events selected
+counting events in /nfs/dust/cms/user/matsch/ttHNtuples/Spring15/v3/QCD_Pt_1800to2400_TuneCUETP8M1_13TeV_pythia8_v3.root
+total number of MC events: 136097
+analyzing event 0
+analyzing event 100000
+82033 Events selected
+counting events in /nfs/dust/cms/user/matsch/ttHNtuples/Spring15/v3/QCD_Pt_2400to3200_TuneCUETP8M1_13TeV_pythia8_v3.root
+total number of MC events: 137279
+analyzing event 0
+analyzing event 100000
+95003 Events selected

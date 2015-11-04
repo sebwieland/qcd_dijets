@@ -144,191 +144,191 @@ void analysetrees(const TString &datalist,const TString &mclist){
 	      if (N_Jets >=3){
 		if (Jet_Pt[2]/ptave < pt3cut){
 		    if (j==0){
-		      if (ptave < 67.6) hptave_mc.at(0)->Fill(ptave,Weight_XS);
-		      else if (ptave >= 67.6 && ptave < 89.6) hptave_mc.at(0)->Fill(ptave,Weight_XS);
-		      else if (ptave >= 89.6 && ptave < 155.6) hptave_mc.at(1)->Fill(ptave,Weight_XS);
-		      else if (ptave >= 155.6 && ptave < 221.6) hptave_mc.at(2)->Fill(ptave,Weight_XS);
-		      else if (ptave >= 221.6 && ptave < 287.6) hptave_mc.at(3)->Fill(ptave,Weight_XS);
-		      else if (ptave >= 287.6 && ptave < 353.6) hptave_mc.at(4)->Fill(ptave,Weight_XS);
-		      else if (ptave >= 353.6 && ptave < 391.6) hptave_mc.at(5)->Fill(ptave,Weight_XS);
-		      else if (ptave >= 391.6 && ptave < 426.6) hptave_mc.at(6)->Fill(ptave,Weight_XS);
-		      else if (ptave >= 426.6) hptave_mc.at(7)->Fill(ptave,Weight_XS);
+		      if (ptave < 67.6)				hptave_mc.at(0)->Fill(ptave,Weight_XS);
+		      else if (ptave >= 67.6 && ptave < 89.6)   hptave_mc.at(1)->Fill(ptave,Weight_XS);
+		      else if (ptave >= 89.6 && ptave < 155.6)  hptave_mc.at(2)->Fill(ptave,Weight_XS);
+		      else if (ptave >= 155.6 && ptave < 221.6) hptave_mc.at(3)->Fill(ptave,Weight_XS);
+		      else if (ptave >= 221.6 && ptave < 287.6) hptave_mc.at(4)->Fill(ptave,Weight_XS);
+		      else if (ptave >= 287.6 && ptave < 353.6) hptave_mc.at(5)->Fill(ptave,Weight_XS);
+		      else if (ptave >= 353.6 && ptave < 391.6) hptave_mc.at(6)->Fill(ptave,Weight_XS);
+		      else if (ptave >= 391.6 && ptave < 426.6) hptave_mc.at(7)->Fill(ptave,Weight_XS);
+		      else if (ptave >= 426.6) 			hptave_mc.at(8)->Fill(ptave,Weight_XS);
 		      
 		      if (abs(Jet_HadFlav[1])==4) {
-			if (ptave < 67.6) hCSV_mc_c.at(0)->Fill(Jet_CSV[1],Weight_XS);
-			else if (ptave >= 67.6 && ptave < 89.6) hCSV_mc_c.at(0)->Fill(Jet_CSV[1],Weight_XS);
-			else if (ptave >= 89.6 && ptave < 155.6) hCSV_mc_c.at(1)->Fill(Jet_CSV[1],Weight_XS);
-			else if (ptave >= 155.6 && ptave < 221.6) hCSV_mc_c.at(2)->Fill(Jet_CSV[1],Weight_XS);
-			else if (ptave >= 221.6 && ptave < 287.6) hCSV_mc_c.at(3)->Fill(Jet_CSV[1],Weight_XS);
-			else if (ptave >= 287.6 && ptave < 353.6) hCSV_mc_c.at(4)->Fill(Jet_CSV[1],Weight_XS);
-			else if (ptave >= 353.6 && ptave < 391.6) hCSV_mc_c.at(5)->Fill(Jet_CSV[1],Weight_XS);
-			else if (ptave >= 391.6 && ptave < 426.6) hCSV_mc_c.at(6)->Fill(Jet_CSV[1],Weight_XS);
-			else if (ptave >= 426.6) hCSV_mc_c.at(7)->Fill(Jet_CSV[1],Weight_XS);		      
+			if (ptave < 67.6)			  hCSV_mc_c.at(0)->Fill(Jet_CSV[1],Weight_XS);
+			else if (ptave >= 67.6 && ptave < 89.6)   hCSV_mc_c.at(1)->Fill(Jet_CSV[1],Weight_XS);
+			else if (ptave >= 89.6 && ptave < 155.6)  hCSV_mc_c.at(2)->Fill(Jet_CSV[1],Weight_XS);
+			else if (ptave >= 155.6 && ptave < 221.6) hCSV_mc_c.at(3)->Fill(Jet_CSV[1],Weight_XS);
+			else if (ptave >= 221.6 && ptave < 287.6) hCSV_mc_c.at(4)->Fill(Jet_CSV[1],Weight_XS);
+			else if (ptave >= 287.6 && ptave < 353.6) hCSV_mc_c.at(5)->Fill(Jet_CSV[1],Weight_XS);
+			else if (ptave >= 353.6 && ptave < 391.6) hCSV_mc_c.at(6)->Fill(Jet_CSV[1],Weight_XS);
+			else if (ptave >= 391.6 && ptave < 426.6) hCSV_mc_c.at(7)->Fill(Jet_CSV[1],Weight_XS);
+			else if (ptave >= 426.6) 		  hCSV_mc_c.at(8)->Fill(Jet_CSV[1],Weight_XS);		      
 		      }	      
 		      else if (abs(Jet_HadFlav[1])==5){
-			if (ptave < 67.6) hCSV_mc_b.at(0)->Fill(Jet_CSV[1],Weight_XS);
-			else if (ptave >= 67.6 && ptave < 89.6) hCSV_mc_b.at(0)->Fill(Jet_CSV[1],Weight_XS);
-			else if (ptave >= 89.6 && ptave < 155.6) hCSV_mc_b.at(1)->Fill(Jet_CSV[1],Weight_XS);
-			else if (ptave >= 155.6 && ptave < 221.6) hCSV_mc_b.at(2)->Fill(Jet_CSV[1],Weight_XS);
-			else if (ptave >= 221.6 && ptave < 287.6) hCSV_mc_b.at(3)->Fill(Jet_CSV[1],Weight_XS);
-			else if (ptave >= 287.6 && ptave < 353.6) hCSV_mc_b.at(4)->Fill(Jet_CSV[1],Weight_XS);
-			else if (ptave >= 353.6 && ptave < 391.6) hCSV_mc_b.at(5)->Fill(Jet_CSV[1],Weight_XS);
-			else if (ptave >= 391.6 && ptave < 426.6) hCSV_mc_b.at(6)->Fill(Jet_CSV[1],Weight_XS);
-			else if (ptave >= 426.6) hCSV_mc_b.at(7)->Fill(Jet_CSV[1],Weight_XS);	
+			if (ptave < 67.6) 			  hCSV_mc_b.at(0)->Fill(Jet_CSV[1],Weight_XS);
+			else if (ptave >= 67.6 && ptave < 89.6)   hCSV_mc_b.at(1)->Fill(Jet_CSV[1],Weight_XS);
+			else if (ptave >= 89.6 && ptave < 155.6)  hCSV_mc_b.at(2)->Fill(Jet_CSV[1],Weight_XS);
+			else if (ptave >= 155.6 && ptave < 221.6) hCSV_mc_b.at(3)->Fill(Jet_CSV[1],Weight_XS);
+			else if (ptave >= 221.6 && ptave < 287.6) hCSV_mc_b.at(4)->Fill(Jet_CSV[1],Weight_XS);
+			else if (ptave >= 287.6 && ptave < 353.6) hCSV_mc_b.at(5)->Fill(Jet_CSV[1],Weight_XS);
+			else if (ptave >= 353.6 && ptave < 391.6) hCSV_mc_b.at(6)->Fill(Jet_CSV[1],Weight_XS);
+			else if (ptave >= 391.6 && ptave < 426.6) hCSV_mc_b.at(7)->Fill(Jet_CSV[1],Weight_XS);
+			else if (ptave >= 426.6) 		  hCSV_mc_b.at(8)->Fill(Jet_CSV[1],Weight_XS);	
 			
 		      }
 		      else if (abs(Jet_HadFlav[1])!=4 && abs(Jet_HadFlav[1])!=5){
-			if (ptave < 67.6) hCSV_mc_lf.at(0)->Fill(Jet_CSV[1],Weight_XS);
-			else if (ptave >= 67.6 && ptave < 89.6) hCSV_mc_lf.at(0)->Fill(Jet_CSV[1],Weight_XS);
-			else if (ptave >= 89.6 && ptave < 155.6) hCSV_mc_lf.at(1)->Fill(Jet_CSV[1],Weight_XS);
-			else if (ptave >= 155.6 && ptave < 221.6) hCSV_mc_lf.at(2)->Fill(Jet_CSV[1],Weight_XS);
-			else if (ptave >= 221.6 && ptave < 287.6) hCSV_mc_lf.at(3)->Fill(Jet_CSV[1],Weight_XS);
-			else if (ptave >= 287.6 && ptave < 353.6) hCSV_mc_lf.at(4)->Fill(Jet_CSV[1],Weight_XS);
-			else if (ptave >= 353.6 && ptave < 391.6) hCSV_mc_lf.at(5)->Fill(Jet_CSV[1],Weight_XS);
-			else if (ptave >= 391.6 && ptave < 426.6) hCSV_mc_lf.at(6)->Fill(Jet_CSV[1],Weight_XS);
-			else if (ptave >= 426.6) hCSV_mc_lf.at(7)->Fill(Jet_CSV[1],Weight_XS);	
+			if (ptave < 67.6) 			  hCSV_mc_lf.at(0)->Fill(Jet_CSV[1],Weight_XS);
+			else if (ptave >= 67.6 && ptave < 89.6)   hCSV_mc_lf.at(1)->Fill(Jet_CSV[1],Weight_XS);
+			else if (ptave >= 89.6 && ptave < 155.6)  hCSV_mc_lf.at(2)->Fill(Jet_CSV[1],Weight_XS);
+			else if (ptave >= 155.6 && ptave < 221.6) hCSV_mc_lf.at(3)->Fill(Jet_CSV[1],Weight_XS);
+			else if (ptave >= 221.6 && ptave < 287.6) hCSV_mc_lf.at(4)->Fill(Jet_CSV[1],Weight_XS);
+			else if (ptave >= 287.6 && ptave < 353.6) hCSV_mc_lf.at(5)->Fill(Jet_CSV[1],Weight_XS);
+			else if (ptave >= 353.6 && ptave < 391.6) hCSV_mc_lf.at(6)->Fill(Jet_CSV[1],Weight_XS);
+			else if (ptave >= 391.6 && ptave < 426.6) hCSV_mc_lf.at(7)->Fill(Jet_CSV[1],Weight_XS);
+			else if (ptave >= 426.6) 		  hCSV_mc_lf.at(8)->Fill(Jet_CSV[1],Weight_XS);	
 			
 		      }
 		    }
 		    else if (j==1){
-		      if (ptave < 67.6) hptave_mc.at(0)->Fill(ptave,Weight_XS);
-		      else if (ptave >= 67.6 && ptave < 89.6) hptave_mc.at(0)->Fill(ptave,Weight_XS);
-		      else if (ptave >= 89.6 && ptave < 155.6) hptave_mc.at(1)->Fill(ptave,Weight_XS);
-		      else if (ptave >= 155.6 && ptave < 221.6) hptave_mc.at(2)->Fill(ptave,Weight_XS);
-		      else if (ptave >= 221.6 && ptave < 287.6) hptave_mc.at(3)->Fill(ptave,Weight_XS);
-		      else if (ptave >= 287.6 && ptave < 353.6) hptave_mc.at(4)->Fill(ptave,Weight_XS);
-		      else if (ptave >= 353.6 && ptave < 391.6) hptave_mc.at(5)->Fill(ptave,Weight_XS);
-		      else if (ptave >= 391.6 && ptave < 426.6) hptave_mc.at(6)->Fill(ptave,Weight_XS);
-		      else if (ptave >= 426.6) hptave_mc.at(7)->Fill(ptave,Weight_XS);
+		      if (ptave < 67.6) 			hptave_mc.at(0)->Fill(ptave,Weight_XS);
+		      else if (ptave >= 67.6 && ptave < 89.6)   hptave_mc.at(1)->Fill(ptave,Weight_XS);
+		      else if (ptave >= 89.6 && ptave < 155.6)  hptave_mc.at(2)->Fill(ptave,Weight_XS);
+		      else if (ptave >= 155.6 && ptave < 221.6) hptave_mc.at(3)->Fill(ptave,Weight_XS);
+		      else if (ptave >= 221.6 && ptave < 287.6) hptave_mc.at(4)->Fill(ptave,Weight_XS);
+		      else if (ptave >= 287.6 && ptave < 353.6) hptave_mc.at(5)->Fill(ptave,Weight_XS);
+		      else if (ptave >= 353.6 && ptave < 391.6) hptave_mc.at(6)->Fill(ptave,Weight_XS);
+		      else if (ptave >= 391.6 && ptave < 426.6) hptave_mc.at(7)->Fill(ptave,Weight_XS);
+		      else if (ptave >= 426.6) 			hptave_mc.at(8)->Fill(ptave,Weight_XS);
 		      
-		      if (abs(Jet_HadFlav[1])==4) {
-			if (ptave < 67.6) hCSV_mc_c.at(0)->Fill(Jet_CSV[0],Weight_XS);
-			else if (ptave >= 67.6 && ptave < 89.6) hCSV_mc_c.at(1)->Fill(Jet_CSV[0],Weight_XS);
-			else if (ptave >= 89.6 && ptave < 155.6) hCSV_mc_c.at(2)->Fill(Jet_CSV[0],Weight_XS);
+		      if (abs(Jet_HadFlav[0])==4) {
+			if (ptave < 67.6) 			  hCSV_mc_c.at(0)->Fill(Jet_CSV[0],Weight_XS);
+			else if (ptave >= 67.6 && ptave < 89.6)   hCSV_mc_c.at(1)->Fill(Jet_CSV[0],Weight_XS);
+			else if (ptave >= 89.6 && ptave < 155.6)  hCSV_mc_c.at(2)->Fill(Jet_CSV[0],Weight_XS);
 			else if (ptave >= 155.6 && ptave < 221.6) hCSV_mc_c.at(3)->Fill(Jet_CSV[0],Weight_XS);
 			else if (ptave >= 221.6 && ptave < 287.6) hCSV_mc_c.at(4)->Fill(Jet_CSV[0],Weight_XS);
 			else if (ptave >= 287.6 && ptave < 353.6) hCSV_mc_c.at(5)->Fill(Jet_CSV[0],Weight_XS);
 			else if (ptave >= 353.6 && ptave < 391.6) hCSV_mc_c.at(6)->Fill(Jet_CSV[0],Weight_XS);
 			else if (ptave >= 391.6 && ptave < 426.6) hCSV_mc_c.at(7)->Fill(Jet_CSV[0],Weight_XS);
-			else if (ptave >= 426.6) hCSV_mc_c.at(8)->Fill(Jet_CSV[0],Weight_XS);		      
+			else if (ptave >= 426.6) 		  hCSV_mc_c.at(8)->Fill(Jet_CSV[0],Weight_XS);		      
 		      }	      
-		      else if (abs(Jet_HadFlav[1])==5){
-			if (ptave < 67.6) hCSV_mc_b.at(0)->Fill(Jet_CSV[0],Weight_XS);
-			else if (ptave >= 67.6 && ptave < 89.6) hCSV_mc_b.at(1)->Fill(Jet_CSV[0],Weight_XS);
-			else if (ptave >= 89.6 && ptave < 155.6) hCSV_mc_b.at(2)->Fill(Jet_CSV[0],Weight_XS);
+		      else if (abs(Jet_HadFlav[0])==5){
+			if (ptave < 67.6) 			  hCSV_mc_b.at(0)->Fill(Jet_CSV[0],Weight_XS);
+			else if (ptave >= 67.6 && ptave < 89.6)   hCSV_mc_b.at(1)->Fill(Jet_CSV[0],Weight_XS);
+			else if (ptave >= 89.6 && ptave < 155.6)  hCSV_mc_b.at(2)->Fill(Jet_CSV[0],Weight_XS);
 			else if (ptave >= 155.6 && ptave < 221.6) hCSV_mc_b.at(3)->Fill(Jet_CSV[0],Weight_XS);
 			else if (ptave >= 221.6 && ptave < 287.6) hCSV_mc_b.at(4)->Fill(Jet_CSV[0],Weight_XS);
 			else if (ptave >= 287.6 && ptave < 353.6) hCSV_mc_b.at(5)->Fill(Jet_CSV[0],Weight_XS);
 			else if (ptave >= 353.6 && ptave < 391.6) hCSV_mc_b.at(6)->Fill(Jet_CSV[0],Weight_XS);
 			else if (ptave >= 391.6 && ptave < 426.6) hCSV_mc_b.at(7)->Fill(Jet_CSV[0],Weight_XS);
-			else if (ptave >= 426.6) hCSV_mc_b.at(8)->Fill(Jet_CSV[0],Weight_XS);	
+			else if (ptave >= 426.6)		  hCSV_mc_b.at(8)->Fill(Jet_CSV[0],Weight_XS);	
 			
 		      }
-		      else if (abs(Jet_HadFlav[1])!=4 && abs(Jet_HadFlav[1])!=5){
-			if      (ptave < 67.6) hCSV_mc_lf.at(0)->Fill(Jet_CSV[0],Weight_XS);
-			else if (ptave >= 67.6 && ptave < 89.6) hCSV_mc_lf.at(1)->Fill(Jet_CSV[0],Weight_XS);
-			else if (ptave >= 89.6 && ptave < 155.6) hCSV_mc_lf.at(2)->Fill(Jet_CSV[0],Weight_XS);
+		      else if (abs(Jet_HadFlav[0])!=4 && abs(Jet_HadFlav[0])!=5){
+			if      (ptave < 67.6) 			  hCSV_mc_lf.at(0)->Fill(Jet_CSV[0],Weight_XS);
+			else if (ptave >= 67.6 && ptave < 89.6)   hCSV_mc_lf.at(1)->Fill(Jet_CSV[0],Weight_XS);
+			else if (ptave >= 89.6 && ptave < 155.6)  hCSV_mc_lf.at(2)->Fill(Jet_CSV[0],Weight_XS);
 			else if (ptave >= 155.6 && ptave < 221.6) hCSV_mc_lf.at(3)->Fill(Jet_CSV[0],Weight_XS);
 			else if (ptave >= 221.6 && ptave < 287.6) hCSV_mc_lf.at(4)->Fill(Jet_CSV[0],Weight_XS);
 			else if (ptave >= 287.6 && ptave < 353.6) hCSV_mc_lf.at(5)->Fill(Jet_CSV[0],Weight_XS);
 			else if (ptave >= 353.6 && ptave < 391.6) hCSV_mc_lf.at(6)->Fill(Jet_CSV[0],Weight_XS);
 			else if (ptave >= 391.6 && ptave < 426.6) hCSV_mc_lf.at(7)->Fill(Jet_CSV[0],Weight_XS);
-			else if (ptave >= 426.6) hCSV_mc_lf.at(8)->Fill(Jet_CSV[0],Weight_XS);
+			else if (ptave >= 426.6) 		  hCSV_mc_lf.at(8)->Fill(Jet_CSV[0],Weight_XS);
 		      }
 			
 		    }
 		  }
 		}
-	      if (j==0 && N_Jets ==2 ){
-		if (ptave < 67.6) hptave_mc.at(0)->Fill(ptave,Weight_XS);
-		else if (ptave >= 67.6 && ptave < 89.6) hptave_mc.at(0)->Fill(ptave,Weight_XS);
-		else if (ptave >= 89.6 && ptave < 155.6) hptave_mc.at(1)->Fill(ptave,Weight_XS);
-		else if (ptave >= 155.6 && ptave < 221.6) hptave_mc.at(2)->Fill(ptave,Weight_XS);
-		else if (ptave >= 221.6 && ptave < 287.6) hptave_mc.at(3)->Fill(ptave,Weight_XS);
-		else if (ptave >= 287.6 && ptave < 353.6) hptave_mc.at(4)->Fill(ptave,Weight_XS);
-		else if (ptave >= 353.6 && ptave < 391.6) hptave_mc.at(5)->Fill(ptave,Weight_XS);
-		else if (ptave >= 391.6 && ptave < 426.6) hptave_mc.at(6)->Fill(ptave,Weight_XS);
-		else if (ptave >= 426.6) hptave_mc.at(7)->Fill(ptave,Weight_XS);
+	      else if (j==0 && N_Jets ==2 ){
+		if (ptave < 67.6) 			  hptave_mc.at(0)->Fill(ptave,Weight_XS);
+		else if (ptave >= 67.6 && ptave < 89.6)   hptave_mc.at(1)->Fill(ptave,Weight_XS);
+		else if (ptave >= 89.6 && ptave < 155.6)  hptave_mc.at(2)->Fill(ptave,Weight_XS);
+		else if (ptave >= 155.6 && ptave < 221.6) hptave_mc.at(3)->Fill(ptave,Weight_XS);
+		else if (ptave >= 221.6 && ptave < 287.6) hptave_mc.at(4)->Fill(ptave,Weight_XS);
+		else if (ptave >= 287.6 && ptave < 353.6) hptave_mc.at(5)->Fill(ptave,Weight_XS);
+		else if (ptave >= 353.6 && ptave < 391.6) hptave_mc.at(6)->Fill(ptave,Weight_XS);
+		else if (ptave >= 391.6 && ptave < 426.6) hptave_mc.at(7)->Fill(ptave,Weight_XS);
+		else if (ptave >= 426.6)		  hptave_mc.at(8)->Fill(ptave,Weight_XS);
 		      
 		if (abs(Jet_HadFlav[1])==4) {
-		  if (ptave < 67.6) hCSV_mc_c.at(0)->Fill(Jet_CSV[1],Weight_XS);
-		  else if (ptave >= 67.6 && ptave < 89.6) hCSV_mc_c.at(0)->Fill(Jet_CSV[1],Weight_XS);
-		  else if (ptave >= 89.6 && ptave < 155.6) hCSV_mc_c.at(1)->Fill(Jet_CSV[1],Weight_XS);
-		  else if (ptave >= 155.6 && ptave < 221.6) hCSV_mc_c.at(2)->Fill(Jet_CSV[1],Weight_XS);
-		  else if (ptave >= 221.6 && ptave < 287.6) hCSV_mc_c.at(3)->Fill(Jet_CSV[1],Weight_XS);
-		  else if (ptave >= 287.6 && ptave < 353.6) hCSV_mc_c.at(4)->Fill(Jet_CSV[1],Weight_XS);
-		  else if (ptave >= 353.6 && ptave < 391.6) hCSV_mc_c.at(5)->Fill(Jet_CSV[1],Weight_XS);
-		  else if (ptave >= 391.6 && ptave < 426.6) hCSV_mc_c.at(6)->Fill(Jet_CSV[1],Weight_XS);
-		  else if (ptave >= 426.6) hCSV_mc_c.at(7)->Fill(Jet_CSV[1],Weight_XS);		      
+		  if (ptave < 67.6) 				hCSV_mc_c.at(0)->Fill(Jet_CSV[1],Weight_XS);
+		  else if (ptave >= 67.6 && ptave < 89.6) 	hCSV_mc_c.at(1)->Fill(Jet_CSV[1],Weight_XS);
+		  else if (ptave >= 89.6 && ptave < 155.6) 	hCSV_mc_c.at(2)->Fill(Jet_CSV[1],Weight_XS);
+		  else if (ptave >= 155.6 && ptave < 221.6) 	hCSV_mc_c.at(3)->Fill(Jet_CSV[1],Weight_XS);
+		  else if (ptave >= 221.6 && ptave < 287.6) 	hCSV_mc_c.at(4)->Fill(Jet_CSV[1],Weight_XS);
+		  else if (ptave >= 287.6 && ptave < 353.6) 	hCSV_mc_c.at(5)->Fill(Jet_CSV[1],Weight_XS);
+		  else if (ptave >= 353.6 && ptave < 391.6) 	hCSV_mc_c.at(6)->Fill(Jet_CSV[1],Weight_XS);
+		  else if (ptave >= 391.6 && ptave < 426.6) 	hCSV_mc_c.at(7)->Fill(Jet_CSV[1],Weight_XS);
+		  else if (ptave >= 426.6) 			hCSV_mc_c.at(8)->Fill(Jet_CSV[1],Weight_XS);		      
 		}	      
-		else if (abs(Jet_HadFlav[1])==5 && N_Jets==2){
-		  if (ptave < 67.6) hCSV_mc_b.at(0)->Fill(Jet_CSV[1],Weight_XS);
-		  else if (ptave >= 67.6 && ptave < 89.6) hCSV_mc_b.at(0)->Fill(Jet_CSV[1],Weight_XS);
-		  else if (ptave >= 89.6 && ptave < 155.6) hCSV_mc_b.at(1)->Fill(Jet_CSV[1],Weight_XS);
-		  else if (ptave >= 155.6 && ptave < 221.6) hCSV_mc_b.at(2)->Fill(Jet_CSV[1],Weight_XS);
-		  else if (ptave >= 221.6 && ptave < 287.6) hCSV_mc_b.at(3)->Fill(Jet_CSV[1],Weight_XS);
-		  else if (ptave >= 287.6 && ptave < 353.6) hCSV_mc_b.at(4)->Fill(Jet_CSV[1],Weight_XS);
-		  else if (ptave >= 353.6 && ptave < 391.6) hCSV_mc_b.at(5)->Fill(Jet_CSV[1],Weight_XS);
-		  else if (ptave >= 391.6 && ptave < 426.6) hCSV_mc_b.at(6)->Fill(Jet_CSV[1],Weight_XS);
-		  else if (ptave >= 426.6) hCSV_mc_b.at(7)->Fill(Jet_CSV[1],Weight_XS);	
+		else if (abs(Jet_HadFlav[1])==5){
+		  if (ptave < 67.6) 				hCSV_mc_b.at(0)->Fill(Jet_CSV[1],Weight_XS);
+		  else if (ptave >= 67.6 && ptave < 89.6) 	hCSV_mc_b.at(1)->Fill(Jet_CSV[1],Weight_XS);
+		  else if (ptave >= 89.6 && ptave < 155.6) 	hCSV_mc_b.at(2)->Fill(Jet_CSV[1],Weight_XS);
+		  else if (ptave >= 155.6 && ptave < 221.6)	hCSV_mc_b.at(3)->Fill(Jet_CSV[1],Weight_XS);
+		  else if (ptave >= 221.6 && ptave < 287.6) 	hCSV_mc_b.at(4)->Fill(Jet_CSV[1],Weight_XS);
+		  else if (ptave >= 287.6 && ptave < 353.6) 	hCSV_mc_b.at(5)->Fill(Jet_CSV[1],Weight_XS);
+		  else if (ptave >= 353.6 && ptave < 391.6)	hCSV_mc_b.at(6)->Fill(Jet_CSV[1],Weight_XS);
+		  else if (ptave >= 391.6 && ptave < 426.6)	hCSV_mc_b.at(7)->Fill(Jet_CSV[1],Weight_XS);
+		  else if (ptave >= 426.6) 			hCSV_mc_b.at(8)->Fill(Jet_CSV[1],Weight_XS);	
 		  
 		}
-		else if (abs(Jet_HadFlav[1])!=4 && abs(Jet_HadFlav[1])!=5 && N_Jets==2){
-		  if (ptave < 67.6) hCSV_mc_lf.at(0)->Fill(Jet_CSV[1],Weight_XS);
-		  else if (ptave >= 67.6 && ptave < 89.6) hCSV_mc_lf.at(0)->Fill(Jet_CSV[1],Weight_XS);
-		  else if (ptave >= 89.6 && ptave < 155.6) hCSV_mc_lf.at(1)->Fill(Jet_CSV[1],Weight_XS);
-		  else if (ptave >= 155.6 && ptave < 221.6) hCSV_mc_lf.at(2)->Fill(Jet_CSV[1],Weight_XS);
-		  else if (ptave >= 221.6 && ptave < 287.6) hCSV_mc_lf.at(3)->Fill(Jet_CSV[1],Weight_XS);
-		  else if (ptave >= 287.6 && ptave < 353.6) hCSV_mc_lf.at(4)->Fill(Jet_CSV[1],Weight_XS);
-		  else if (ptave >= 353.6 && ptave < 391.6) hCSV_mc_lf.at(5)->Fill(Jet_CSV[1],Weight_XS);
-		  else if (ptave >= 391.6 && ptave < 426.6) hCSV_mc_lf.at(6)->Fill(Jet_CSV[1],Weight_XS);
-		  else if (ptave >= 426.6) hCSV_mc_lf.at(7)->Fill(Jet_CSV[1],Weight_XS);	
+		else if (abs(Jet_HadFlav[1])!=4 && abs(Jet_HadFlav[1])!=5 ){
+		  if (ptave < 67.6)				hCSV_mc_lf.at(0)->Fill(Jet_CSV[1],Weight_XS);
+		  else if (ptave >= 67.6 && ptave < 89.6) 	hCSV_mc_lf.at(1)->Fill(Jet_CSV[1],Weight_XS);
+		  else if (ptave >= 89.6 && ptave < 155.6) 	hCSV_mc_lf.at(2)->Fill(Jet_CSV[1],Weight_XS);
+		  else if (ptave >= 155.6 && ptave < 221.6) 	hCSV_mc_lf.at(3)->Fill(Jet_CSV[1],Weight_XS);
+		  else if (ptave >= 221.6 && ptave < 287.6) 	hCSV_mc_lf.at(4)->Fill(Jet_CSV[1],Weight_XS);
+		  else if (ptave >= 287.6 && ptave < 353.6) 	hCSV_mc_lf.at(5)->Fill(Jet_CSV[1],Weight_XS);
+		  else if (ptave >= 353.6 && ptave < 391.6) 	hCSV_mc_lf.at(6)->Fill(Jet_CSV[1],Weight_XS);
+		  else if (ptave >= 391.6 && ptave < 426.6) 	hCSV_mc_lf.at(7)->Fill(Jet_CSV[1],Weight_XS);
+		  else if (ptave >= 426.6) 			hCSV_mc_lf.at(8)->Fill(Jet_CSV[1],Weight_XS);	
 		  
 		}
 	      }
 	      else if (j==1 && N_Jets ==2){
-		if (ptave < 67.6) hptave_mc.at(0)->Fill(ptave,Weight_XS);
-		else if (ptave >= 67.6 && ptave < 89.6) hptave_mc.at(0)->Fill(ptave,Weight_XS);
-		else if (ptave >= 89.6 && ptave < 155.6) hptave_mc.at(1)->Fill(ptave,Weight_XS);
-		else if (ptave >= 155.6 && ptave < 221.6) hptave_mc.at(2)->Fill(ptave,Weight_XS);
-		else if (ptave >= 221.6 && ptave < 287.6) hptave_mc.at(3)->Fill(ptave,Weight_XS);
-		else if (ptave >= 287.6 && ptave < 353.6) hptave_mc.at(4)->Fill(ptave,Weight_XS);
-		else if (ptave >= 353.6 && ptave < 391.6) hptave_mc.at(5)->Fill(ptave,Weight_XS);
-		else if (ptave >= 391.6 && ptave < 426.6) hptave_mc.at(6)->Fill(ptave,Weight_XS);
-		else if (ptave >= 426.6) hptave_mc.at(7)->Fill(ptave,Weight_XS);
-		if (abs(Jet_HadFlav[1])==4) {
-		  if (ptave < 67.6) hCSV_mc_c.at(0)->Fill(Jet_CSV[0],Weight_XS);
-		  else if (ptave >= 67.6 && ptave < 89.6) hCSV_mc_c.at(1)->Fill(Jet_CSV[0],Weight_XS);
-		  else if (ptave >= 89.6 && ptave < 155.6) hCSV_mc_c.at(2)->Fill(Jet_CSV[0],Weight_XS);
-		  else if (ptave >= 155.6 && ptave < 221.6) hCSV_mc_c.at(3)->Fill(Jet_CSV[0],Weight_XS);
-		  else if (ptave >= 221.6 && ptave < 287.6) hCSV_mc_c.at(4)->Fill(Jet_CSV[0],Weight_XS);
-		  else if (ptave >= 287.6 && ptave < 353.6) hCSV_mc_c.at(5)->Fill(Jet_CSV[0],Weight_XS);
-		  else if (ptave >= 353.6 && ptave < 391.6) hCSV_mc_c.at(6)->Fill(Jet_CSV[0],Weight_XS);
-		  else if (ptave >= 391.6 && ptave < 426.6) hCSV_mc_c.at(7)->Fill(Jet_CSV[0],Weight_XS);
-		  else if (ptave >= 426.6) hCSV_mc_c.at(8)->Fill(Jet_CSV[0],Weight_XS);		      
+		if (ptave < 67.6) 				hptave_mc.at(0)->Fill(ptave,Weight_XS);
+		else if (ptave >= 67.6 && ptave < 89.6) 	hptave_mc.at(1)->Fill(ptave,Weight_XS);
+		else if (ptave >= 89.6 && ptave < 155.6) 	hptave_mc.at(2)->Fill(ptave,Weight_XS);
+		else if (ptave >= 155.6 && ptave < 221.6) 	hptave_mc.at(3)->Fill(ptave,Weight_XS);
+		else if (ptave >= 221.6 && ptave < 287.6) 	hptave_mc.at(4)->Fill(ptave,Weight_XS);
+		else if (ptave >= 287.6 && ptave < 353.6) 	hptave_mc.at(5)->Fill(ptave,Weight_XS);
+		else if (ptave >= 353.6 && ptave < 391.6) 	hptave_mc.at(6)->Fill(ptave,Weight_XS);
+		else if (ptave >= 391.6 && ptave < 426.6) 	hptave_mc.at(7)->Fill(ptave,Weight_XS);
+		else if (ptave >= 426.6) 			hptave_mc.at(8)->Fill(ptave,Weight_XS);
+		if (abs(Jet_HadFlav[0])==4) {
+		  if (ptave < 67.6) 				hCSV_mc_c.at(0)->Fill(Jet_CSV[0],Weight_XS);
+		  else if (ptave >= 67.6 && ptave < 89.6) 	hCSV_mc_c.at(1)->Fill(Jet_CSV[0],Weight_XS);
+		  else if (ptave >= 89.6 && ptave < 155.6) 	hCSV_mc_c.at(2)->Fill(Jet_CSV[0],Weight_XS);
+		  else if (ptave >= 155.6 && ptave < 221.6) 	hCSV_mc_c.at(3)->Fill(Jet_CSV[0],Weight_XS);
+		  else if (ptave >= 221.6 && ptave < 287.6) 	hCSV_mc_c.at(4)->Fill(Jet_CSV[0],Weight_XS);
+		  else if (ptave >= 287.6 && ptave < 353.6) 	hCSV_mc_c.at(5)->Fill(Jet_CSV[0],Weight_XS);
+		  else if (ptave >= 353.6 && ptave < 391.6) 	hCSV_mc_c.at(6)->Fill(Jet_CSV[0],Weight_XS);
+		  else if (ptave >= 391.6 && ptave < 426.6) 	hCSV_mc_c.at(7)->Fill(Jet_CSV[0],Weight_XS);
+		  else if (ptave >= 426.6) 			hCSV_mc_c.at(8)->Fill(Jet_CSV[0],Weight_XS);		      
 		}	      
-		else if (abs(Jet_HadFlav[1])==5 && N_Jets==2){
-		  if (ptave < 67.6) hCSV_mc_b.at(0)->Fill(Jet_CSV[0],Weight_XS);
-		  else if (ptave >= 67.6 && ptave < 89.6) hCSV_mc_b.at(1)->Fill(Jet_CSV[0],Weight_XS);
-		  else if (ptave >= 89.6 && ptave < 155.6) hCSV_mc_b.at(2)->Fill(Jet_CSV[0],Weight_XS);
-		  else if (ptave >= 155.6 && ptave < 221.6) hCSV_mc_b.at(3)->Fill(Jet_CSV[0],Weight_XS);
-		  else if (ptave >= 221.6 && ptave < 287.6) hCSV_mc_b.at(4)->Fill(Jet_CSV[0],Weight_XS);
-		  else if (ptave >= 287.6 && ptave < 353.6) hCSV_mc_b.at(5)->Fill(Jet_CSV[0],Weight_XS);
-		  else if (ptave >= 353.6 && ptave < 391.6) hCSV_mc_b.at(6)->Fill(Jet_CSV[0],Weight_XS);
-		  else if (ptave >= 391.6 && ptave < 426.6) hCSV_mc_b.at(7)->Fill(Jet_CSV[0],Weight_XS);
-		  else if (ptave >= 426.6) hCSV_mc_b.at(8)->Fill(Jet_CSV[0],Weight_XS);	
+		else if (abs(Jet_HadFlav[0])==5){
+		  if (ptave < 67.6)				hCSV_mc_b.at(0)->Fill(Jet_CSV[0],Weight_XS);
+		  else if (ptave >= 67.6 && ptave < 89.6) 	hCSV_mc_b.at(1)->Fill(Jet_CSV[0],Weight_XS);
+		  else if (ptave >= 89.6 && ptave < 155.6) 	hCSV_mc_b.at(2)->Fill(Jet_CSV[0],Weight_XS);
+		  else if (ptave >= 155.6 && ptave < 221.6)	hCSV_mc_b.at(3)->Fill(Jet_CSV[0],Weight_XS);
+		  else if (ptave >= 221.6 && ptave < 287.6) 	hCSV_mc_b.at(4)->Fill(Jet_CSV[0],Weight_XS);
+		  else if (ptave >= 287.6 && ptave < 353.6) 	hCSV_mc_b.at(5)->Fill(Jet_CSV[0],Weight_XS);
+		  else if (ptave >= 353.6 && ptave < 391.6) 	hCSV_mc_b.at(6)->Fill(Jet_CSV[0],Weight_XS);
+		  else if (ptave >= 391.6 && ptave < 426.6) 	hCSV_mc_b.at(7)->Fill(Jet_CSV[0],Weight_XS);
+		  else if (ptave >= 426.6)			hCSV_mc_b.at(8)->Fill(Jet_CSV[0],Weight_XS);	
 		  
 		}
-		else if (abs(Jet_HadFlav[1])!=4 && abs(Jet_HadFlav[1])!=5 && N_Jets==2){
-		  if (ptave < 67.6) hCSV_mc_lf.at(0)->Fill(Jet_CSV[0],Weight_XS);
-		  else if (ptave >= 67.6 && ptave < 89.6) hCSV_mc_lf.at(1)->Fill(Jet_CSV[0],Weight_XS);
-		  else if (ptave >= 89.6 && ptave < 155.6) hCSV_mc_lf.at(2)->Fill(Jet_CSV[0],Weight_XS);
-		  else if (ptave >= 155.6 && ptave < 221.6) hCSV_mc_lf.at(3)->Fill(Jet_CSV[0],Weight_XS);
-		  else if (ptave >= 221.6 && ptave < 287.6) hCSV_mc_lf.at(4)->Fill(Jet_CSV[0],Weight_XS);
-		  else if (ptave >= 287.6 && ptave < 353.6) hCSV_mc_lf.at(5)->Fill(Jet_CSV[0],Weight_XS);
-		  else if (ptave >= 353.6 && ptave < 391.6) hCSV_mc_lf.at(6)->Fill(Jet_CSV[0],Weight_XS);
-		  else if (ptave >= 391.6 && ptave < 426.6) hCSV_mc_lf.at(7)->Fill(Jet_CSV[0],Weight_XS);
-		  else if (ptave >= 426.6) hCSV_mc_lf.at(8)->Fill(Jet_CSV[0],Weight_XS);
+		else if (abs(Jet_HadFlav[0])!=4 && abs(Jet_HadFlav[0])!=50){
+		  if (ptave < 67.6) 				hCSV_mc_lf.at(0)->Fill(Jet_CSV[0],Weight_XS);
+		  else if (ptave >= 67.6 && ptave < 89.6) 	hCSV_mc_lf.at(1)->Fill(Jet_CSV[0],Weight_XS);
+		  else if (ptave >= 89.6 && ptave < 155.6) 	hCSV_mc_lf.at(2)->Fill(Jet_CSV[0],Weight_XS);
+		  else if (ptave >= 155.6 && ptave < 221.6)	hCSV_mc_lf.at(3)->Fill(Jet_CSV[0],Weight_XS);
+		  else if (ptave >= 221.6 && ptave < 287.6) 	hCSV_mc_lf.at(4)->Fill(Jet_CSV[0],Weight_XS);
+		  else if (ptave >= 287.6 && ptave < 353.6) 	hCSV_mc_lf.at(5)->Fill(Jet_CSV[0],Weight_XS);
+		  else if (ptave >= 353.6 && ptave < 391.6) 	hCSV_mc_lf.at(6)->Fill(Jet_CSV[0],Weight_XS);
+		  else if (ptave >= 391.6 && ptave < 426.6) 	hCSV_mc_lf.at(7)->Fill(Jet_CSV[0],Weight_XS);
+		  else if (ptave >= 426.6)			hCSV_mc_lf.at(8)->Fill(Jet_CSV[0],Weight_XS);
 		}
 	      }
 	    }	  
@@ -423,9 +423,9 @@ void analysetrees(const TString &datalist,const TString &mclist){
 	    if (Jet_CSV_data[j]<0.605  ){
 	      if (N_Jets_data >=3){
 		if (Jet_Pt_data[2]/ptave < pt3cut){
-		  if (ptave<67.6 && hlt40==1)                          hptave_data.at(0)->Fill(ptave);
-		  else if (ptave >= 67.6 && ptave < 89.6 && hlt60==1)  hptave_data.at(1)->Fill(ptave);
-		  else if (ptave >= 89.6 && ptave < 155.6 && hlt80==1) hptave_data.at(2)->Fill(ptave);
+		  if (ptave<67.6 && hlt40==1)                           hptave_data.at(0)->Fill(ptave);
+		  else if (ptave >= 67.6 && ptave < 89.6 && hlt60==1)   hptave_data.at(1)->Fill(ptave);
+		  else if (ptave >= 89.6 && ptave < 155.6 && hlt80==1)  hptave_data.at(2)->Fill(ptave);
 		  else if (ptave >= 155.6 && ptave < 221.6 && hlt140==1)hptave_data.at(3)->Fill(ptave);
 		  else if (ptave >= 221.6 && ptave < 287.6 && hlt200==1)hptave_data.at(4)->Fill(ptave);
 		  else if (ptave >= 287.6 && ptave < 353.6 && hlt260==1)hptave_data.at(5)->Fill(ptave);
@@ -434,61 +434,61 @@ void analysetrees(const TString &datalist,const TString &mclist){
 		  else if (ptave >= 426.6 && hlt500==1)                 hptave_data.at(8)->Fill(ptave);
 		      
 		    if (j==0){
-		      if (ptave<67.6 && hlt40==1)      hCSV_data.at(0)->Fill(Jet_CSV_data[1]);
-		      else if (ptave >= 67.6 && ptave < 89.6 && hlt60==1) hCSV_data.at(1)->Fill(Jet_CSV_data[1]);
-		      else if (ptave >= 89.6 && ptave < 155.6 && hlt80==1) hCSV_data.at(2)->Fill(Jet_CSV_data[1]);
-		      else if (ptave >= 155.6 && ptave < 221.6 && hlt140==1)hCSV_data.at(3)->Fill(Jet_CSV_data[1]);
-		      else if (ptave >= 221.6 && ptave < 287.6 && hlt200==1)hCSV_data.at(4)->Fill(Jet_CSV_data[1]);
-		      else if (ptave >= 287.6 && ptave < 353.6 && hlt260==1)hCSV_data.at(5)->Fill(Jet_CSV_data[1]);
-		      else if (ptave >= 353.6 && ptave < 391.6 && hlt320==1)hCSV_data.at(6)->Fill(Jet_CSV_data[1]);
-		      else if (ptave >= 391.6 && ptave < 426.6 && hlt400==1)hCSV_data.at(7)->Fill(Jet_CSV_data[1]);
-		      else if (ptave >= 426.6 && hlt500==1)hCSV_data.at(8)->Fill(Jet_CSV_data[1]);		      
+		      if (ptave<67.6 && hlt40==1)      				hCSV_data.at(0)->Fill(Jet_CSV_data[1]);
+		      else if (ptave >= 67.6 && ptave < 89.6 && hlt60==1) 	hCSV_data.at(1)->Fill(Jet_CSV_data[1]);
+		      else if (ptave >= 89.6 && ptave < 155.6 && hlt80==1)	hCSV_data.at(2)->Fill(Jet_CSV_data[1]);
+		      else if (ptave >= 155.6 && ptave < 221.6 && hlt140==1)	hCSV_data.at(3)->Fill(Jet_CSV_data[1]);
+		      else if (ptave >= 221.6 && ptave < 287.6 && hlt200==1)	hCSV_data.at(4)->Fill(Jet_CSV_data[1]);
+		      else if (ptave >= 287.6 && ptave < 353.6 && hlt260==1)	hCSV_data.at(5)->Fill(Jet_CSV_data[1]);
+		      else if (ptave >= 353.6 && ptave < 391.6 && hlt320==1)	hCSV_data.at(6)->Fill(Jet_CSV_data[1]);
+		      else if (ptave >= 391.6 && ptave < 426.6 && hlt400==1)	hCSV_data.at(7)->Fill(Jet_CSV_data[1]);
+		      else if (ptave >= 426.6 && hlt500==1)			hCSV_data.at(8)->Fill(Jet_CSV_data[1]);		      
 		    }
 		    else if (j==1){
-		      if (ptave<67.6 && hlt40==1)      hCSV_data.at(0)->Fill(Jet_CSV_data[0]);
-		      else if (ptave >= 67.6 && ptave < 89.6 && hlt60==1) hCSV_data.at(1)->Fill(Jet_CSV_data[0]);
-		      else if (ptave >= 89.6 && ptave < 155.6 && hlt80==1) hCSV_data.at(2)->Fill(Jet_CSV_data[0]);
-		      else if (ptave >= 155.6 && ptave < 221.6 && hlt140==1)hCSV_data.at(3)->Fill(Jet_CSV_data[0]);
-		      else if (ptave >= 221.6 && ptave < 287.6 && hlt200==1)hCSV_data.at(4)->Fill(Jet_CSV_data[0]);
-		      else if (ptave >= 287.6 && ptave < 353.6 && hlt260==1)hCSV_data.at(5)->Fill(Jet_CSV_data[0]);
-		      else if (ptave >= 353.6 && ptave < 391.6 && hlt320==1)hCSV_data.at(6)->Fill(Jet_CSV_data[0]);
-		      else if (ptave >= 391.6 && ptave < 426.6 && hlt400==1)hCSV_data.at(7)->Fill(Jet_CSV_data[0]);
-		      else if (ptave >= 426.6 && hlt500==1)hCSV_data.at(8)->Fill(Jet_CSV_data[0]);			      
+		      if (ptave<67.6 && hlt40==1)     				hCSV_data.at(0)->Fill(Jet_CSV_data[0]);
+		      else if (ptave >= 67.6 && ptave < 89.6 && hlt60==1) 	hCSV_data.at(1)->Fill(Jet_CSV_data[0]);
+		      else if (ptave >= 89.6 && ptave < 155.6 && hlt80==1) 	hCSV_data.at(2)->Fill(Jet_CSV_data[0]);
+		      else if (ptave >= 155.6 && ptave < 221.6 && hlt140==1)	hCSV_data.at(3)->Fill(Jet_CSV_data[0]);
+		      else if (ptave >= 221.6 && ptave < 287.6 && hlt200==1)	hCSV_data.at(4)->Fill(Jet_CSV_data[0]);
+		      else if (ptave >= 287.6 && ptave < 353.6 && hlt260==1)	hCSV_data.at(5)->Fill(Jet_CSV_data[0]);
+		      else if (ptave >= 353.6 && ptave < 391.6 && hlt320==1)	hCSV_data.at(6)->Fill(Jet_CSV_data[0]);
+		      else if (ptave >= 391.6 && ptave < 426.6 && hlt400==1)	hCSV_data.at(7)->Fill(Jet_CSV_data[0]);
+		      else if (ptave >= 426.6 && hlt500==1)			hCSV_data.at(8)->Fill(Jet_CSV_data[0]);			      
 		    }	
 		}      
 	      }
 	      if (N_Jets_data==2){
-	        if (ptave<67.6 && hlt40==1)      hptave_data.at(0)->Fill(ptave);
-		else if (ptave >= 67.6 && ptave < 89.6 && hlt60==1)   hptave_data.at(1)->Fill(ptave);
-		else if (ptave >= 89.6 && ptave < 155.6 && hlt80==1)  hptave_data.at(2)->Fill(ptave);
-		else if (ptave >= 155.6 && ptave < 221.6 && hlt140==1)hptave_data.at(3)->Fill(ptave);
-		else if (ptave >= 221.6 && ptave < 287.6 && hlt200==1)hptave_data.at(4)->Fill(ptave);
-		else if (ptave >= 287.6 && ptave < 353.6 && hlt260==1)hptave_data.at(5)->Fill(ptave);
-		else if (ptave >= 353.6 && ptave < 391.6 && hlt320==1)hptave_data.at(6)->Fill(ptave);
-		else if (ptave >= 391.6 && ptave < 426.6 && hlt400==1)hptave_data.at(7)->Fill(ptave);
-		else if (ptave >= 426.6 && hlt500==1)hptave_data.at(8)->Fill(ptave);		
+	        if (ptave<67.6 && hlt40==1)    			    	hptave_data.at(0)->Fill(ptave);
+		else if (ptave >= 67.6 && ptave < 89.6 && hlt60==1)   	hptave_data.at(1)->Fill(ptave);
+		else if (ptave >= 89.6 && ptave < 155.6 && hlt80==1)  	hptave_data.at(2)->Fill(ptave);
+		else if (ptave >= 155.6 && ptave < 221.6 && hlt140==1)  hptave_data.at(3)->Fill(ptave);
+		else if (ptave >= 221.6 && ptave < 287.6 && hlt200==1)	hptave_data.at(4)->Fill(ptave);
+		else if (ptave >= 287.6 && ptave < 353.6 && hlt260==1)	hptave_data.at(5)->Fill(ptave);
+		else if (ptave >= 353.6 && ptave < 391.6 && hlt320==1)	hptave_data.at(6)->Fill(ptave);
+		else if (ptave >= 391.6 && ptave < 426.6 && hlt400==1)	hptave_data.at(7)->Fill(ptave);
+		else if (ptave >= 426.6 && hlt500==1)			hptave_data.at(8)->Fill(ptave);		
 	      }
 	      else if (j==0 && N_Jets_data==2){
-		  if (ptave<67.6 && hlt40==1)      hCSV_data.at(0)->Fill(Jet_CSV_data[1]);
-		  else if (ptave >= 67.6 && ptave < 89.6 && hlt60==1) hCSV_data.at(1)->Fill(Jet_CSV_data[1]);
-		  else if (ptave >= 89.6 && ptave < 155.6 && hlt80==1) hCSV_data.at(2)->Fill(Jet_CSV_data[1]);
+		  if (ptave<67.6 && hlt40==1)     			hCSV_data.at(0)->Fill(Jet_CSV_data[1]);
+		  else if (ptave >= 67.6 && ptave < 89.6 && hlt60==1) 	hCSV_data.at(1)->Fill(Jet_CSV_data[1]);
+		  else if (ptave >= 89.6 && ptave < 155.6 && hlt80==1) 	hCSV_data.at(2)->Fill(Jet_CSV_data[1]);
 		  else if (ptave >= 155.6 && ptave < 221.6 && hlt140==1)hCSV_data.at(3)->Fill(Jet_CSV_data[1]);
 		  else if (ptave >= 221.6 && ptave < 287.6 && hlt200==1)hCSV_data.at(4)->Fill(Jet_CSV_data[1]);
 		  else if (ptave >= 287.6 && ptave < 353.6 && hlt260==1)hCSV_data.at(5)->Fill(Jet_CSV_data[1]);
 		  else if (ptave >= 353.6 && ptave < 391.6 && hlt320==1)hCSV_data.at(6)->Fill(Jet_CSV_data[1]);
 		  else if (ptave >= 391.6 && ptave < 426.6 && hlt400==1)hCSV_data.at(7)->Fill(Jet_CSV_data[1]);
-		  else if (ptave >= 426.6 && hlt500==1)hCSV_data.at(8)->Fill(Jet_CSV_data[1]);		      
+		  else if (ptave >= 426.6 && hlt500==1)			hCSV_data.at(8)->Fill(Jet_CSV_data[1]);		      
 		}
 		else if (j==1 && N_Jets_data==2){
-		  if (ptave<67.6 && hlt40==1)      hCSV_data.at(0)->Fill(Jet_CSV_data[0]);
-		  else if (ptave >= 67.6 && ptave < 89.6 && hlt60==1) hCSV_data.at(1)->Fill(Jet_CSV_data[0]);
-		  else if (ptave >= 89.6 && ptave < 155.6 && hlt80==1) hCSV_data.at(2)->Fill(Jet_CSV_data[0]);
+		  if (ptave<67.6 && hlt40==1)     			hCSV_data.at(0)->Fill(Jet_CSV_data[0]);
+		  else if (ptave >= 67.6 && ptave < 89.6 && hlt60==1) 	hCSV_data.at(1)->Fill(Jet_CSV_data[0]);
+		  else if (ptave >= 89.6 && ptave < 155.6 && hlt80==1) 	hCSV_data.at(2)->Fill(Jet_CSV_data[0]);
 		  else if (ptave >= 155.6 && ptave < 221.6 && hlt140==1)hCSV_data.at(3)->Fill(Jet_CSV_data[0]);
 		  else if (ptave >= 221.6 && ptave < 287.6 && hlt200==1)hCSV_data.at(4)->Fill(Jet_CSV_data[0]);
 		  else if (ptave >= 287.6 && ptave < 353.6 && hlt260==1)hCSV_data.at(5)->Fill(Jet_CSV_data[0]);
 		  else if (ptave >= 353.6 && ptave < 391.6 && hlt320==1)hCSV_data.at(6)->Fill(Jet_CSV_data[0]);
 		  else if (ptave >= 391.6 && ptave < 426.6 && hlt400==1)hCSV_data.at(7)->Fill(Jet_CSV_data[0]);
-		  else if (ptave >= 426.6 && hlt500==1)hCSV_data.at(8)->Fill(Jet_CSV_data[0]);			      
+		  else if (ptave >= 426.6 && hlt500==1)			hCSV_data.at(8)->Fill(Jet_CSV_data[0]);			      
 		}	      
 	      }	
 	    }
@@ -508,6 +508,6 @@ void analysetrees(const TString &datalist,const TString &mclist){
 
 int main(){
   TString datalist = "datalist";
-  TString mclist= "mclist";
+  TString mclist= "mclist2";
     analysetrees(datalist, mclist);    
 }
