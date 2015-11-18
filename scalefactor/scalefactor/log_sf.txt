@@ -1,0 +1,113 @@
+Reading Histos from file
+bin 0
+data events: 303202
+mcevents before normalization: 259700
+mcevents after normalization: 303202
+ FCN=0.00316439 FROM MIGRAD    STATUS=CONVERGED     498 CALLS         499 TOTAL
+                     EDM=4.54845e-09    STRATEGY= 1      ERROR MATRIX ACCURATE 
+  EXT PARAMETER                                   STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  p0           8.45595e-01   6.83218e-01   1.00614e-04  -4.53144e-05
+   2  p1           3.53939e+00   5.89664e+00   1.74356e-04  -4.78115e-05
+   3  p2          -1.53625e+01   1.65475e+01   2.26193e-04  -4.10710e-05
+   4  p3           1.83399e+01   2.14581e+01   2.68817e-04  -3.32305e-05
+   5  p4           6.01297e+00   2.41742e+01   3.05796e-04  -3.02121e-05
+   6  p5          -2.25035e+01   2.60314e+01   3.38955e-04  -2.31531e-05
+   7  p6           1.01088e+01   1.81524e+01   3.69374e-04  -1.99114e-05
+                               ERR DEF= 0.5
+bin 1
+data events: 0
+mcevents before normalization: 0
+mcevents after normalization: 0
+ FCN=0 FROM HESSE     STATUS=FAILED         11 CALLS         136 TOTAL
+                     EDM=0    STRATEGY= 1  ERROR MATRIX UNCERTAINTY 100.0 per cent
+  EXT PARAMETER                APPROXIMATE        STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  p0          -1.51818e+15   9.66217e-01  -1.51097e+15   0.00000e+00
+   2  p1          -1.00656e+00   1.00000e+00  -4.54595e+00   0.00000e+00
+   3  p2          -2.45259e+01   1.00000e+00  -9.16341e+00   0.00000e+00
+   4  p3           1.11102e+01   1.00000e+00  -7.22976e+00   0.00000e+00
+   5  p4          -9.70150e-01   1.00000e+00  -6.98312e+00   0.00000e+00
+   6  p5          -2.94662e+01   1.00000e+00  -6.96270e+00   0.00000e+00
+   7  p6          -4.00364e-02   1.00000e+00  -1.01488e+01   0.00000e+00
+                               ERR DEF= 0.5
+bin 2
+data events: 0
+mcevents before normalization: 0
+mcevents after normalization: 0
+ FCN=0 FROM HESSE     STATUS=FAILED         11 CALLS         385 TOTAL
+                     EDM=0    STRATEGY= 1  ERROR MATRIX UNCERTAINTY 100.0 per cent
+  EXT PARAMETER                APPROXIMATE        STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  p0          -1.52542e+15   1.00000e+00   0.00000e+00   0.00000e+00
+   2  p1          -1.00656e+00   1.00000e+00   0.00000e+00   0.00000e+00
+   3  p2          -2.45259e+01   1.00000e+00   0.00000e+00   0.00000e+00
+   4  p3           1.11102e+01   1.00000e+00   0.00000e+00   0.00000e+00
+   5  p4          -9.70150e-01   1.00000e+00   0.00000e+00   0.00000e+00
+   6  p5          -2.94662e+01   1.00000e+00   0.00000e+00   0.00000e+00
+   7  p6          -4.00364e-02   1.00000e+00   0.00000e+00   0.00000e+00
+                               ERR DEF= 0.5
+bin 3
+data events: 0
+mcevents before normalization: 0
+mcevents after normalization: 0
+ FCN=0 FROM HESSE     STATUS=FAILED         11 CALLS         385 TOTAL
+                     EDM=0    STRATEGY= 1  ERROR MATRIX UNCERTAINTY 100.0 per cent
+  EXT PARAMETER                APPROXIMATE        STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  p0          -1.53269e+15   1.00000e+00   0.00000e+00   0.00000e+00
+   2  p1          -1.00656e+00   1.00000e+00   0.00000e+00   0.00000e+00
+   3  p2          -2.45259e+01   1.00000e+00   0.00000e+00   0.00000e+00
+   4  p3           1.11102e+01   1.00000e+00   0.00000e+00   0.00000e+00
+   5  p4          -9.70150e-01   1.00000e+00   0.00000e+00   0.00000e+00
+   6  p5          -2.94662e+01   1.00000e+00   0.00000e+00   0.00000e+00
+   7  p6          -4.00364e-02   1.00000e+00   0.00000e+00   0.00000e+00
+                               ERR DEF= 0.5
+bin 4
+data events: 0
+mcevents before normalization: 0
+mcevents after normalization: 0
+ FCN=0 FROM HESSE     STATUS=FAILED         11 CALLS         385 TOTAL
+                     EDM=0    STRATEGY= 1  ERROR MATRIX UNCERTAINTY 100.0 per cent
+  EXT PARAMETER                APPROXIMATE        STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  p0          -1.54000e+15   1.00000e+00   0.00000e+00   0.00000e+00
+   2  p1          -1.00656e+00   1.00000e+00   0.00000e+00   0.00000e+00
+   3  p2          -2.45259e+01   1.00000e+00   0.00000e+00   0.00000e+00
+   4  p3           1.11102e+01   1.00000e+00   0.00000e+00   0.00000e+00
+   5  p4          -9.70150e-01   1.00000e+00   0.00000e+00   0.00000e+00
+   6  p5          -2.94662e+01   1.00000e+00   0.00000e+00   0.00000e+00
+   7  p6          -4.00364e-02   1.00000e+00   0.00000e+00   0.00000e+00
+                               ERR DEF= 0.5
+bin 5
+data events: 0
+mcevents before normalization: 0
+mcevents after normalization: 0
+ FCN=0 FROM HESSE     STATUS=FAILED         11 CALLS         385 TOTAL
+                     EDM=0    STRATEGY= 1  ERROR MATRIX UNCERTAINTY 100.0 per cent
+  EXT PARAMETER                APPROXIMATE        STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  p0          -1.54734e+15   1.00000e+00   0.00000e+00   0.00000e+00
+   2  p1          -1.00656e+00   1.00000e+00   0.00000e+00   0.00000e+00
+   3  p2          -2.45259e+01   1.00000e+00   0.00000e+00   0.00000e+00
+   4  p3           1.11102e+01   1.00000e+00   0.00000e+00   0.00000e+00
+   5  p4          -9.70150e-01   1.00000e+00   0.00000e+00   0.00000e+00
+   6  p5          -2.94662e+01   1.00000e+00   0.00000e+00   0.00000e+00
+   7  p6          -4.00364e-02   1.00000e+00   0.00000e+00   0.00000e+00
+                               ERR DEF= 0.5
+bin 6
+data events: 0
+mcevents before normalization: 0
+mcevents after normalization: 0
+ FCN=0 FROM HESSE     STATUS=FAILED         11 CALLS         385 TOTAL
+                     EDM=0    STRATEGY= 1  ERROR MATRIX UNCERTAINTY 100.0 per cent
+  EXT PARAMETER                APPROXIMATE        STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  p0          -1.55472e+15   1.00000e+00   0.00000e+00   0.00000e+00
+   2  p1          -1.00656e+00   1.00000e+00   0.00000e+00   0.00000e+00
+   3  p2          -2.45259e+01   1.00000e+00   0.00000e+00   0.00000e+00
+   4  p3           1.11102e+01   1.00000e+00   0.00000e+00   0.00000e+00
+   5  p4          -9.70150e-01   1.00000e+00   0.00000e+00   0.00000e+00
+   6  p5          -2.94662e+01   1.00000e+00   0.00000e+00   0.00000e+00
+   7  p6          -4.00364e-02   1.00000e+00   0.00000e+00   0.00000e+00
+                               ERR DEF= 0.5
