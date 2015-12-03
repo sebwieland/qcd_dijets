@@ -1,0 +1,259 @@
+Reading Histos from file
+calculating SF
+pt bin 0, eta bin 0
+data events: 1.79252e+06
+mcevents before normalization: 1.78918e+06
+mcevents after normalization: 1.78918e+06
+Purity: 0.873706
+
+****************************************
+Minimizer is Linear
+Chi2                      =       156.68
+NDf                       =           16
+p0                        =      1.00635   +/-   0.0117619   
+p1                        =    -0.782012   +/-   0.314485    
+p2                        =      16.0293   +/-   2.88064     
+p3                        =     -81.6298   +/-   11.69       
+p4                        =      165.932   +/-   23.1574     
+p5                        =     -149.508   +/-   21.9537     
+p6                        =      50.1665   +/-   7.9633      
+pt bin 0, eta bin 1
+data events: 0
+mcevents before normalization: 0
+mcevents after normalization: 0
+Purity: -nan
+pt bin 0, eta bin 2
+data events: 0
+mcevents before normalization: 0
+mcevents after normalization: 0
+Purity: -nan
+pt bin 0, eta bin 3
+data events: 0
+mcevents before normalization: 0
+mcevents after normalization: 0
+Purity: -nan
+pt bin 1, eta bin 0
+data events: 0
+mcevents before normalization: 0
+mcevents after normalization: 0
+Purity: -nan
+pt bin 1, eta bin 1
+data events: 225
+mcevents before normalization: 460.546
+mcevents after normalization: 460.546
+Purity: 0.908819
+
+****************************************
+Minimizer is Linear
+Chi2                      =      4.06225
+NDf                       =           13
+p0                        =      3.83057   +/-   2.44099     
+p1                        =     -64.5977   +/-   47.1747     
+p2                        =      453.954   +/-   344.649     
+p3                        =     -1541.23   +/-   1218.74     
+p4                        =      2716.25   +/-   2219.61     
+p5                        =     -2380.63   +/-   1995.62     
+p6                        =       816.65   +/-   699.273     
+pt bin 1, eta bin 2
+data events: 250
+mcevents before normalization: 602.759
+mcevents after normalization: 602.759
+Purity: 0.905824
+
+****************************************
+Minimizer is Linear
+Chi2                      =      6.84325
+NDf                       =           15
+p0                        =     0.506941   +/-   1.55265     
+p1                        =     -3.13244   +/-   29.5924     
+p2                        =      25.7289   +/-   210.943     
+p3                        =     -118.805   +/-   726.002     
+p4                        =      284.415   +/-   1289.41     
+p5                        =     -319.274   +/-   1133.69     
+p6                        =       132.12   +/-   388.827     
+pt bin 1, eta bin 3
+data events: 63
+mcevents before normalization: 105.057
+mcevents after normalization: 105.057
+Purity: 0.878432
+
+****************************************
+Minimizer is Linear
+Chi2                      =       10.757
+NDf                       =           13
+p0                        =      10.0272   +/-   12.4464     
+p1                        =     -166.352   +/-   201.091     
+p2                        =      1113.97   +/-   1269.26     
+p3                        =     -3666.58   +/-   4023.88     
+p4                        =      6308.57   +/-   6816.36     
+p5                        =     -5454.25   +/-   5887.86     
+p6                        =      1870.55   +/-   2033.56     
+pt bin 2, eta bin 0
+data events: 0
+mcevents before normalization: 0
+mcevents after normalization: 0
+Purity: -nan
+pt bin 2, eta bin 1
+data events: 2736
+mcevents before normalization: 3773.26
+mcevents after normalization: 3773.26
+Purity: 0.892086
+
+****************************************
+Minimizer is Linear
+Chi2                      =      9.80598
+NDf                       =           15
+p0                        =   -0.0352336   +/-   0.531123    
+p1                        =      13.5268   +/-   11.4984     
+p2                        =     -103.592   +/-   92.0961     
+p3                        =      392.104   +/-   348.466     
+p4                        =     -737.767   +/-   665.81      
+p5                        =      659.341   +/-   619.261     
+p6                        =     -224.075   +/-   222.403     
+pt bin 2, eta bin 2
+data events: 2929
+mcevents before normalization: 4392
+mcevents after normalization: 4392
+Purity: 0.89055
+
+****************************************
+Minimizer is Linear
+Chi2                      =      14.9997
+NDf                       =           15
+p0                        =     -0.22754   +/-   0.843397    
+p1                        =      17.8496   +/-   16.0743     
+p2                        =     -127.098   +/-   114.485     
+p3                        =      416.566   +/-   392.356     
+p4                        =      -684.17   +/-   690.89      
+p5                        =      543.764   +/-   600.974     
+p6                        =      -166.04   +/-   204.241     
+pt bin 2, eta bin 3
+data events: 617
+mcevents before normalization: 886.913
+mcevents after normalization: 886.913
+Purity: 0.872376
+
+****************************************
+Minimizer is Linear
+Chi2                      =      9.46495
+NDf                       =           15
+p0                        =    -0.777284   +/-   0.809109    
+p1                        =      27.8685   +/-   19.739      
+p2                        =     -199.211   +/-   165.942     
+p3                        =      710.872   +/-   633.756     
+p4                        =     -1347.67   +/-   1202.06     
+p5                        =      1273.67   +/-   1102.98     
+p6                        =     -467.524   +/-   389.65      
+pt bin 3, eta bin 0
+data events: 0
+mcevents before normalization: 0
+mcevents after normalization: 0
+Purity: -nan
+pt bin 3, eta bin 1
+data events: 49054
+mcevents before normalization: 52803.3
+mcevents after normalization: 52803.3
+Purity: 0.885665
+
+****************************************
+Minimizer is Linear
+Chi2                      =      34.0693
+NDf                       =           16
+p0                        =      1.06056   +/-   0.133821    
+p1                        =     -5.08705   +/-   3.15966     
+p2                        =      45.8793   +/-   26.9573     
+p3                        =     -159.781   +/-   106.82      
+p4                        =      254.533   +/-   211.685     
+p5                        =     -186.315   +/-   202.91      
+p6                        =      50.5412   +/-   74.7412     
+pt bin 3, eta bin 2
+data events: 52831
+mcevents before normalization: 59739.4
+mcevents after normalization: 59739.4
+Purity: 0.89108
+
+****************************************
+Minimizer is Linear
+Chi2                      =      18.6183
+NDf                       =           16
+p0                        =     0.976774   +/-   0.133214    
+p1                        =     -3.31041   +/-   2.98779     
+p2                        =      28.4819   +/-   24.4879     
+p3                        =     -101.243   +/-   94.0813     
+p4                        =       177.54   +/-   181.832     
+p5                        =     -155.609   +/-   170.748     
+p6                        =      54.7481   +/-   61.8378     
+pt bin 3, eta bin 3
+data events: 10497
+mcevents before normalization: 12340.2
+mcevents after normalization: 12340.2
+Purity: 0.889287
+
+****************************************
+Minimizer is Linear
+Chi2                      =      9.84378
+NDf                       =           15
+p0                        =      1.09972   +/-   0.35604     
+p1                        =     -7.64494   +/-   7.59776     
+p2                        =      68.3976   +/-   59.3394     
+p3                        =       -261.6   +/-   218.963     
+p4                        =      479.461   +/-   409.848     
+p5                        =     -418.548   +/-   375.233     
+p6                        =      140.315   +/-   133.122     
+pt bin 4, eta bin 0
+data events: 0
+mcevents before normalization: 0
+mcevents after normalization: 0
+Purity: -nan
+pt bin 4, eta bin 1
+data events: 769112
+mcevents before normalization: 748776
+mcevents after normalization: 748776
+Purity: 0.862921
+
+****************************************
+Minimizer is Linear
+Chi2                      =      75.8475
+NDf                       =           16
+p0                        =      1.12477   +/-   0.02034     
+p1                        =     -2.77398   +/-   0.548795    
+p2                        =      35.3775   +/-   4.97369     
+p3                        =      -164.86   +/-   19.9328     
+p4                        =      332.775   +/-   39.0765     
+p5                        =     -305.407   +/-   36.7485     
+p6                        =       105.35   +/-   13.2485     
+pt bin 4, eta bin 2
+data events: 763655
+mcevents before normalization: 766029
+mcevents after normalization: 766029
+Purity: 0.87817
+
+****************************************
+Minimizer is Linear
+Chi2                      =      54.4205
+NDf                       =           16
+p0                        =     0.908851   +/-   0.0160488   
+p1                        =     0.983588   +/-   0.421559    
+p2                        =      3.29651   +/-   3.89754     
+p3                        =     -35.0772   +/-   16.0153     
+p4                        =      78.0054   +/-   32.0232     
+p5                        =     -68.1896   +/-   30.5475     
+p6                        =      21.0435   +/-   11.1238     
+pt bin 4, eta bin 3
+data events: 140555
+mcevents before normalization: 140637
+mcevents after normalization: 140637
+Purity: 0.893568
+
+****************************************
+Minimizer is Linear
+Chi2                      =      24.8608
+NDf                       =           16
+p0                        =     0.849594   +/-   0.0328749   
+p1                        =       1.2759   +/-   0.877394    
+p2                        =      4.55653   +/-   8.20787     
+p3                        =     -47.7179   +/-   33.9958     
+p4                        =      115.847   +/-   68.3639     
+p5                        =     -114.102   +/-   65.4608     
+p6                        =      40.3159   +/-   23.8943     
+         =      40.3159   +/-   23.8943     

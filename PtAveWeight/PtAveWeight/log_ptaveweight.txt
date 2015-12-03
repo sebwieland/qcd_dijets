@@ -1,0 +1,36 @@
+Reading Histos from file
+bin 0
+data events: 569704
+mcevents before normalization: 5.41981e+09
+PtAveWeight: 0.000105115
+mcevents after normalization (integral): 569704
+bin 1
+data events: 383440
+mcevents before normalization: 1.24191e+09
+PtAveWeight: 0.000308749
+mcevents after normalization (integral): 383440
+bin 2
+data events: 33482
+mcevents before normalization: 5.73283e+08
+PtAveWeight: 5.8404e-05
+mcevents after normalization (integral): 33482
+bin 3
+data events: 43908
+mcevents before normalization: 5.34045e+07
+PtAveWeight: 0.000822178
+mcevents after normalization (integral): 43908
+bin 4
+data events: 202601
+mcevents before normalization: 1.04365e+07
+PtAveWeight: 0.0194127
+mcevents after normalization (integral): 202601
+bin 5
+data events: 82795
+mcevents before normalization: 2.92881e+06
+PtAveWeight: 0.0282692
+mcevents after normalization (integral): 82795
+bin 6
+data events: 314053
+mcevents before normalization: 1.81126e+06
+PtAveWeight: 0.173389
+mcevents after normalization (integral): 314053

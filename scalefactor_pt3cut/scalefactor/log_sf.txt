@@ -1,0 +1,342 @@
+Reading Histos from file
+calculating SF
+bin 0
+data events: 303357
+mcevents before normalization: 265190
+mcevents after normalization: 265190
+Purity: 0.866131
+ FCN=0.00627669 FROM MIGRAD    STATUS=CONVERGED     332 CALLS         333 TOTAL
+                     EDM=5.67233e-07    STRATEGY= 1      ERROR MATRIX ACCURATE 
+  EXT PARAMETER                                   STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  p0           9.41831e-01   7.36601e-01   1.09038e-04  -1.09039e-04
+   2  p1           4.60748e+00   6.60891e+00   1.91837e-04   8.10469e-05
+   3  p2          -2.11486e+01   1.91536e+01   2.51475e-04   1.33589e-04
+   4  p3           2.84877e+01   2.57307e+01   3.01541e-04   1.60812e-04
+   5  p4           6.57556e+00   2.91412e+01   3.45681e-04   1.35844e-04
+   6  p5          -3.86948e+01   3.19825e+01   3.85692e-04   1.54876e-04
+   7  p6           2.07134e+01   2.18573e+01   4.22630e-04   1.41429e-04
+                               ERR DEF= 0.5
+bin 0
+data events: 0
+mcevents before normalization: 0
+mcevents after normalization: 0
+Purity: -nan
+ FCN=0 FROM MIGRAD    STATUS=FAILED        549 CALLS         550 TOTAL
+                     EDM=3853.49    STRATEGY= 1      ERR MATRIX NOT POS-DEF
+  EXT PARAMETER                APPROXIMATE        STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  p0          -2.36730e-01   8.28748e-01  -0.00000e+00   4.99930e-01
+   2  p1           1.30302e+00   8.44053e+01   0.00000e+00   4.65222e-02
+   3  p2          -1.16442e+02   1.71726e+01  -0.00000e+00   1.88658e+00
+   4  p3           2.84877e+01   2.86070e+01  -0.00000e+00   1.01112e+00
+   5  p4           6.57556e+00   2.40361e+01  -0.00000e+00   6.54366e-01
+   6  p5          -3.86948e+01   1.93545e+01  -0.00000e+00   4.80160e-01
+   7  p6           2.07134e+01   1.63414e+01  -0.00000e+00   3.76880e-01
+                               ERR DEF= 0.5
+bin 0
+data events: 0
+mcevents before normalization: 0
+mcevents after normalization: 0
+Purity: -nan
+ FCN=0 FROM MIGRAD    STATUS=FAILED        523 CALLS         524 TOTAL
+                     EDM=3865.16    STRATEGY= 1      ERR MATRIX NOT POS-DEF
+  EXT PARAMETER                APPROXIMATE        STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  p0          -2.36730e-01   8.14218e-01  -0.00000e+00   5.55532e-01
+   2  p1           1.30302e+00   8.44248e+01   0.00000e+00   4.65222e-02
+   3  p2          -1.16442e+02   1.71970e+01  -0.00000e+00   1.88658e+00
+   4  p3           2.84877e+01   2.86390e+01  -0.00000e+00   1.01112e+00
+   5  p4           6.57556e+00   2.40576e+01  -0.00000e+00   6.54366e-01
+   6  p5          -3.86948e+01   1.93657e+01  -0.00000e+00   4.80160e-01
+   7  p6           2.07134e+01   1.63456e+01  -0.00000e+00   3.76880e-01
+                               ERR DEF= 0.5
+bin 0
+data events: 0
+mcevents before normalization: 0
+mcevents after normalization: 0
+Purity: -nan
+ FCN=0 FROM MIGRAD    STATUS=FAILED        523 CALLS         524 TOTAL
+                     EDM=3863.8    STRATEGY= 1      ERR MATRIX NOT POS-DEF
+  EXT PARAMETER                APPROXIMATE        STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  p0          -2.36730e-01   8.15147e-01  -0.00000e+00   5.47601e-01
+   2  p1           1.30302e+00   8.44228e+01   0.00000e+00   4.65222e-02
+   3  p2          -1.16442e+02   1.71945e+01  -0.00000e+00   1.88658e+00
+   4  p3           2.84877e+01   2.86357e+01  -0.00000e+00   1.01112e+00
+   5  p4           6.57556e+00   2.40554e+01  -0.00000e+00   6.54366e-01
+   6  p5          -3.86948e+01   1.93646e+01  -0.00000e+00   4.80160e-01
+   7  p6           2.07134e+01   1.63452e+01  -0.00000e+00   3.76880e-01
+                               ERR DEF= 0.5
+bin 1
+data events: 0
+mcevents before normalization: 0
+mcevents after normalization: 0
+Purity: -nan
+ FCN=0 FROM MIGRAD    STATUS=FAILED        523 CALLS         524 TOTAL
+                     EDM=3863.89    STRATEGY= 1      ERR MATRIX NOT POS-DEF
+  EXT PARAMETER                APPROXIMATE        STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  p0          -2.36730e-01   8.15075e-01  -0.00000e+00   5.48117e-01
+   2  p1           1.30302e+00   8.44230e+01   0.00000e+00   4.65222e-02
+   3  p2          -1.16442e+02   1.71947e+01  -0.00000e+00   1.88658e+00
+   4  p3           2.84877e+01   2.86359e+01  -0.00000e+00   1.01112e+00
+   5  p4           6.57556e+00   2.40556e+01  -0.00000e+00   6.54366e-01
+   6  p5          -3.86948e+01   1.93647e+01  -0.00000e+00   4.80160e-01
+   7  p6           2.07134e+01   1.63453e+01  -0.00000e+00   3.76880e-01
+                               ERR DEF= 0.5
+bin 1
+data events: 0
+mcevents before normalization: 0.235856
+mcevents after normalization: 0.235856
+Purity: 0.989121
+ FCN=0 FROM MIGRAD    STATUS=FAILED        523 CALLS         524 TOTAL
+                     EDM=3863.89    STRATEGY= 1      ERR MATRIX NOT POS-DEF
+  EXT PARAMETER                APPROXIMATE        STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  p0          -2.36730e-01   8.15081e-01  -0.00000e+00   5.48077e-01
+   2  p1           1.30302e+00   8.44230e+01   0.00000e+00   4.65222e-02
+   3  p2          -1.16442e+02   1.71947e+01  -0.00000e+00   1.88658e+00
+   4  p3           2.84877e+01   2.86359e+01  -0.00000e+00   1.01112e+00
+   5  p4           6.57556e+00   2.40556e+01  -0.00000e+00   6.54366e-01
+   6  p5          -3.86948e+01   1.93647e+01  -0.00000e+00   4.80160e-01
+   7  p6           2.07134e+01   1.63452e+01  -0.00000e+00   3.76880e-01
+                               ERR DEF= 0.5
+bin 1
+data events: 2
+mcevents before normalization: 0.978536
+mcevents after normalization: 0.978536
+Purity: 0.435266
+ FCN=95.8148 FROM MIGRAD    STATUS=FAILED       1193 CALLS        1194 TOTAL
+                     EDM=0.148886    STRATEGY= 1  ERROR MATRIX UNCERTAINTY   0.0 per cent
+  EXT PARAMETER                APPROXIMATE        STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  p0          -1.91527e+02   3.50499e-01  -0.00000e+00   9.51911e-02
+   2  p1           3.23145e+03   3.84594e-01   0.00000e+00  -8.93883e-02
+   3  p2          -5.36118e+03   2.37760e+00   0.00000e+00  -1.70051e-02
+   4  p3          -2.37991e+04   1.75506e+01   0.00000e+00  -2.83731e-03
+   5  p4           1.43155e+04   6.23484e+01   0.00000e+00  -4.44310e-04
+   6  p5          -3.97506e+05   3.57829e+02   0.00000e+00  -6.71504e-05
+   7  p6           1.09756e+04   1.66661e+03   0.00000e+00  -9.93309e-06
+                               ERR DEF= 0.5
+bin 1
+data events: 0
+mcevents before normalization: 0.0508873
+mcevents after normalization: 0.0508873
+Purity: 1
+ FCN=0 FROM HESSE     STATUS=FAILED         19 CALLS         180 TOTAL
+                     EDM=0    STRATEGY= 1  ERROR MATRIX UNCERTAINTY 100.0 per cent
+  EXT PARAMETER                APPROXIMATE        STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  p0          -2.42828e+02   7.82305e+00   4.94372e+01   4.03898e-01
+   2  p1           3.06278e+03   7.62867e+01   1.79605e+03   1.54309e-01
+   3  p2          -5.98222e+03   6.32742e+02   1.97088e+03   2.46137e-03
+   4  p3          -2.63152e+04   3.83330e+03   1.99621e+04   6.79249e-04
+   5  p4          -1.81425e+04   8.81739e+01  -9.16260e+03   0.00000e+00
+   6  p5          -4.52801e+05   1.00000e+00  -4.06514e+04   0.00000e+00
+   7  p6          -9.30744e+04   1.00000e+00  -7.64941e+04   0.00000e+00
+                               ERR DEF= 0.5
+bin 2
+data events: 0
+mcevents before normalization: 0
+mcevents after normalization: 0
+Purity: -nan
+ FCN=0 FROM MIGRAD    STATUS=FAILED        423 CALLS         424 TOTAL
+                     EDM=546.509    STRATEGY= 1  ERROR MATRIX UNCERTAINTY 100.0 per cent
+  EXT PARAMETER                APPROXIMATE        STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  p0          -2.42828e+02   9.36709e+00  -0.00000e+00   1.13970e+00
+   2  p1           3.06278e+03   8.05901e+01  -0.00000e+00   1.53970e-01
+   3  p2          -5.98222e+03   1.36096e+03  -0.00000e+00   5.39897e-04
+   4  p3          -2.63152e+04   4.57661e+03  -0.00000e+00   4.77434e-04
+   5  p4          -1.81425e+04   1.00000e+00  -0.00000e+00   0.00000e+00
+   6  p5          -4.52801e+05   1.00000e+00  -0.00000e+00   0.00000e+00
+   7  p6          -9.30744e+04   1.00000e+00  -0.00000e+00   0.00000e+00
+                               ERR DEF= 0.5
+bin 2
+data events: 0
+mcevents before normalization: 0.446127
+mcevents after normalization: 0.446127
+Purity: 0.850808
+ FCN=0 FROM MIGRAD    STATUS=FAILED        423 CALLS         424 TOTAL
+                     EDM=546.509    STRATEGY= 1  ERROR MATRIX UNCERTAINTY 100.0 per cent
+  EXT PARAMETER                APPROXIMATE        STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  p0          -2.42828e+02   9.36709e+00  -0.00000e+00   1.13970e+00
+   2  p1           3.06278e+03   8.05901e+01  -0.00000e+00   1.53970e-01
+   3  p2          -5.98222e+03   1.36096e+03  -0.00000e+00   5.39897e-04
+   4  p3          -2.63152e+04   4.57661e+03  -0.00000e+00   4.77434e-04
+   5  p4          -1.81425e+04   1.00000e+00  -0.00000e+00   0.00000e+00
+   6  p5          -4.52801e+05   1.00000e+00  -0.00000e+00   0.00000e+00
+   7  p6          -9.30744e+04   1.00000e+00  -0.00000e+00   0.00000e+00
+                               ERR DEF= 0.5
+bin 2
+data events: 2
+mcevents before normalization: 0.641201
+mcevents after normalization: 0.641201
+Purity: 1
+ FCN=0 FROM MIGRAD    STATUS=FAILED        423 CALLS         424 TOTAL
+                     EDM=546.509    STRATEGY= 1  ERROR MATRIX UNCERTAINTY 100.0 per cent
+  EXT PARAMETER                APPROXIMATE        STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  p0          -2.42828e+02   9.36709e+00  -0.00000e+00   1.13970e+00
+   2  p1           3.06278e+03   8.05901e+01  -0.00000e+00   1.53970e-01
+   3  p2          -5.98222e+03   1.36096e+03  -0.00000e+00   5.39897e-04
+   4  p3          -2.63152e+04   4.57661e+03  -0.00000e+00   4.77434e-04
+   5  p4          -1.81425e+04   1.00000e+00  -0.00000e+00   0.00000e+00
+   6  p5          -4.52801e+05   1.00000e+00  -0.00000e+00   0.00000e+00
+   7  p6          -9.30744e+04   1.00000e+00  -0.00000e+00   0.00000e+00
+                               ERR DEF= 0.5
+bin 2
+data events: 0
+mcevents before normalization: 0.0193788
+mcevents after normalization: 0.0193788
+Purity: 1
+ FCN=0 FROM MIGRAD    STATUS=FAILED        423 CALLS         424 TOTAL
+                     EDM=546.509    STRATEGY= 1  ERROR MATRIX UNCERTAINTY 100.0 per cent
+  EXT PARAMETER                APPROXIMATE        STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  p0          -2.42828e+02   9.36709e+00  -0.00000e+00   1.13970e+00
+   2  p1           3.06278e+03   8.05901e+01  -0.00000e+00   1.53970e-01
+   3  p2          -5.98222e+03   1.36096e+03  -0.00000e+00   5.39897e-04
+   4  p3          -2.63152e+04   4.57661e+03  -0.00000e+00   4.77434e-04
+   5  p4          -1.81425e+04   1.00000e+00  -0.00000e+00   0.00000e+00
+   6  p5          -4.52801e+05   1.00000e+00  -0.00000e+00   0.00000e+00
+   7  p6          -9.30744e+04   1.00000e+00  -0.00000e+00   0.00000e+00
+                               ERR DEF= 0.5
+bin 3
+data events: 0
+mcevents before normalization: 0
+mcevents after normalization: 0
+Purity: -nan
+ FCN=0 FROM MIGRAD    STATUS=FAILED        423 CALLS         424 TOTAL
+                     EDM=546.509    STRATEGY= 1  ERROR MATRIX UNCERTAINTY 100.0 per cent
+  EXT PARAMETER                APPROXIMATE        STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  p0          -2.42828e+02   9.36709e+00  -0.00000e+00   1.13970e+00
+   2  p1           3.06278e+03   8.05901e+01  -0.00000e+00   1.53970e-01
+   3  p2          -5.98222e+03   1.36096e+03  -0.00000e+00   5.39897e-04
+   4  p3          -2.63152e+04   4.57661e+03  -0.00000e+00   4.77434e-04
+   5  p4          -1.81425e+04   1.00000e+00  -0.00000e+00   0.00000e+00
+   6  p5          -4.52801e+05   1.00000e+00  -0.00000e+00   0.00000e+00
+   7  p6          -9.30744e+04   1.00000e+00  -0.00000e+00   0.00000e+00
+                               ERR DEF= 0.5
+bin 3
+data events: 24
+mcevents before normalization: 24.0882
+mcevents after normalization: 24.0882
+Purity: 0.883644
+ FCN=36380.6 FROM MIGRAD    STATUS=CALL LIMIT   1947 CALLS        1948 TOTAL
+                     EDM=3.63728    STRATEGY= 1  ERROR MATRIX UNCERTAINTY   7.5 per cent
+  EXT PARAMETER                APPROXIMATE        STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  p0           9.25485e+03   1.97634e+00   1.26223e+00   4.31933e+00
+   2  p1          -8.72342e+04   5.95517e+00  -5.81613e+00  -1.05674e-01
+   3  p2           2.41053e+05   4.28738e+00  -4.97826e+00  -8.61994e-01
+   4  p3          -1.15362e+05   6.75712e+00  -4.45592e+00  -9.85775e-01
+   5  p4          -2.23039e+05   4.45321e+00   3.51679e+00  -8.73587e-01
+   6  p5           1.33296e+05   8.81146e+00   7.36981e+00  -6.79884e-01
+   7  p6           4.69091e+04   1.99983e+01   1.38994e+01  -4.74719e-01
+                               ERR DEF= 0.5
+bin 3
+data events: 22
+mcevents before normalization: 36.4793
+mcevents after normalization: 36.4793
+Purity: 0.804197
+ FCN=13428.1 FROM MIGRAD    STATUS=CALL LIMIT   1945 CALLS        1946 TOTAL
+                     EDM=36.7199    STRATEGY= 1  ERROR MATRIX UNCERTAINTY   7.3 per cent
+  EXT PARAMETER                APPROXIMATE        STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  p0           3.65560e+03   3.04112e-01  -9.83633e-02  -3.63108e+00
+   2  p1          -5.92945e+04   2.19416e+00   6.67006e-01  -1.75863e-01
+   3  p2           2.41568e+05   1.72056e+00   2.80487e-01   4.12387e-01
+   4  p3          -1.63773e+05   3.10830e+01  -1.14203e+01   3.04914e-01
+   5  p4          -3.61402e+05   1.06971e+01   2.85910e-01   1.68003e-01
+   6  p5           3.25701e+05   1.79739e+00   4.77390e-02   8.51224e-02
+   7  p6          -1.49059e+04   2.22594e+00   8.98722e-02   4.20418e-02
+                               ERR DEF= 0.5
+bin 3
+data events: 5
+mcevents before normalization: 2.66906
+mcevents after normalization: 2.66906
+Purity: 0.961124
+ FCN=73898.5 FROM HESSE     STATUS=FAILED         11 CALLS         161 TOTAL
+                     EDM=0    STRATEGY= 1  ERROR MATRIX UNCERTAINTY 100.0 per cent
+  EXT PARAMETER                APPROXIMATE        STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  p0          -1.46024e+46   4.30080e-01  -1.45331e+46   0.00000e+00
+   2  p1          -4.65065e+44   1.00000e+00  -4.65065e+44   0.00000e+00
+   3  p2          -2.19157e+43   1.00000e+00  -2.19157e+43   0.00000e+00
+   4  p3          -1.15149e+42   1.00000e+00  -1.15149e+42   0.00000e+00
+   5  p4          -6.18314e+40   1.00000e+00  -6.18314e+40   0.00000e+00
+   6  p5          -3.17313e+39   1.00000e+00  -3.17313e+39   0.00000e+00
+   7  p6           1.69320e+16   1.00000e+00   1.69320e+16   0.00000e+00
+                               ERR DEF= 0.5
+bin 4
+data events: 0
+mcevents before normalization: 0
+mcevents after normalization: 0
+Purity: -nan
+ FCN=0 FROM HESSE     STATUS=FAILED         11 CALLS         373 TOTAL
+                     EDM=0    STRATEGY= 1  ERROR MATRIX UNCERTAINTY 100.0 per cent
+  EXT PARAMETER                APPROXIMATE        STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  p0          -1.46720e+46   1.00000e+00   0.00000e+00   0.00000e+00
+   2  p1          -4.65065e+44   1.00000e+00   0.00000e+00   0.00000e+00
+   3  p2          -2.19157e+43   1.00000e+00   0.00000e+00   0.00000e+00
+   4  p3          -1.15149e+42   1.00000e+00   0.00000e+00   0.00000e+00
+   5  p4          -6.18314e+40   1.00000e+00   0.00000e+00   0.00000e+00
+   6  p5          -3.17313e+39   1.00000e+00   0.00000e+00   0.00000e+00
+   7  p6           1.69320e+16   1.00000e+00   0.00000e+00   0.00000e+00
+                               ERR DEF= 0.5
+bin 4
+data events: 147023
+mcevents before normalization: 126147
+mcevents after normalization: 126147
+Purity: 0.854533
+ FCN=18955.9 FROM HESSE     STATUS=FAILED         11 CALLS         373 TOTAL
+                     EDM=0    STRATEGY= 1  ERROR MATRIX UNCERTAINTY 100.0 per cent
+  EXT PARAMETER                APPROXIMATE        STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  p0          -1.47420e+46   1.00000e+00   0.00000e+00   0.00000e+00
+   2  p1          -4.65065e+44   1.00000e+00   0.00000e+00   0.00000e+00
+   3  p2          -2.19157e+43   1.00000e+00   0.00000e+00   0.00000e+00
+   4  p3          -1.15149e+42   1.00000e+00   0.00000e+00   0.00000e+00
+   5  p4          -6.18314e+40   1.00000e+00   0.00000e+00   0.00000e+00
+   6  p5          -3.17313e+39   1.00000e+00   0.00000e+00   0.00000e+00
+   7  p6           1.69320e+16   1.00000e+00   0.00000e+00   0.00000e+00
+                               ERR DEF= 0.5
+bin 4
+data events: 133945
+mcevents before normalization: 119006
+mcevents after normalization: 119006
+Purity: 0.874013
+ FCN=18210.8 FROM HESSE     STATUS=FAILED         11 CALLS         373 TOTAL
+                     EDM=0    STRATEGY= 1  ERROR MATRIX UNCERTAINTY 100.0 per cent
+  EXT PARAMETER                APPROXIMATE        STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  p0          -1.48123e+46   1.00000e+00   0.00000e+00   0.00000e+00
+   2  p1          -4.65065e+44   1.00000e+00   0.00000e+00   0.00000e+00
+   3  p2          -2.19157e+43   1.00000e+00   0.00000e+00   0.00000e+00
+   4  p3          -1.15149e+42   1.00000e+00   0.00000e+00   0.00000e+00
+   5  p4          -6.18314e+40   1.00000e+00   0.00000e+00   0.00000e+00
+   6  p5          -3.17313e+39   1.00000e+00   0.00000e+00   0.00000e+00
+   7  p6           1.69320e+16   1.00000e+00   0.00000e+00   0.00000e+00
+                               ERR DEF= 0.5
+bin 4
+data events: 22334
+mcevents before normalization: 20071.4
+mcevents after normalization: 20071.4
+Purity: 0.893044
+ FCN=18325.7 FROM HESSE     STATUS=FAILED         11 CALLS         373 TOTAL
+                     EDM=0    STRATEGY= 1  ERROR MATRIX UNCERTAINTY 100.0 per cent
+  EXT PARAMETER                APPROXIMATE        STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  p0          -1.48829e+46   1.00000e+00   0.00000e+00   0.00000e+00
+   2  p1          -4.65065e+44   1.00000e+00   0.00000e+00   0.00000e+00
+   3  p2          -2.19157e+43   1.00000e+00   0.00000e+00   0.00000e+00
+   4  p3          -1.15149e+42   1.00000e+00   0.00000e+00   0.00000e+00
+   5  p4          -6.18314e+40   1.00000e+00   0.00000e+00   0.00000e+00
+   6  p5          -3.17313e+39   1.00000e+00   0.00000e+00   0.00000e+00
+   7  p6           1.69320e+16   1.00000e+00   0.00000e+00   0.00000e+00
+                               ERR DEF= 0.5
