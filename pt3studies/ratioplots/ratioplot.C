@@ -1548,6 +1548,74 @@ void ratioplot(TFile *histos){
   line->Draw();  
   c1->SaveAs("h_pt1_dijet.png");
   
+      ////////////////////////
+  /////////////////////////
+  ////////////////////////
+  ///////////////////////7/
+  TH1F* h_ptassym_data = (TH1F*)histos->Get("h_ptassym_data");
+  TH1F* h_ptassym = (TH1F*)histos->Get("h_ptassym");
+//   TLegend* leg=new TLegend(0.75,0.4,0.9,0.8);
+  leg->AddEntry(h_ptassym_data,"data");
+  leg->AddEntry(h_ptassym,"MC");
+  leg->SetFillStyle(0);
+  leg->SetBorderSize(0);
+  
+//   TCanvas *c1=new TCanvas();
+  c1->cd();
+  //makepadhist
+//   TPad* padhist=new TPad("padhist","padhist",0,0.3,1,1);
+  padhist->SetBottomMargin(0);
+  padhist->Draw();
+  padhist->cd();
+
+  mcevents=h_ptassym->Integral();
+  dataevents=h_ptassym_data->Integral();
+  cout << "ptassym"<<endl;
+  cout << "data events: "<< dataevents  << endl;
+  
+  cout << "mcevents : " << mcevents << endl; 
+  
+//   xtitle="Pt 3rd Jet";
+//     //draw histos
+  h_ptassym->Sumw2();
+  h_ptassym_data->Sumw2();
+  h_ptassym->Draw("histE0");
+  h_ptassym_data->SetMarkerStyle(20);
+  h_ptassym_data->SetMarkerSize(0.5);
+  h_ptassym_data->Draw("SAMEE0");
+//   leg->Draw();
+  text->DrawLatex(0.175, 0.863, text_cms);
+  text->DrawLatex(0.175, 0.815, cutlabel);
+  c1->cd();
+  //makepadratio
+//   TPad* padratio=new TPad("padratio","padratio",0,0,1,0.3);
+  padratio->SetTopMargin(0);
+  padratio->SetBottomMargin(1.1);
+  padratio->Draw();
+  padratio->cd();
+  
+  //makeratio    
+  ratio2=(TH1F*)h_ptassym_data->Clone(); 
+  ratio2->SetTitle("");
+  ratio2->SetXTitle(xtitle);
+  ratio2->Sumw2();
+  ratio2->SetStats(0);
+  ratio2->Divide(h_ptassym);
+  ratio2->SetMarkerStyle(20);
+  ratio2->SetMarkerSize(0.5);
+  ratio2->Draw("E0");
+  ratio2->SetMaximum(1.6);
+  ratio2->SetMinimum(0.4);
+  //set_ratioattributes  
+  ratio2->GetYaxis()->SetNdivisions(510);
+  ratio2->GetYaxis()->SetLabelSize(0.1);
+  ratio2->GetXaxis()->SetTitle(xtitle);
+  ratio2->GetXaxis()->SetTitleSize(0.11);
+  ratio2->GetXaxis()->SetNdivisions(510);
+  ratio2->GetXaxis()->SetLabelSize(0.1);    
+  line->Draw();  
+  c1->SaveAs("h_ptassym.png");
+  
 }
 int main(){
   TFile* histos=new TFile("../histos.root");

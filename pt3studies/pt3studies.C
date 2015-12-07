@@ -151,6 +151,8 @@ void analysetrees(const TString &datalist,const TString &mclist){
   TH1F* h_pt3overavg=new TH1F("h_pt3overavg","h_pt3overavg w/ all Weights",60,0,1.5);
   TH2F* h_pt3overdphi=new TH2F("h_pt3overdphi","pt3vs dphi w/o PtAveWeight",80,0,220,45,0,3.5);
   
+  TH1F* h_ptassym=new TH1F("h_ptassym","Pt assymetry",50,0,1);
+  
   TH1F* h_eta0=new TH1F("h_eta0","h_eta0 w/ all Weights",50,-5,5);
   TH1F* h_eta1=new TH1F("h_eta1","h_eta1 w/ all Weights",50,-5,5);
   TH1F* h_eta2=new TH1F("h_eta2","h_eta2 w/ all Weights",50,-5,5);
@@ -199,6 +201,7 @@ void analysetrees(const TString &datalist,const TString &mclist){
 	fillhisto( h_ptave2_mc,ptave, ptave, Weight,'m');
 	fillhisto( h_pt0,ptave, Jet_Pt[0], Weight,'m'); 
 	fillhisto( h_pt1,ptave, Jet_Pt[1], Weight,'m'); 
+	fillhisto( h_ptassym,ptave, abs(Jet_Pt[0]-Jet_Pt[1])/(Jet_Pt[0]+Jet_Pt[1]), Weight,'m'); 
 	if (DeltaPhi > dphicut ){
 	  fillhisto(h_ptave1_mc,ptave, ptave, Weight,'m');
 	  fillhisto( h_pt0_dijet,ptave, Jet_Pt[0], Weight,'m'); 
@@ -317,6 +320,8 @@ void analysetrees(const TString &datalist,const TString &mclist){
   TH1F* h_pt3overavg_data=new TH1F("h_pt3overavg_data","h_pt3overavg_data",60,0,1.5);
   TH1F* h_dphi_data=new TH1F("h_dphi_data","h_dphi_data ",45,0,3.5);
   
+  TH1F* h_ptassym_data=new TH1F("h_ptassym_data","Pt assymetry",50,0,1);
+  
   TH1F* h_eta0_data=new TH1F("h_eta0_data","h_eta0 data",50,-5,5);
   TH1F* h_eta1_data=new TH1F("h_eta1_data","h_eta1 data",50,-5,5);
   TH1F* h_eta2_data=new TH1F("h_eta2_data","h_eta2 data",50,-5,5);
@@ -352,6 +357,7 @@ void analysetrees(const TString &datalist,const TString &mclist){
       fillhisto( h_ptave2_data,ptave, ptave, Weight,'d',hlt40,hlt60,hlt80,hlt140,hlt200,hlt260,hlt320,hlt400,hlt500);
       fillhisto( h_pt0_data,ptave, Jet_Pt_data[0], Weight,'d',hlt40,hlt60,hlt80,hlt140,hlt200,hlt260,hlt320,hlt400,hlt500);
       fillhisto( h_pt1_data,ptave, Jet_Pt_data[1], Weight,'d',hlt40,hlt60,hlt80,hlt140,hlt200,hlt260,hlt320,hlt400,hlt500);
+      fillhisto( h_ptassym_data,ptave, abs(Jet_Pt_data[0]-Jet_Pt_data[1])/(Jet_Pt_data[0]+Jet_Pt_data[1]), Weight,'d',hlt40,hlt60,hlt80,hlt140,hlt200,hlt260,hlt320,hlt400,hlt500);
       if (DeltaPhi_data > dphicut ){
 	fillhisto(h_ptave1_data,ptave, ptave, Weight,'d',hlt40,hlt60,hlt80,hlt140,hlt200,hlt260,hlt320,hlt400,hlt500);
 	fillhisto( h_pt0_data_dijet,ptave, Jet_Pt_data[0], Weight,'d',hlt40,hlt60,hlt80,hlt140,hlt200,hlt260,hlt320,hlt400,hlt500);
