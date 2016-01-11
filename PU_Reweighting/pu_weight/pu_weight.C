@@ -34,7 +34,7 @@ void PUWeight(TFile *histos){
   
   
   char text_cms[]="CMS private Work";
-  char cutlabel[]="Dijet selection";
+  char cutlabel[]="EtaCut";
   TLatex* text=new TLatex();
   text-> SetNDC();
   text-> SetTextFont(42);
@@ -113,7 +113,7 @@ void PUWeight(TFile *histos){
   ratio->GetXaxis()->SetLabelSize(0.1);    
   line->Draw();  
 
-  c1->SaveAs("h_NPV_original.png");
+  c1->SaveAs("h_NPV_original.pdf");
   
   // auf 1 normiert
   mcevents=h_npv_mc->Integral();
@@ -163,7 +163,7 @@ void PUWeight(TFile *histos){
   ratio->GetXaxis()->SetLabelSize(0.1);    
   line->Draw();  
 
-  c1->SaveAs("h_NPV_normed.png");
+  c1->SaveAs("h_NPV_normed.pdf");
   c1->cd();
   ratio->Draw("E0");
   ratio->SetName("PUWeight");
@@ -171,7 +171,7 @@ void PUWeight(TFile *histos){
   ratio->GetYaxis()->SetTitleSize(0.01);
   ratio->SetMaximum(ratio->GetMaximum()+1);
   ratio->SetMinimum(ratio->GetMinimum()-1);
-  c1->SaveAs("PUWeight.png");
+  c1->SaveAs("PUWeight.pdf");
   outfile->Write();
   
   

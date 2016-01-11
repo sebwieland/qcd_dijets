@@ -64,9 +64,6 @@ void PtAveWeight(TFile *histos){
   text-> SetTextFont(42);
   text-> SetTextSize(0.05);
   
-  char xtitle[]="CSV probe Jet (LF)";
-  
-  
   float mcevents=0;
   float normratio=0;
   float dataevents=0;
@@ -104,17 +101,19 @@ void PtAveWeight(TFile *histos){
 //     h_mc.at(i)->Draw("histE0");
     h_data.at(i)->SetLineColor(kRed);
     h_data.at(i)->Draw("samehistE0");
+    h_data.at(i)->SetTitle("p_{T}^{Avg} Bin 1");
+    h_data.at(i)->GetXaxis()->SetTitle("p_{T}^{Avg}");
     mc_norm->Draw("samehistE0");
     mc_norm->SetLineColor(kBlack);
     leg->Draw();
 //     gPad->SetLogy();
-//     text->DrawLatex(0.175, 0.863, text_cms);
+    text->DrawLatex(0.1, 0.9, text_cms);
 //     text->DrawLatex(0.175, 0.815, cutlabel);
     
     stringstream ss;
     ss << i;
     TString counter=ss.str();
-    c1->SaveAs("PtAve_bin"+counter+".png");
+    c1->SaveAs("PtAve_bin"+counter+".pdf");
     
     h_PtAveWeight->SetBinContent(i+1,normratio);
  

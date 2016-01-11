@@ -104,15 +104,15 @@ void ratioplot(TFile *histos){
   ratio->GetXaxis()->SetLabelSize(0.1);    
   line->Draw();  
 
-  c1->SaveAs("h_pt3_pt3cut.png");
+  c1->SaveAs("h_pt3_pt3cut.pdf");
 
   ////////////////////////
   /////////////////////////
   ////////////////////////
   ///////////////////////7/
 //   TLegend* leg=new TLegend(0.75,0.4,0.9,0.8);
-  leg->AddEntry(h_pt3_data,"data");
-  leg->AddEntry(h_pt3,"MC");
+//   leg->AddEntry(h_pt3_data,"data");
+//   leg->AddEntry(h_pt3,"MC");
   leg->SetFillStyle(0);
   leg->SetBorderSize(0);
   
@@ -170,7 +170,7 @@ void ratioplot(TFile *histos){
   ratio2->GetXaxis()->SetNdivisions(510);
   ratio2->GetXaxis()->SetLabelSize(0.1);    
   line->Draw();  
-  c1->SaveAs("h_pt3.png");
+  c1->SaveAs("h_pt3.pdf");
   
   ////////////////////////
   /////////////////////////
@@ -179,8 +179,8 @@ void ratioplot(TFile *histos){
   TH1F* h_pt3overavg_data = (TH1F*)histos->Get("h_pt3overavg_data");
   TH1F* h_pt3overavg = (TH1F*)histos->Get("h_pt3overavg");
 //   TLegend* leg=new TLegend(0.75,0.4,0.9,0.8);
-  leg->AddEntry(h_pt3overavg_data,"data");
-  leg->AddEntry(h_pt3overavg,"MC");
+//   leg->AddEntry(h_pt3overavg_data,"data");
+//   leg->AddEntry(h_pt3overavg,"MC");
   leg->SetFillStyle(0);
   leg->SetBorderSize(0);
   
@@ -237,7 +237,7 @@ void ratioplot(TFile *histos){
   ratio3->GetXaxis()->SetNdivisions(510);
   ratio3->GetXaxis()->SetLabelSize(0.1);    
   line->Draw();  
-  c1->SaveAs("h_pt3overavg.png");
+  c1->SaveAs("h_pt3overavg.pdf");
   
   ////////////////////////
   /////////////////////////
@@ -248,8 +248,8 @@ void ratioplot(TFile *histos){
   TH1F* h_eta0_data = (TH1F*)histos->Get("h_eta0_data");
   TH1F* h_eta0 = (TH1F*)histos->Get("h_eta0");
 //   TLegend* leg=new TLegend(0.75,0.4,0.9,0.8);
-  leg->AddEntry(h_eta0_data,"data");
-  leg->AddEntry(h_eta0,"MC");
+//   leg->AddEntry(h_eta0_data,"data");
+//   leg->AddEntry(h_eta0,"MC");
   leg->SetFillStyle(0);
   leg->SetBorderSize(0);
   
@@ -306,7 +306,7 @@ void ratioplot(TFile *histos){
   ratio3->GetXaxis()->SetNdivisions(510);
   ratio3->GetXaxis()->SetLabelSize(0.1);    
   lineeta->Draw();  
-  c1->SaveAs("h_eta0.png");
+  c1->SaveAs("h_eta0.pdf");
   
     ////////////////////////
   /////////////////////////
@@ -316,8 +316,8 @@ void ratioplot(TFile *histos){
   TH1F* h_eta1_data = (TH1F*)histos->Get("h_eta1_data");
   TH1F* h_eta1 = (TH1F*)histos->Get("h_eta1");
 //   TLegend* leg=new TLegend(0.75,0.4,0.9,0.8);
-  leg->AddEntry(h_eta1_data,"data");
-  leg->AddEntry(h_eta1,"MC");
+//   leg->AddEntry(h_eta1_data,"data");
+//   leg->AddEntry(h_eta1,"MC");
   leg->SetFillStyle(0);
   leg->SetBorderSize(0);
   
@@ -374,7 +374,7 @@ void ratioplot(TFile *histos){
   ratio3->GetXaxis()->SetNdivisions(510);
   ratio3->GetXaxis()->SetLabelSize(0.1);    
   lineeta->Draw();  
-  c1->SaveAs("h_eta1.png");
+  c1->SaveAs("h_eta1.pdf");
   
    ////////////////////////
   /////////////////////////
@@ -385,8 +385,8 @@ void ratioplot(TFile *histos){
   TH1F* h_eta2_data = (TH1F*)histos->Get("h_eta2_data");
   TH1F* h_eta2 = (TH1F*)histos->Get("h_eta2");
 //   TLegend* leg=new TLegend(0.75,0.4,0.9,0.8);
-  leg->AddEntry(h_eta2_data,"data");
-  leg->AddEntry(h_eta2,"MC");
+//   leg->AddEntry(h_eta2_data,"data");
+//   leg->AddEntry(h_eta2,"MC");
   leg->SetFillStyle(0);
   leg->SetBorderSize(0);
   
@@ -443,7 +443,7 @@ void ratioplot(TFile *histos){
   ratio3->GetXaxis()->SetNdivisions(510);
   ratio3->GetXaxis()->SetLabelSize(0.1);    
   lineeta->Draw();  
-  c1->SaveAs("h_eta2.png");
+  c1->SaveAs("h_eta2.pdf");
   
   //////////////////////////////
   ////////////Etacut////////////
@@ -453,8 +453,8 @@ void ratioplot(TFile *histos){
 
 
 //   TLegend* leg=new TLegend(0.75,0.4,0.9,0.8);
-  leg->AddEntry(h_pt3_pt3cut_data_etacut,"data");
-  leg->AddEntry(h_pt3_pt3cut_etacut,"MC");
+//   leg->AddEntry(h_pt3_pt3cut_data_etacut,"data");
+//   leg->AddEntry(h_pt3_pt3cut_etacut,"MC");
   leg->SetFillStyle(0);
   leg->SetBorderSize(0);
   
@@ -519,7 +519,7 @@ void ratioplot(TFile *histos){
   ratio->GetXaxis()->SetLabelSize(0.1);    
   line->Draw();  
 
-  c1->SaveAs("h_pt3_pt3cut_etacut.png");
+  c1->SaveAs("h_pt3_pt3cut_etacut.pdf");
 
   ////////////////////////
   /////////////////////////
@@ -528,8 +528,8 @@ void ratioplot(TFile *histos){
   TH1F* h_pt3_etacut = (TH1F*)histos->Get("h_pt3_etacut");
   TH1F* h_pt3_data_etacut = (TH1F*)histos->Get("h_pt3_data_etacut");
 //   TLegend* leg=new TLegend(0.75,0.4,0.9,0.8);
-  leg->AddEntry(h_pt3_data_etacut,"data");
-  leg->AddEntry(h_pt3_etacut,"MC");
+//   leg->AddEntry(h_pt3_data_etacut,"data");
+//   leg->AddEntry(h_pt3_etacut,"MC");
   leg->SetFillStyle(0);
   leg->SetBorderSize(0);
   
@@ -587,7 +587,7 @@ void ratioplot(TFile *histos){
   ratio2->GetXaxis()->SetNdivisions(510);
   ratio2->GetXaxis()->SetLabelSize(0.1);    
   line->Draw();  
-  c1->SaveAs("h_pt3_etacut.png");
+  c1->SaveAs("h_pt3_etacut.pdf");
   
   ////////////////////////
   /////////////////////////
@@ -596,8 +596,8 @@ void ratioplot(TFile *histos){
   TH1F* h_pt3overavg_data_etacut = (TH1F*)histos->Get("h_pt3overavg_data_etacut");
   TH1F* h_pt3overavg_etacut = (TH1F*)histos->Get("h_pt3overavg_etacut");
 //   TLegend* leg=new TLegend(0.75,0.4,0.9,0.8);
-  leg->AddEntry(h_pt3overavg_data_etacut,"data");
-  leg->AddEntry(h_pt3overavg_etacut,"MC");
+//   leg->AddEntry(h_pt3overavg_data_etacut,"data");
+//   leg->AddEntry(h_pt3overavg_etacut,"MC");
   leg->SetFillStyle(0);
   leg->SetBorderSize(0);
   
@@ -654,7 +654,7 @@ void ratioplot(TFile *histos){
   ratio3->GetXaxis()->SetNdivisions(510);
   ratio3->GetXaxis()->SetLabelSize(0.1);    
   line->Draw();  
-  c1->SaveAs("h_pt3overavg_etacut.png");
+  c1->SaveAs("h_pt3overavg_etacut.pdf");
   
   ////////////////////////
   /////////////////////////
@@ -665,8 +665,8 @@ void ratioplot(TFile *histos){
   TH1F* h_eta0_data_etacut = (TH1F*)histos->Get("h_eta0_data_etacut");
   TH1F* h_eta0_etacut = (TH1F*)histos->Get("h_eta0_etacut");
 //   TLegend* leg=new TLegend(0.75,0.4,0.9,0.8);
-  leg->AddEntry(h_eta0_data_etacut,"data");
-  leg->AddEntry(h_eta0_etacut,"MC");
+//   leg->AddEntry(h_eta0_data_etacut,"data");
+//   leg->AddEntry(h_eta0_etacut,"MC");
   leg->SetFillStyle(0);
   leg->SetBorderSize(0);
   
@@ -723,7 +723,7 @@ void ratioplot(TFile *histos){
   ratio3->GetXaxis()->SetNdivisions(510);
   ratio3->GetXaxis()->SetLabelSize(0.1);    
   lineeta->Draw();  
-  c1->SaveAs("h_eta0_etacut.png");
+  c1->SaveAs("h_eta0_etacut.pdf");
   
     ////////////////////////
   /////////////////////////
@@ -733,8 +733,8 @@ void ratioplot(TFile *histos){
   TH1F* h_eta1_data_etacut = (TH1F*)histos->Get("h_eta1_data_etacut");
   TH1F* h_eta1_etacut = (TH1F*)histos->Get("h_eta1_etacut");
 //   TLegend* leg=new TLegend(0.75,0.4,0.9,0.8);
-  leg->AddEntry(h_eta1_data_etacut,"data");
-  leg->AddEntry(h_eta1_etacut,"MC");
+//   leg->AddEntry(h_eta1_data_etacut,"data");
+//   leg->AddEntry(h_eta1_etacut,"MC");
   leg->SetFillStyle(0);
   leg->SetBorderSize(0);
   
@@ -791,7 +791,7 @@ void ratioplot(TFile *histos){
   ratio3->GetXaxis()->SetNdivisions(510);
   ratio3->GetXaxis()->SetLabelSize(0.1);    
   lineeta->Draw();  
-  c1->SaveAs("h_eta1_etacut.png");
+  c1->SaveAs("h_eta1_etacut.pdf");
   
    ////////////////////////
   /////////////////////////
@@ -802,8 +802,8 @@ void ratioplot(TFile *histos){
   TH1F* h_eta2_data_etacut = (TH1F*)histos->Get("h_eta2_data_etacut");
   TH1F* h_eta2_etacut = (TH1F*)histos->Get("h_eta2_etacut");
 //   TLegend* leg=new TLegend(0.75,0.4,0.9,0.8);
-  leg->AddEntry(h_eta2_data_etacut,"data");
-  leg->AddEntry(h_eta2_etacut,"MC");
+//   leg->AddEntry(h_eta2_data_etacut,"data");
+//   leg->AddEntry(h_eta2_etacut,"MC");
   leg->SetFillStyle(0);
   leg->SetBorderSize(0);
   
@@ -860,19 +860,21 @@ void ratioplot(TFile *histos){
   ratio3->GetXaxis()->SetNdivisions(510);
   ratio3->GetXaxis()->SetLabelSize(0.1);    
   lineeta->Draw();  
-  c1->SaveAs("h_eta2_etacut.png");
+  c1->SaveAs("h_eta2_etacut.pdf");
   
      ////////////////////////
   /////////////////////////
   ////////////////////////
   ///////////////////////7/
+  char cutlabel_npv[]="EtaCut";
   TLine* line_npv=new TLine(0,1,30,1);
   line_npv->SetLineColor(kBlack);
   TH1F* h_npv_data = (TH1F*)histos->Get("h_npv_data");
   TH1F* h_npv = (TH1F*)histos->Get("h_npv");
+//   leg->Delete();
 //   TLegend* leg=new TLegend(0.75,0.4,0.9,0.8);
-  leg->AddEntry(h_npv_data,"data");
-  leg->AddEntry(h_npv,"MC");
+//   leg->AddEntry(h_npv_data,"data");
+//   leg->AddEntry(h_npv,"MC");
   leg->SetFillStyle(0);
   leg->SetBorderSize(0);
   
@@ -898,9 +900,9 @@ void ratioplot(TFile *histos){
   h_npv_data->SetMarkerStyle(20);
   h_npv_data->SetMarkerSize(0.5);
   h_npv_data->Draw("sameE0");
-//   leg->Draw();
+  leg->Draw();
   text->DrawLatex(0.175, 0.863, text_cms);
-  text->DrawLatex(0.175, 0.815, cutlabel);
+  text->DrawLatex(0.175, 0.815, cutlabel_npv);
   c1->cd();
   //makepadratio
 //   TPad* padratio=new TPad("padratio","padratio",0,0,1,0.3);
@@ -929,7 +931,7 @@ void ratioplot(TFile *histos){
   ratio3->GetXaxis()->SetNdivisions(510);
   ratio3->GetXaxis()->SetLabelSize(0.1);    
   line_npv->Draw();  
-  c1->SaveAs("h_npv.png");
+  c1->SaveAs("h_npv.pdf");
   
 
 
@@ -941,8 +943,8 @@ void ratioplot(TFile *histos){
   TH1F* h_ptave3_data = (TH1F*)histos->Get("PtAve_data_w_dijetselec");
   TH1F* h_ptave3_mc = (TH1F*)histos->Get("PtAve_mc_w_dijetselec");
 //   TLegend* leg=new TLegend(0.75,0.4,0.9,0.8);
-  leg->AddEntry(h_ptave3_data,"data");
-  leg->AddEntry(h_ptave3_mc,"MC");
+//   leg->AddEntry(h_ptave3_data,"data");
+//   leg->AddEntry(h_ptave3_mc,"MC");
   leg->SetFillStyle(0);
   leg->SetBorderSize(0);
   
@@ -999,7 +1001,7 @@ void ratioplot(TFile *histos){
   ratio3->GetXaxis()->SetNdivisions(510);
   ratio3->GetXaxis()->SetLabelSize(0.1);    
   line->Draw();  
-  c1->SaveAs("h_ptave_w_dijetselec.png");
+  c1->SaveAs("h_ptave_w_dijetselec.pdf");
 
   ////////////////////////
   /////////////////////////
@@ -1009,8 +1011,8 @@ void ratioplot(TFile *histos){
   TH1F* h_ptave3_data_etacut = (TH1F*)histos->Get("PtAve_data_w_dijetselec_etacut");
   TH1F* h_ptave3_mc_etacut = (TH1F*)histos->Get("PtAve_mc_w_dijetselec_etacut");
 //   TLegend* leg=new TLegend(0.75,0.4,0.9,0.8);
-  leg->AddEntry(h_ptave3_data_etacut,"data");
-  leg->AddEntry(h_ptave3_mc_etacut,"MC");
+//   leg->AddEntry(h_ptave3_data_etacut,"data");
+//   leg->AddEntry(h_ptave3_mc_etacut,"MC");
   leg->SetFillStyle(0);
   leg->SetBorderSize(0);
   
@@ -1067,7 +1069,7 @@ void ratioplot(TFile *histos){
   ratio3->GetXaxis()->SetNdivisions(510);
   ratio3->GetXaxis()->SetLabelSize(0.1);    
   line->Draw();  
-  c1->SaveAs("h_ptave_w_dijetselec_etacut.png");
+  c1->SaveAs("h_ptave_w_dijetselec_etacut.pdf");
 
   
   ////////////////////////
@@ -1078,8 +1080,8 @@ void ratioplot(TFile *histos){
   TH1F* h_ptave2_data = (TH1F*)histos->Get("PtAve_data_wo_dijetselec");
   TH1F* h_ptave2_mc = (TH1F*)histos->Get("PtAve_mc_wo_dijetselec");
 //   TLegend* leg=new TLegend(0.75,0.4,0.9,0.8);
-  leg->AddEntry(h_ptave2_data,"data");
-  leg->AddEntry(h_ptave2_mc,"MC");
+//   leg->AddEntry(h_ptave2_data,"data");
+//   leg->AddEntry(h_ptave2_mc,"MC");
   leg->SetFillStyle(0);
   leg->SetBorderSize(0);
   
@@ -1136,7 +1138,7 @@ void ratioplot(TFile *histos){
   ratio3->GetXaxis()->SetNdivisions(510);
   ratio3->GetXaxis()->SetLabelSize(0.1);    
   line->Draw();  
-  c1->SaveAs("h_ptave_wo_dijetselec.png");
+  c1->SaveAs("h_ptave_wo_dijetselec.pdf");
   
   ////////////////////////
   /////////////////////////
@@ -1145,8 +1147,8 @@ void ratioplot(TFile *histos){
   TH1F* h_pt0_data = (TH1F*)histos->Get("h_pt0_data");
   TH1F* h_pt0 = (TH1F*)histos->Get("h_pt0");
 //   TLegend* leg=new TLegend(0.75,0.4,0.9,0.8);
-  leg->AddEntry(h_pt0_data,"data");
-  leg->AddEntry(h_pt0,"MC");
+//   leg->AddEntry(h_pt0_data,"data");
+//   leg->AddEntry(h_pt0,"MC");
   leg->SetFillStyle(0);
   leg->SetBorderSize(0);
   
@@ -1204,7 +1206,7 @@ void ratioplot(TFile *histos){
   ratio2->GetXaxis()->SetNdivisions(510);
   ratio2->GetXaxis()->SetLabelSize(0.1);    
   line->Draw();  
-  c1->SaveAs("h_pt0.png");
+  c1->SaveAs("h_pt0.pdf");
   
   
   
@@ -1215,8 +1217,8 @@ void ratioplot(TFile *histos){
   TH1F* h_pt1_data = (TH1F*)histos->Get("h_pt1_data");
   TH1F* h_pt1 = (TH1F*)histos->Get("h_pt1");
 //   TLegend* leg=new TLegend(0.75,0.4,0.9,0.8);
-  leg->AddEntry(h_pt1_data,"data");
-  leg->AddEntry(h_pt1,"MC");
+//   leg->AddEntry(h_pt1_data,"data");
+//   leg->AddEntry(h_pt1,"MC");
   leg->SetFillStyle(0);
   leg->SetBorderSize(0);
   
@@ -1274,7 +1276,7 @@ void ratioplot(TFile *histos){
   ratio2->GetXaxis()->SetNdivisions(510);
   ratio2->GetXaxis()->SetLabelSize(0.1);    
   line->Draw();  
-  c1->SaveAs("h_pt1.png");
+  c1->SaveAs("h_pt1.pdf");
   
    ////////////////////////
   /////////////////////////
@@ -1283,8 +1285,8 @@ void ratioplot(TFile *histos){
   TH1F* h_dphi_data = (TH1F*)histos->Get("h_dphi_data");
   TH1F* h_dphi = (TH1F*)histos->Get("h_dphi");
 //   TLegend* leg=new TLegend(0.75,0.4,0.9,0.8);
-  leg->AddEntry(h_dphi_data,"data");
-  leg->AddEntry(h_dphi,"MC");
+//   leg->AddEntry(h_dphi_data,"data");
+//   leg->AddEntry(h_dphi,"MC");
   leg->SetFillStyle(0);
   leg->SetBorderSize(0);
   
@@ -1342,7 +1344,7 @@ void ratioplot(TFile *histos){
   ratio2->GetXaxis()->SetNdivisions(510);
   ratio2->GetXaxis()->SetLabelSize(0.1);    
   line->Draw();  
-  c1->SaveAs("h_dphi.png");
+  c1->SaveAs("h_dphi.pdf");
   
   ////////////////////////
   /////////////////////////
@@ -1351,8 +1353,8 @@ void ratioplot(TFile *histos){
   TH1F* h_ptave1_data = (TH1F*)histos->Get("PtAve_data_w_dijetselec_1");
   TH1F* h_ptave1_mc = (TH1F*)histos->Get("PtAve_mc_w_dijetselec_1");
 //   TLegend* leg=new TLegend(0.75,0.4,0.9,0.8);
-  leg->AddEntry(h_ptave1_data,"data");
-  leg->AddEntry(h_ptave1_mc,"MC");
+//   leg->AddEntry(h_ptave1_data,"data");
+//   leg->AddEntry(h_ptave1_mc,"MC");
   leg->SetFillStyle(0);
   leg->SetBorderSize(0);
   
@@ -1410,7 +1412,7 @@ void ratioplot(TFile *histos){
   ratio2->GetXaxis()->SetNdivisions(510);
   ratio2->GetXaxis()->SetLabelSize(0.1);    
   line->Draw();  
-  c1->SaveAs("h_ptave1.png");
+  c1->SaveAs("h_ptave1.pdf");
   
   ////////////////////////
   /////////////////////////
@@ -1419,8 +1421,8 @@ void ratioplot(TFile *histos){
   TH1F* h_pt0_data_dijet = (TH1F*)histos->Get("h_pt0_data_dijet");
   TH1F* h_pt0_dijet = (TH1F*)histos->Get("h_pt0_dijet");
 //   TLegend* leg=new TLegend(0.75,0.4,0.9,0.8);
-  leg->AddEntry(h_pt0_data_dijet,"data");
-  leg->AddEntry(h_pt0_dijet,"MC");
+//   leg->AddEntry(h_pt0_data_dijet,"data");
+//   leg->AddEntry(h_pt0_dijet,"MC");
   leg->SetFillStyle(0);
   leg->SetBorderSize(0);
   
@@ -1478,7 +1480,7 @@ void ratioplot(TFile *histos){
   ratio2->GetXaxis()->SetNdivisions(510);
   ratio2->GetXaxis()->SetLabelSize(0.1);    
   line->Draw();  
-  c1->SaveAs("h_pt0_dijet.png");
+  c1->SaveAs("h_pt0_dijet.pdf");
   
     ////////////////////////
   /////////////////////////
@@ -1487,8 +1489,8 @@ void ratioplot(TFile *histos){
   TH1F* h_pt1_data_dijet = (TH1F*)histos->Get("h_pt1_data_dijet");
   TH1F* h_pt1_dijet = (TH1F*)histos->Get("h_pt1_dijet");
 //   TLegend* leg=new TLegend(0.75,0.4,0.9,0.8);
-  leg->AddEntry(h_pt1_data_dijet,"data");
-  leg->AddEntry(h_pt1_dijet,"MC");
+//   leg->AddEntry(h_pt1_data_dijet,"data");
+//   leg->AddEntry(h_pt1_dijet,"MC");
   leg->SetFillStyle(0);
   leg->SetBorderSize(0);
   
@@ -1546,7 +1548,7 @@ void ratioplot(TFile *histos){
   ratio2->GetXaxis()->SetNdivisions(510);
   ratio2->GetXaxis()->SetLabelSize(0.1);    
   line->Draw();  
-  c1->SaveAs("h_pt1_dijet.png");
+  c1->SaveAs("h_pt1_dijet.pdf");
   
       ////////////////////////
   /////////////////////////
@@ -1555,8 +1557,8 @@ void ratioplot(TFile *histos){
   TH1F* h_ptassym_data = (TH1F*)histos->Get("h_ptassym_data");
   TH1F* h_ptassym = (TH1F*)histos->Get("h_ptassym");
 //   TLegend* leg=new TLegend(0.75,0.4,0.9,0.8);
-  leg->AddEntry(h_ptassym_data,"data");
-  leg->AddEntry(h_ptassym,"MC");
+//   leg->AddEntry(h_ptassym_data,"data");
+//   leg->AddEntry(h_ptassym,"MC");
   leg->SetFillStyle(0);
   leg->SetBorderSize(0);
   
@@ -1614,7 +1616,7 @@ void ratioplot(TFile *histos){
   ratio2->GetXaxis()->SetNdivisions(510);
   ratio2->GetXaxis()->SetLabelSize(0.1);    
   line->Draw();  
-  c1->SaveAs("h_ptassym.png");
+  c1->SaveAs("h_ptassym.pdf");
   
 }
 int main(){

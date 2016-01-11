@@ -128,12 +128,18 @@ void analysetrees(const TString &datalist,const TString &mclist){
       if (abs(Jet_Eta[0])<etamin && abs(Jet_Eta[1])<etamin){
 	if (DeltaPhi> dphicut ){
 // 	  if (ptave < 67.6)				hptave_mc.at(0)->Fill(ptave,Weight_XS);
-	  if (ptave >= 67.6 && ptave < 89.6)   	hptave_mc.at(0)->Fill(ptave,Weight_XS);
+	  /*if (ptave >= 67.6 && ptave < 89.6)   	hptave_mc.at(0)->Fill(ptave,Weight_XS);
 	  else if (ptave >= 89.6 && ptave < 155.6)  	hptave_mc.at(1)->Fill(ptave,Weight_XS);
 	  else if (ptave >= 155.6 && ptave < 221.6)	hptave_mc.at(2)->Fill(ptave,Weight_XS);
 	  else if (ptave >= 221.6 && ptave < 287.6) 	hptave_mc.at(3)->Fill(ptave,Weight_XS);
 	  else if (ptave >= 287.6 && ptave < 353.6) 	hptave_mc.at(4)->Fill(ptave,Weight_XS);
-	  else if (ptave >= 353.6 		) 	hptave_mc.at(5)->Fill(ptave,Weight_XS);
+	  else if (ptave >= 353.6 		) 	hptave_mc.at(5)->Fill(ptave,Weight_XS);*/
+	  if (ptave >= 77 && ptave < 99)   	hptave_mc.at(0)->Fill(ptave,Weight_XS);
+	  else if (ptave >= 99 && ptave < 165)  	hptave_mc.at(1)->Fill(ptave,Weight_XS);
+	  else if (ptave >= 165 && ptave < 231)	hptave_mc.at(2)->Fill(ptave,Weight_XS);
+	  else if (ptave >= 231 && ptave < 298) 	hptave_mc.at(3)->Fill(ptave,Weight_XS);
+	  else if (ptave >= 298 && ptave < 365) 	hptave_mc.at(4)->Fill(ptave,Weight_XS);
+	  else if (ptave >= 365 		) 	hptave_mc.at(5)->Fill(ptave,Weight_XS);
 	  h_ptave2_mc->Fill(ptave,Weight_XS); 
 	  if (N_Jets >=3){
 	    h_pt3->Fill(Jet_Pt[2],Weight_XS);
@@ -207,7 +213,7 @@ void analysetrees(const TString &datalist,const TString &mclist){
     TH1F* hdata = new TH1F("hCSV_data_ptavgbin"+counter,"hCSV_data_ptavgbin"+counter,25,-0.1,1);
     hCSV_data.push_back(hdata);
     
-    TH1F* hptavg_data = new TH1F("hptavg_data_bin"+counter,"hCSVptavg_bin"+counter,175,0,1000);
+    TH1F* hptavg_data = new TH1F("hptavg_data_bin"+counter,"hptavg_bin"+counter,175,0,1000);
     hptave_data.push_back(hptavg_data);
   }
   
@@ -223,13 +229,20 @@ void analysetrees(const TString &datalist,const TString &mclist){
     if (abs(Jet_Eta_data[0])<etamin && abs(Jet_Eta_data[1])<etamin){
       if (DeltaPhi_data> dphicut ){
 // 	if (ptave<67.6 && hlt40==1)                           	hptave_data.at(0)->Fill(ptave);
-	if (ptave >= 67.6 && ptave < 89.6 && hlt60==1)   	hptave_data.at(0)->Fill(ptave);
-	else if (ptave >= 89.6 && ptave < 155.6 && hlt80==1)  	hptave_data.at(1)->Fill(ptave);
-	else if (ptave >= 155.6 && ptave < 221.6 && hlt140==1)	hptave_data.at(2)->Fill(ptave);
-	else if (ptave >= 221.6 && ptave < 287.6 && hlt200==1)	hptave_data.at(3)->Fill(ptave);
-	else if (ptave >= 287.6 && ptave < 353.6 && hlt260==1)	hptave_data.at(4)->Fill(ptave);
-	else if (ptave >= 353.6 && hlt320==1)			hptave_data.at(5)->Fill(ptave);
-	if (N_Jets_data >=3){
+// 	if (ptave >= 67.6 && ptave < 89.6 && hlt60==1)   	hptave_data.at(0)->Fill(ptave);
+// 	else if (ptave >= 89.6 && ptave < 155.6 && hlt80==1)  	hptave_data.at(1)->Fill(ptave);
+// 	else if (ptave >= 155.6 && ptave < 221.6 && hlt140==1)	hptave_data.at(2)->Fill(ptave);
+// 	else if (ptave >= 221.6 && ptave < 287.6 && hlt200==1)	hptave_data.at(3)->Fill(ptave);
+// 	else if (ptave >= 287.6 && ptave < 353.6 && hlt260==1)	hptave_data.at(4)->Fill(ptave);
+// 	else if (ptave >= 353.6 && hlt320==1)			hptave_data.at(5)->Fill(ptave);
+	
+	if (ptave >= 77 && ptave < 99 && hlt60==1)   	hptave_data.at(0)->Fill(ptave);
+	else if (ptave >= 99 && ptave < 165 && hlt80==1)  	hptave_data.at(1)->Fill(ptave);
+	else if (ptave >= 165 && ptave < 231 && hlt140==1)	hptave_data.at(2)->Fill(ptave);
+	else if (ptave >= 231 && ptave < 298 && hlt200==1)	hptave_data.at(3)->Fill(ptave);
+	else if (ptave >= 298 && ptave < 365 && hlt260==1)	hptave_data.at(4)->Fill(ptave);
+	else if (ptave >= 365 && hlt320==1)			hptave_data.at(5)->Fill(ptave);
+	if (N_Jets_data >=3){	  
 		if (Jet_Pt_data[2]/PtAve_data < pt3cut){
 		  h_ptave_data->Fill(PtAve_data);  
 		}

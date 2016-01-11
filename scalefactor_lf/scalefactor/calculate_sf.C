@@ -25,7 +25,7 @@
 
 using namespace std;
 vector<vector<TH1F*>> readhistos(TFile *file, char c){
-  int n_ptbins= 5;
+  int n_ptbins= 10;
   int n_etabins=4;
   TString eta_counter="0";
   TString pt_counter="0";
@@ -38,6 +38,11 @@ vector<vector<TH1F*>> readhistos(TFile *file, char c){
       else if (i==2) pt_counter="2";
       else if (i==3) pt_counter="3";
       else if (i==4) pt_counter="4";
+      else if (i==5) pt_counter="5";
+      else if (i==6) pt_counter="6";
+      else if (i==7) pt_counter="7";
+      else if (i==8) pt_counter="8";
+      else if (i==9) pt_counter="9";
       for ( int j=0; j<n_etabins;++j){   
 	if (j==0) eta_counter="0";
 	else if (j==1) eta_counter="1";
@@ -55,6 +60,11 @@ vector<vector<TH1F*>> readhistos(TFile *file, char c){
       else if (i==2) pt_counter="2";
       else if (i==3) pt_counter="3";
       else if (i==4) pt_counter="4";
+      else if (i==5) pt_counter="5";
+      else if (i==6) pt_counter="6";
+      else if (i==7) pt_counter="7";
+      else if (i==8) pt_counter="8";
+      else if (i==9) pt_counter="9";
       for ( int j=0; j<n_etabins;++j){   
 	if (j==0) eta_counter="0";
 	else if (j==1) eta_counter="1";
@@ -72,6 +82,11 @@ vector<vector<TH1F*>> readhistos(TFile *file, char c){
       else if (i==2) pt_counter="2";
       else if (i==3) pt_counter="3";
       else if (i==4) pt_counter="4";
+      else if (i==5) pt_counter="5";
+      else if (i==6) pt_counter="6";
+      else if (i==7) pt_counter="7";
+      else if (i==8) pt_counter="8";
+      else if (i==9) pt_counter="9";
       for ( int j=0; j<n_etabins;++j){   
 	if (j==0) eta_counter="0";
 	else if (j==1) eta_counter="1";
@@ -84,11 +99,16 @@ vector<vector<TH1F*>> readhistos(TFile *file, char c){
   }
   else if (c=='c'){
     for (int i=0; i<n_ptbins;++i){
-     if (i==0) pt_counter="0";
+      if (i==0) pt_counter="0";
       else if (i==1) pt_counter="1";
       else if (i==2) pt_counter="2";
       else if (i==3) pt_counter="3";
       else if (i==4) pt_counter="4";
+      else if (i==5) pt_counter="5";
+      else if (i==6) pt_counter="6";
+      else if (i==7) pt_counter="7";
+      else if (i==8) pt_counter="8";
+      else if (i==9) pt_counter="9";
       for ( int j=0; j<n_etabins;++j){   
 	if (j==0) eta_counter="0";
 	else if (j==1) eta_counter="1";
@@ -114,32 +134,39 @@ void calculate_sf(TFile *histos){
   
   TString eta_counter="0";
   TString pt_counter="0";
-  bool comp=true;
+  bool comp=false;
+  bool normpt=true;
   //read official SF
   TFile* officialfile=new TFile("~/qcd_dijets/comparison_lf/csv_rwt_fit_lf_2015_11_20.root");
-  int n_ptbins= 4;
+  int n_ptbins= 10;
   int n_etabins=3;
   vector<vector<TH1F*>> official;
   official.resize(n_ptbins, vector<TH1F*>(n_etabins, 0));
   if(comp==true){
     for (int i=0; i<n_ptbins;++i){
-	if (i==0) pt_counter="0";
-	else if (i==1) pt_counter="1";
-	else if (i==2) pt_counter="2";
-	else if (i==3) pt_counter="3";
-	for ( int j=0; j<n_etabins;++j){   
-	  if (j==0) eta_counter="0";
-	  else if (j==1) eta_counter="1";
-	  else if (j==2) eta_counter="2";   
-	  TH1F* h = (TH1F*)officialfile->Get("csv_ratio_Pt"+pt_counter+"_Eta"+eta_counter+"_final");
-	  official[i][j]=h;
-	}
-      }      
+      if (i==0) pt_counter="0";
+      else if (i==1) pt_counter="1";
+      else if (i==2) pt_counter="2";
+      else if (i==3) pt_counter="3";
+      else if (i==4) pt_counter="4";
+      else if (i==5) pt_counter="5";
+      else if (i==6) pt_counter="6";
+      else if (i==7) pt_counter="7";
+      else if (i==8) pt_counter="8";
+      else if (i==9) pt_counter="9";
+      for ( int j=0; j<n_etabins;++j){   
+	if (j==0) eta_counter="0";
+	else if (j==1) eta_counter="1";
+	else if (j==2) eta_counter="2";   
+	TH1F* h = (TH1F*)officialfile->Get("csv_ratio_Pt"+pt_counter+"_Eta"+eta_counter+"_final");
+	official[i][j]=h;
+      }
+    }      
   }
 //   officialfile->Close();
   TFile* result=new TFile("result.root","RECREATE");
   //SetColors
-  n_ptbins= 5;
+//   n_ptbins= 10;
   n_etabins=4;
   for (int i=0; i<n_ptbins;++i){
     for ( int j=0; j<n_etabins;++j){   
@@ -184,11 +211,16 @@ void calculate_sf(TFile *histos){
     else if (i==2) pt_counter="2";
     else if (i==3) pt_counter="3";
     else if (i==4) pt_counter="4";
-      for ( int j=0; j<n_etabins;++j){   
-	if (j==0) eta_counter="0";
-	else if (j==1) eta_counter="1";
-	else if (j==2) eta_counter="2";   
-	else if (j==3) eta_counter="3";     
+    else if (i==5) pt_counter="5";
+    else if (i==6) pt_counter="6";
+    else if (i==7) pt_counter="7";
+    else if (i==8) pt_counter="8";
+    else if (i==9) pt_counter="9";
+    for ( int j=0; j<n_etabins;++j){   
+      if (j==0) eta_counter="0";
+      else if (j==1) eta_counter="1";
+      else if (j==2) eta_counter="2";   
+      else if (j==3) eta_counter="3";     
     //makelegend
    
       TLegend* leg_lf=new TLegend(0.75,0.4,0.9,0.8);
@@ -219,15 +251,17 @@ void calculate_sf(TFile *histos){
       
       cout << "mcevents before normalization: " << mcevents << endl;
       
+      if(normpt==true){
+	if (mcevents!=0) normratio=dataevents/mcevents;
+	  else normratio=1;
+	h_b[i][j]->Scale(normratio);
+	h_c[i][j]->Scale(normratio);
+	h_lf[i][j]->Scale(normratio);
+	h_b[i][j]->Sumw2();
+	h_c[i][j]->Sumw2();
+	h_lf[i][j]->Sumw2();
+      }
       
-//       if (mcevents!=0) normratio=dataevents/mcevents;
-// 	else normratio=1;
-//       h_b[i][j]->Scale(normratio);
-//       h_c[i][j]->Scale(normratio);
-//       h_lf[i][j]->Scale(normratio);
-//       h_b[i][j]->Sumw2();
-//       h_c[i][j]->Sumw2();
-//       h_lf[i][j]->Sumw2();
       THStack* mc_stack_lf_normalized=new THStack();
       mc_stack_lf_normalized->Add(h_b[i][j]);
       mc_stack_lf_normalized->Add(h_c[i][j]);
@@ -322,6 +356,8 @@ void calculate_sf(TFile *histos){
       line->Draw();
 //       lfsf->Write();
       lfsf->GetXaxis()->SetTitle("LFSF");
+      lfsf->SetMaximum(2);
+      lfsf->SetMinimum(0);
      
       c2->SaveAs("LFSF_ptbin"+pt_counter+"_etabin"+eta_counter+".png");
       

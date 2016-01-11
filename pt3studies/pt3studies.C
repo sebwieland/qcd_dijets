@@ -54,27 +54,28 @@ TChain *createTChain(const TString &fileName) {
   
 }
 
+
 void fillhisto(TH1F* hist,float &ptave, float var, vector<float>Weight,char option,int hlt40=0,int hlt60=0,int hlt80=0,int hlt140=0,int hlt200=0,int hlt260=0,int hlt320=0,int hlt400=0,int hlt500=0)
 {
   if(option=='m')
   {
 //     if (ptave < 67.6)				hist->Fill(var,Weight.at(0));
-    if (ptave >= 67.6 && ptave < 89.6)   	hist->Fill(var,Weight.at(0));
-    else if (ptave >= 89.6 && ptave < 155.6)  	hist->Fill(var,Weight.at(1));
-    else if (ptave >= 155.6 && ptave < 221.6) 	hist->Fill(var,Weight.at(2));
-    else if (ptave >= 221.6 && ptave < 287.6) 	hist->Fill(var,Weight.at(3));
-    else if (ptave >= 287.6 && ptave < 353.6) 	hist->Fill(var,Weight.at(4));
-    else if (ptave >= 353.6 ) 			hist->Fill(var,Weight.at(5));
+    if (ptave >= 77 && ptave < 99)   	 	hist->Fill(var,Weight.at(0));
+    else if (ptave >= 99 && ptave < 165)  	hist->Fill(var,Weight.at(1));
+    else if (ptave >= 165 && ptave < 231)	hist->Fill(var,Weight.at(2));
+    else if (ptave >= 231 && ptave < 298) 	hist->Fill(var,Weight.at(3));
+    else if (ptave >= 298 && ptave < 365) 	hist->Fill(var,Weight.at(4));
+    else if (ptave >= 365 		) 	hist->Fill(var,Weight.at(5));
   }
   else if (option=='d')
   {
 //     if (ptave<67.6 && hlt40==1)                          	hist->Fill(var);
-    if (ptave >= 67.6 && ptave < 89.6 && hlt60==1)   	hist->Fill(var);
-    else if (ptave >= 89.6 && ptave < 155.6 && hlt80==1)  	hist->Fill(var);
-    else if (ptave >= 155.6 && ptave < 221.6 && hlt140==1)	hist->Fill(var);
-    else if (ptave >= 221.6 && ptave < 287.6 && hlt200==1)	hist->Fill(var);
-    else if (ptave >= 287.6 && ptave < 353.6 && hlt260==1)	hist->Fill(var);
-    else if (ptave >= 353.6 && hlt320==1)			hist->Fill(var);
+    if (ptave >= 77 && ptave < 99 && hlt60==1)   		hist->Fill(var);
+	else if (ptave >= 99 && ptave < 165 && hlt80==1)  	hist->Fill(var);
+	else if (ptave >= 165 && ptave < 231 && hlt140==1)	hist->Fill(var);
+	else if (ptave >= 231 && ptave < 298 && hlt200==1)	hist->Fill(var);
+	else if (ptave >= 298 && ptave < 365 && hlt260==1)	hist->Fill(var);
+	else if (ptave >= 365 && hlt320==1)			hist->Fill(var);
   }
 }
 

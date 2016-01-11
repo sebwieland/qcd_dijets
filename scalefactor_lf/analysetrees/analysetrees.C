@@ -58,22 +58,22 @@ void fillhisto(TH1F* hist,float &ptave, float &var, vector<float>Weight,char opt
   if(option=='m')
   {
 //     if (ptave < 67.6)				hist->Fill(var,Weight.at(0));
-    if (ptave >= 67.6 && ptave < 89.6)   	hist->Fill(var,Weight.at(0));
-    else if (ptave >= 89.6 && ptave < 155.6)  	hist->Fill(var,Weight.at(1));
-    else if (ptave >= 155.6 && ptave < 221.6) 	hist->Fill(var,Weight.at(2));
-    else if (ptave >= 221.6 && ptave < 287.6) 	hist->Fill(var,Weight.at(3));
-    else if (ptave >= 287.6 && ptave < 353.6) 	hist->Fill(var,Weight.at(4));
-    else if (ptave >= 353.6 ) 			hist->Fill(var,Weight.at(5));
+    if (ptave >= 77 && ptave < 99)   	 	hist->Fill(var,Weight.at(0));
+    else if (ptave >= 99 && ptave < 165)  	hist->Fill(var,Weight.at(1));
+    else if (ptave >= 165 && ptave < 231)	hist->Fill(var,Weight.at(2));
+    else if (ptave >= 231 && ptave < 298) 	hist->Fill(var,Weight.at(3));
+    else if (ptave >= 298 && ptave < 365) 	hist->Fill(var,Weight.at(4));
+    else if (ptave >= 365 		) 	hist->Fill(var,Weight.at(5));
   }
   else if (option=='d')
   {
-//     if (ptave<67.6 && hlt40==1)                           hist->Fill(var);
-    if (ptave >= 67.6 && ptave < 89.6 && hlt60==1)   hist->Fill(var);
-    else if (ptave >= 89.6 && ptave < 155.6 && hlt80==1)  hist->Fill(var);
-    else if (ptave >= 155.6 && ptave < 221.6 && hlt140==1)hist->Fill(var);
-    else if (ptave >= 221.6 && ptave < 287.6 && hlt200==1)hist->Fill(var);
-    else if (ptave >= 287.6 && ptave < 353.6 && hlt260==1)hist->Fill(var);
-    else if (ptave >= 353.6  &&  hlt320==1)		  hist->Fill(var);    
+//     if (ptave<67.6 && hlt40==1)                          	hist->Fill(var);
+    if (ptave >= 77 && ptave < 99 && hlt60==1)   		hist->Fill(var);
+	else if (ptave >= 99 && ptave < 165 && hlt80==1)  	hist->Fill(var);
+	else if (ptave >= 165 && ptave < 231 && hlt140==1)	hist->Fill(var);
+	else if (ptave >= 231 && ptave < 298 && hlt200==1)	hist->Fill(var);
+	else if (ptave >= 298 && ptave < 365 && hlt260==1)	hist->Fill(var);
+	else if (ptave >= 365 && hlt320==1)			hist->Fill(var);
   }
 }
 
@@ -167,7 +167,7 @@ void analysetrees(const TString &datalist,const TString &mclist){
 //   mcchain->SetBranchAddress("Jet_NSV",Jet_NSV);
   
   //define histos
-  int n_ptbins= 5;
+  int n_ptbins= 10;
   int n_etabins=4;
   vector<vector<TH1F*>> hCSV_mc_b;
   hCSV_mc_b.resize(n_ptbins, vector<TH1F*>(n_etabins, 0));
@@ -185,6 +185,11 @@ void analysetrees(const TString &datalist,const TString &mclist){
     else if (i==2) pt_counter="2";
     else if (i==3) pt_counter="3";
     else if (i==4) pt_counter="4";
+    else if (i==5) pt_counter="5";
+    else if (i==6) pt_counter="6";
+    else if (i==7) pt_counter="7";
+    else if (i==8) pt_counter="8";
+    else if (i==9) pt_counter="9";
     for ( int j=0; j<n_etabins;++j){   
       if (j==0) eta_counter="0";
       else if (j==1) eta_counter="1";
@@ -262,7 +267,12 @@ void analysetrees(const TString &datalist,const TString &mclist){
 	      if (Jet_Pt[1]>=20 && Jet_Pt[1] <30) ptbin=1;
 	      else if (Jet_Pt[1]>=30 && Jet_Pt[1] <40 ) ptbin=2;
 	      else if (Jet_Pt[1]>=40 && Jet_Pt[1] <60 ) ptbin=3;
-	      else if (Jet_Pt[1]>=60) ptbin=4;		
+	      else if (Jet_Pt[1]>=60 && Jet_Pt[1] <100) ptbin=4;
+	      else if (Jet_Pt[1]>=100 && Jet_Pt[1] <200) ptbin=5;
+	      else if (Jet_Pt[1]>=200 && Jet_Pt[1] <300) ptbin=6;
+	      else if (Jet_Pt[1]>=300 && Jet_Pt[1] <400) ptbin=7;
+	      else if (Jet_Pt[1]>=400 && Jet_Pt[1] <500) ptbin=8;
+	      else if (Jet_Pt[1]>=500) ptbin=9;
 	    }
 	    else if (j==1){
 	      if (abs(Jet_Eta[0])<0.8) etabin=1;
@@ -271,7 +281,12 @@ void analysetrees(const TString &datalist,const TString &mclist){
 	      if (Jet_Pt[0]>=20 && Jet_Pt[0] <30) ptbin=1;
 	      else if (Jet_Pt[0]>=30 && Jet_Pt[0] <40 ) ptbin=2;
 	      else if (Jet_Pt[0]>=40 && Jet_Pt[0] <60 ) ptbin=3;
-	      else if (Jet_Pt[0]>=60) ptbin=4;			
+	      else if (Jet_Pt[0]>=60 && Jet_Pt[0] <100) ptbin=4;
+	      else if (Jet_Pt[0]>=100 && Jet_Pt[0] <200) ptbin=5;
+	      else if (Jet_Pt[0]>=200 && Jet_Pt[0] <300) ptbin=6;
+	      else if (Jet_Pt[0]>=300 && Jet_Pt[0] <400) ptbin=7;
+	      else if (Jet_Pt[0]>=400 && Jet_Pt[0] <500) ptbin=8;
+	      else if (Jet_Pt[0]>=500) ptbin=9;			
 	    }
 	    fillcsv_mc(j,hCSV_mc_c[ptbin][etabin], hCSV_mc_b[ptbin][etabin], hCSV_mc_lf[ptbin][etabin],ptave, Jet_CSV,Jet_HadFlav , Weight);
 	  }
@@ -329,7 +344,7 @@ void analysetrees(const TString &datalist,const TString &mclist){
   datachain->SetBranchAddress("Triggered_HLT_DiPFJetAve400_vX",&hlt400);
   datachain->SetBranchAddress("Triggered_HLT_DiPFJetAve500_vX",&hlt500);
 
- 
+
   //define histos
   vector<vector<TH1F*>> hCSV_data;
   hCSV_data.resize(n_ptbins, vector<TH1F*>(n_etabins, 0));
@@ -340,6 +355,11 @@ void analysetrees(const TString &datalist,const TString &mclist){
     else if (i==2) pt_counter="2";
     else if (i==3) pt_counter="3";
     else if (i==4) pt_counter="4";
+    else if (i==5) pt_counter="5";
+    else if (i==6) pt_counter="6";
+    else if (i==7) pt_counter="7";
+    else if (i==8) pt_counter="8";
+    else if (i==9) pt_counter="9";
     for ( int j=0; j<n_etabins;++j){   
       if (j==0) eta_counter="0";
       else if (j==1) eta_counter="1";
@@ -352,7 +372,7 @@ void analysetrees(const TString &datalist,const TString &mclist){
     TH1F* hptavg_data = new TH1F("hptavg_data_bin"+pt_counter,"hCSVptavg_bin"+pt_counter,80,0,1000);
     hptavg_data->SetDrawOption("histe0");
     hptave_data.push_back(hptavg_data);
-    Weight.at(i)=1;   
+//     Weight.at(i)=1;   
   }
   TH1F* h_ptave_data=new TH1F("PtAve_data_w_dijetselec","PtAve_data_w_dijetselec",80,0,1000);
   h_ptave_data->SetDrawOption("histe0");
@@ -379,7 +399,12 @@ void analysetrees(const TString &datalist,const TString &mclist){
 	      if (Jet_Pt_data[1]>=20 && Jet_Pt_data[1] <30) ptbin=1;
 	      else if (Jet_Pt_data[1]>=30 && Jet_Pt_data[1] <40 ) ptbin=2;
 	      else if (Jet_Pt_data[1]>=40 && Jet_Pt_data[1] <60 ) ptbin=3;
-	      else if (Jet_Pt_data[1]>=60) ptbin=4;		
+	      else if (Jet_Pt_data[1]>=60 && Jet_Pt_data[1] <100 ) ptbin=4;
+	      else if (Jet_Pt_data[1]>=100 && Jet_Pt_data[1] <200 ) ptbin=5;
+	      else if (Jet_Pt_data[1]>=200 && Jet_Pt_data[1] <300 ) ptbin=6;
+	      else if (Jet_Pt_data[1]>=300 && Jet_Pt_data[1] <400 ) ptbin=7;
+	      else if (Jet_Pt_data[1]>=400 && Jet_Pt_data[1] <500 ) ptbin=8;
+	      else if (Jet_Pt_data[1]>=500 ) ptbin=9;
 	    }
 	    else if (j==1){
 	      if (abs(Jet_Eta_data[0])<0.8) etabin=1;
@@ -388,7 +413,12 @@ void analysetrees(const TString &datalist,const TString &mclist){
 	      if (Jet_Pt_data[0]>=20 && Jet_Pt_data[0] <30) ptbin=1;
 	      else if (Jet_Pt_data[0]>=30 && Jet_Pt_data[0] <40 ) ptbin=2;
 	      else if (Jet_Pt_data[0]>=40 && Jet_Pt_data[0] <60 ) ptbin=3;
-	      else if (Jet_Pt_data[0]>=60) ptbin=4;	           
+	      else if (Jet_Pt_data[0]>=60 && Jet_Pt_data[0] <100 ) ptbin=4;
+	      else if (Jet_Pt_data[0]>=100 && Jet_Pt_data[0] <200 ) ptbin=5;
+	      else if (Jet_Pt_data[0]>=200 && Jet_Pt_data[0] <300 ) ptbin=6;
+	      else if (Jet_Pt_data[0]>=300 && Jet_Pt_data[0] <400 ) ptbin=7;
+	      else if (Jet_Pt_data[0]>=400 && Jet_Pt_data[0] <500 ) ptbin=8;
+	      else if (Jet_Pt_data[0]>=500 ) ptbin=9;	           
 	    }
 	    fillcsv_data(j,hCSV_data[ptbin][etabin], ptave, Jet_CSV_data, Weight, hlt40, hlt60, hlt80, hlt140, hlt200, hlt260, hlt320, hlt400, hlt500); 
 	  }
