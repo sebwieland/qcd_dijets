@@ -23,7 +23,60 @@
 #include <fstream>
 
 using namespace std;
+void Style(TH1* h, const char *xTitle, const char *yTitle)
+{
+  h->GetXaxis()->SetTitle(xTitle);
+  h->GetXaxis()->SetTitleFont(42);
+  h->GetXaxis()->SetLabelFont(42);
+  h->GetXaxis()->SetTitleColor(1);
+  h->GetXaxis()->SetTitleOffset(0.9);
+  h->GetXaxis()->SetTitleSize(0.1);
+  h->GetXaxis()->SetLabelSize(0.13);
+  h->GetXaxis()->SetNdivisions(510);
+
+  h->GetYaxis()->SetTitle(yTitle);
+  h->GetYaxis()->SetTitleFont(42);
+  h->GetYaxis()->SetLabelFont(42);
+  h->GetYaxis()->SetTitleOffset(0.7);
+  h->GetYaxis()->SetTitleSize(0.1);
+  h->GetYaxis()->SetLabelSize(0.07);
+  h->GetYaxis()->SetNdivisions(510);
+}
+
+void Styleratio(TH1* h, const char *xTitle, const char *yTitle)
+{
+  h->GetXaxis()->SetTitle(xTitle);
+  h->GetXaxis()->SetTitleFont(42);
+  h->GetXaxis()->SetLabelFont(42);
+  h->GetXaxis()->SetTitleColor(1);
+  h->GetXaxis()->SetTitleOffset(1.1);
+  h->GetXaxis()->SetTitleSize(0.18);
+  h->GetXaxis()->SetLabelSize(0.13);
+  h->GetXaxis()->SetNdivisions(510);
+
+  h->GetYaxis()->SetTitle(yTitle);
+  h->GetYaxis()->SetTitleFont(42);
+  h->GetYaxis()->SetLabelFont(42);
+  h->GetYaxis()->SetTitleOffset(0.4);
+  h->GetYaxis()->SetTitleSize(0.1);
+  h->GetYaxis()->SetLabelSize(0.13);
+  h->GetYaxis()->SetNdivisions(510);
+}
 void PUWeight(TFile *histos){
+  
+  gStyle->SetPadLeftMargin(0.15);
+  gStyle->SetPadRightMargin(0.05);
+  gStyle->SetPadTopMargin(0.08);
+  gStyle->SetPadBottomMargin(0.45);
+
+// Zero horizontal error bars
+  gStyle->SetErrorX(0);
+ 
+  //  For the statistics box:
+  gStyle->SetOptStat(0);
+
+  //  For the legend
+  gStyle->SetLegendBorderSize(0);
   //outputfile
   TFile* outfile=new TFile("PUWeight.root","RECREATE");
   // read histos
@@ -40,7 +93,7 @@ void PUWeight(TFile *histos){
   text-> SetTextFont(42);
   text-> SetTextSize(0.05);  
 
-  char xtitle[]="N_PV";  
+  char xtitle[]="number of primary vertices";  
   
   float mcevents=0;
   float normratio=0;
@@ -53,7 +106,7 @@ void PUWeight(TFile *histos){
   leg->SetFillStyle(0);
   leg->SetBorderSize(0);
   
-  TLine* line=new TLine(0,1,1000,1);
+  TLine* line=new TLine(0,1,50,1);
   line->SetLineColor(kBlack);
 
 
@@ -78,6 +131,10 @@ void PUWeight(TFile *histos){
   h_npv_mc->Sumw2();
   h_npv_data->Sumw2();
   h_npv_mc->Draw("histE0");
+  h_npv_mc->SetTitle("number of primary vertices");
+  h_npv_mc->SetTitleSize(0.08);
+
+  Style(h_npv_mc,"","events");
   h_npv_data->SetMarkerStyle(20);
   h_npv_data->SetMarkerSize(0.5);
   h_npv_data->Draw("SAMEE0");
@@ -88,7 +145,6 @@ void PUWeight(TFile *histos){
   //makepadratio
   TPad* padratio=new TPad("padratio","padratio",0,0,1,0.3);
   padratio->SetTopMargin(0);
-  padratio->SetBottomMargin(1.1);
   padratio->Draw();
   padratio->cd();
   
@@ -102,15 +158,11 @@ void PUWeight(TFile *histos){
   ratio->SetMarkerStyle(20);
   ratio->SetMarkerSize(0.5);
   ratio->Draw("E0");
-  ratio->SetMaximum(1.6);
-  ratio->SetMinimum(0.4);
-  //set_ratioattributes  
-  ratio->GetYaxis()->SetNdivisions(510);
-  ratio->GetYaxis()->SetLabelSize(0.1);
-  ratio->GetXaxis()->SetTitle(xtitle);
-  ratio->GetXaxis()->SetTitleSize(0.11);
-  ratio->GetXaxis()->SetNdivisions(510);
-  ratio->GetXaxis()->SetLabelSize(0.1);    
+  ratio->SetMaximum(2.5);
+  ratio->SetMinimum(0);
+  
+  //set_ratioattributes 
+  Styleratio(ratio,"number of primary vertices","data/MC"); 
   line->Draw();  
 
   c1->SaveAs("h_NPV_original.pdf");
@@ -152,8 +204,8 @@ void PUWeight(TFile *histos){
   ratio->SetMarkerStyle(20);
   ratio->SetMarkerSize(0.5);
   ratio->Draw("E0");
-  ratio->SetMaximum(1.6);
-  ratio->SetMinimum(0.4);
+  ratio->SetMaximum(3);
+  ratio->SetMinimum(0);
   //set_ratioattributes  
   ratio->GetYaxis()->SetNdivisions(510);
   ratio->GetYaxis()->SetLabelSize(0.1);

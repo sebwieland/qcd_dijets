@@ -247,6 +247,6 @@ void analysetrees(const TString &datalist,const TString &mclist){
 
 int main(){
   TString datalist = "datalist";
-  TString mclist= "mclist2";
+  TString mclist= "mclistJESdown";
     analysetrees(datalist, mclist);    
 }

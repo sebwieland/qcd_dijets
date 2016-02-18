@@ -26,6 +26,65 @@
 #include <fstream>
 
 using namespace std;
+void Stylestack(THStack* h, const char *xTitle, const char *yTitle)
+{
+  h->GetXaxis()->SetTitle(xTitle);
+  h->GetXaxis()->SetTitleFont(42);
+  h->GetXaxis()->SetLabelFont(42);
+  h->GetXaxis()->SetTitleColor(1);
+  h->GetXaxis()->SetTitleOffset(0.9);
+  h->GetXaxis()->SetTitleSize(0.1);
+  h->GetXaxis()->SetLabelSize(0.13);
+  h->GetXaxis()->SetNdivisions(510);
+
+  h->GetYaxis()->SetTitle(yTitle);
+  h->GetYaxis()->SetTitleFont(42);
+  h->GetYaxis()->SetLabelFont(42);
+  h->GetYaxis()->SetTitleOffset(0.7);
+  h->GetYaxis()->SetTitleSize(0.1);
+  h->GetYaxis()->SetLabelSize(0.07);
+  h->GetYaxis()->SetNdivisions(510);
+}
+
+void Style(TH1* h, const char *xTitle, const char *yTitle)
+{
+  h->GetXaxis()->SetTitle(xTitle);
+  h->GetXaxis()->SetTitleFont(42);
+  h->GetXaxis()->SetLabelFont(42);
+  h->GetXaxis()->SetTitleColor(1);
+  h->GetXaxis()->SetTitleOffset(0.9);
+  h->GetXaxis()->SetTitleSize(0.05);
+  h->GetXaxis()->SetLabelSize(0.05);
+  h->GetXaxis()->SetNdivisions(510);
+
+  h->GetYaxis()->SetTitle(yTitle);
+  h->GetYaxis()->SetTitleFont(42);
+  h->GetYaxis()->SetLabelFont(42);
+  h->GetYaxis()->SetTitleOffset(1);
+  h->GetYaxis()->SetTitleSize(0.05);
+  h->GetYaxis()->SetLabelSize(0.05);
+  h->GetYaxis()->SetNdivisions(510);
+}
+
+void Styleratio(TH1* h, const char *xTitle, const char *yTitle)
+{
+  h->GetXaxis()->SetTitle(xTitle);
+  h->GetXaxis()->SetTitleFont(42);
+  h->GetXaxis()->SetLabelFont(42);
+  h->GetXaxis()->SetTitleColor(1);
+  h->GetXaxis()->SetTitleOffset(1.1);
+  h->GetXaxis()->SetTitleSize(0.18);
+  h->GetXaxis()->SetLabelSize(0.13);
+  h->GetXaxis()->SetNdivisions(510);
+
+  h->GetYaxis()->SetTitle(yTitle);
+  h->GetYaxis()->SetTitleFont(42);
+  h->GetYaxis()->SetLabelFont(42);
+  h->GetYaxis()->SetTitleOffset(0.4);
+  h->GetYaxis()->SetTitleSize(0.1);
+  h->GetYaxis()->SetLabelSize(0.13);
+  h->GetYaxis()->SetNdivisions(510);
+}
 vector<vector<TH1F*>> readhistos(TFile *file, char c){
   int n_ptbins= 10;
   int n_etabins=4;
@@ -127,6 +186,20 @@ vector<vector<TH1F*>> readhistos(TFile *file, char c){
 void calculate_sf(TFile *histos){
   //outputfile
 //   TFile* outfile=new TFile("scalefactors.root","RECREATE");
+  gStyle->SetPadLeftMargin(0.15);
+  gStyle->SetPadRightMargin(0.05);
+  gStyle->SetPadTopMargin(0.08);
+  gStyle->SetPadBottomMargin(0.45);
+
+// Zero horizontal error bars
+  gStyle->SetErrorX(0);
+ 
+  //  For the statistics box:
+  gStyle->SetOptStat(0);
+
+  //  For the legend
+  gStyle->SetLegendBorderSize(0);
+  
 
   cout << "Reading Histos from file" << endl;
   vector<vector<TH1F*>>h_data=readhistos(histos,'d');
@@ -266,16 +339,17 @@ void calculate_sf(TFile *histos){
   //     //draw histos
       h_data[i][j]->Sumw2();
       mc_stack_lf_normalized->Draw("histE0");
+      Stylestack(mc_stack_lf_normalized,"","events");
       h_data[i][j]->SetMarkerStyle(20);
       h_data[i][j]->Draw("SAMEE0");
       leg_lf->Draw();
-      text->DrawLatex(0.175, 0.863, text_cms);
-      text->DrawLatex(0.175, 0.815, cutlabel);
+      text->DrawLatex(0.4, 0.863, text_cms);
+      text->DrawLatex(0.4, 0.815, cutlabel);
       c1->cd();
       //makepadratio
       TPad* padratio_lf=new TPad("padratio_lf","padratio_lf",0,0,1,0.3);
       padratio_lf->SetTopMargin(0);
-      padratio_lf->SetBottomMargin(1.1);
+//       padratio_lf->SetBottomMargin(1.1);
       padratio_lf->Draw();
       padratio_lf->cd();
       
@@ -291,13 +365,7 @@ void calculate_sf(TFile *histos){
       ratio_lf->SetMaximum(1.6);
       ratio_lf->SetMinimum(0.4);
       //set_ratioattributes  
-      ratio_lf->GetYaxis()->SetNdivisions(510);
-      ratio_lf->GetYaxis()->SetLabelSize(0.1);
-      ratio_lf->GetXaxis()->SetTitle(xtitle_lf);
-      ratio_lf->GetXaxis()->SetTitleSize(0.11);
-      ratio_lf->GetXaxis()->SetNdivisions(510);
-      ratio_lf->GetXaxis()->SetLabelSize(0.1);
-  
+      Styleratio(ratio_lf,xtitle_lf,"data/MC");  
       
       line->Draw();
       stringstream ss;
@@ -309,23 +377,28 @@ void calculate_sf(TFile *histos){
       //subtract HF contamination
       TCanvas *c2=new TCanvas(); 
       c2->cd(); 
+      c2->SetBottomMargin(0.15);
       TH1F *diff_lf=(TH1F*)h_data[i][j]->Clone();
       diff_lf->Sumw2();
       diff_lf->SetTitle("Data-HF");
       diff_lf->Add(h_b[i][j],-1);
       diff_lf->Add(h_c[i][j],-1);
-      diff_lf->Draw("E0");       
+      diff_lf->Draw("E0");    
+      diff_lf->SetMarkerStyle(20);
       diff_lf->SetLineColor(kBlue);
+      Style(diff_lf,xtitle_lf,"events");
 //       diff_lf->Write();
 	
       TH1F* lf=(TH1F*)h_lf[i][j]->Clone();
 //       nonb_lf->Add(h_c[i][j]);
       lf->Draw("SAMEE0");
-      lf->SetMarkerStyle(20);
-      lf->SetMarkerSize(0.7);
+      lf->SetTitle("LF");
+      lf->SetMarkerStyle(4);
+//       lf->SetMarkerSize(0.7);
+      lf->SetFillColor(0);
       lf->SetLineColor(kRed);
 //       lf->Write();
-      c2->BuildLegend(0.2,0.8,0.7,0.9);
+      c2->BuildLegend(0.5,0.8,0.9,0.9);
       c2->SaveAs("diff_lf_ptbin"+pt_counter+"_etabin"+eta_counter+".pdf");
     
       //calculate LFSF
@@ -338,6 +411,7 @@ void calculate_sf(TFile *histos){
       TF1* pol=new TF1("LFSF_ptbin"+pt_counter+"_etabin"+eta_counter,"pol6",0,1);
       lfsf->Fit(pol,"S","",0,1);
       lfsf->Draw("E0");
+      Style(lfsf,xtitle_lf,"LFSF");
       
       if ( i!=0 && j!=0 ){
 	TH1D *hint = new TH1D("hint_ptbin"+pt_counter+"_etabin"+eta_counter,"Fitted gaussian with .95 conf.band", 1000, 0, 1);
@@ -348,14 +422,14 @@ void calculate_sf(TFile *histos){
       if ( i!=0 && j!=0 && comp==true){
 	official[i-1][j-1]-> Draw("SAME");
       }
-      lfsf->GetYaxis()->SetLabelSize(0.04);
-      lfsf->GetXaxis()->SetTitle("LFSF");
-      lfsf->GetXaxis()->SetTitleSize(0.04);
-      lfsf->GetXaxis()->SetNdivisions(510);
-      lfsf->GetXaxis()->SetLabelSize(0.04);
-      line->Draw();
-      lfsf->Write();
-      lfsf->GetXaxis()->SetTitle("LFSF");
+//       lfsf->GetYaxis()->SetLabelSize(0.04);
+//       lfsf->GetXaxis()->SetTitle("LFSF");
+//       lfsf->GetXaxis()->SetTitleSize(0.04);
+//       lfsf->GetXaxis()->SetNdivisions(510);
+//       lfsf->GetXaxis()->SetLabelSize(0.04);
+//       line->Draw();
+//       lfsf->Write();
+//       lfsf->GetXaxis()->SetTitle("LFSF");
       lfsf->SetMaximum(2);
       lfsf->SetMinimum(0);
      

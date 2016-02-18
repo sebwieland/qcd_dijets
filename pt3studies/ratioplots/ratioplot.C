@@ -26,13 +26,69 @@
 using namespace std;
 
 
+void Style(TH1* h, const char *xTitle, const char *yTitle)
+{
+  h->GetXaxis()->SetTitle(xTitle);
+  h->GetXaxis()->SetTitleFont(42);
+  h->GetXaxis()->SetLabelFont(42);
+  h->GetXaxis()->SetTitleColor(1);
+  h->GetXaxis()->SetTitleOffset(0.9);
+  h->GetXaxis()->SetTitleSize(0.1);
+  h->GetXaxis()->SetLabelSize(0.13);
+  h->GetXaxis()->SetNdivisions(510);
+
+  h->GetYaxis()->SetTitle(yTitle);
+  h->GetYaxis()->SetTitleFont(42);
+  h->GetYaxis()->SetLabelFont(42);
+  h->GetYaxis()->SetTitleOffset(0.7);
+  h->GetYaxis()->SetTitleSize(0.1);
+  h->GetYaxis()->SetLabelSize(0.07);
+  h->GetYaxis()->SetNdivisions(510);
+}
+
+void Styleratio(TH1* h, const char *xTitle, const char *yTitle)
+{
+  h->GetXaxis()->SetTitle(xTitle);
+  h->GetXaxis()->SetTitleFont(42);
+  h->GetXaxis()->SetLabelFont(42);
+  h->GetXaxis()->SetTitleColor(1);
+  h->GetXaxis()->SetTitleOffset(1.1);
+  h->GetXaxis()->SetTitleSize(0.18);
+  h->GetXaxis()->SetLabelSize(0.13);
+  h->GetXaxis()->SetNdivisions(510);
+
+  h->GetYaxis()->SetTitle(yTitle);
+  h->GetYaxis()->SetTitleFont(42);
+  h->GetYaxis()->SetLabelFont(42);
+  h->GetYaxis()->SetTitleOffset(0.4);
+  h->GetYaxis()->SetTitleSize(0.1);
+  h->GetYaxis()->SetLabelSize(0.13);
+  h->GetYaxis()->SetNdivisions(510);
+}
+
 void ratioplot(TFile *histos){
+
+  gStyle->SetPadLeftMargin(0.15);
+  gStyle->SetPadRightMargin(0.05);
+  gStyle->SetPadTopMargin(0.08);
+  gStyle->SetPadBottomMargin(0.45);
+
+// Zero horizontal error bars
+  gStyle->SetErrorX(0);
+ 
+  //  For the statistics box:
+  gStyle->SetOptStat(0);
+
+  //  For the legend
+  gStyle->SetLegendBorderSize(0);
+  
+/////BEGIN HERE:  
   TH1F* h_pt3_pt3cut_data = (TH1F*)histos->Get("h_pt3_pt3cut_data");
   TH1F* h_pt3_pt3cut = (TH1F*)histos->Get("h_pt3_pt3cut");
   TH1F* h_pt3 = (TH1F*)histos->Get("h_pt3");
   TH1F* h_pt3_data = (TH1F*)histos->Get("h_pt3_data");
 
-  TLegend* leg=new TLegend(0.75,0.4,0.9,0.8);
+    TLegend* leg=new TLegend(0.75,0.4,0.9,0.8);
   leg->AddEntry(h_pt3_pt3cut_data,"data");
   leg->AddEntry(h_pt3_pt3cut,"MC");
   leg->SetFillStyle(0);
@@ -49,11 +105,8 @@ void ratioplot(TFile *histos){
   float mcevents=h_pt3_pt3cut->Integral();
   float dataevents=h_pt3_pt3cut_data->Integral();
   cout << "pt3 with pt3 Cut"<<endl;
-  cout << "data events: "<< dataevents  << endl;
-  
-  cout << "mcevents : " << mcevents << endl;
-  
-  
+  cout << "data events: "<< dataevents  << endl;  
+  cout << "mcevents : " << mcevents << endl;  
   
   TLine* line=new TLine(0,1,1000,1);
   line->SetLineColor(kBlack);
@@ -64,22 +117,25 @@ void ratioplot(TFile *histos){
   text-> SetTextFont(42);
   text-> SetTextSize(0.05);
   
-  char xtitle[]="Pt 3rd Jet";
+  char xtitle[]="p_{T}^{Avg}";
 //     //draw histos
   h_pt3_pt3cut->Sumw2();
   h_pt3_pt3cut_data->Sumw2();
   h_pt3_pt3cut->Draw("histE0");
+  Style(h_pt3_pt3cut,"","events");
   h_pt3_pt3cut_data->SetMarkerStyle(20);
   h_pt3_pt3cut_data->SetMarkerSize(0.5);
   h_pt3_pt3cut_data->Draw("SAMEE0");
+  
   leg->Draw();
   text->DrawLatex(0.175, 0.863, text_cms);
   text->DrawLatex(0.175, 0.815, cutlabel);
+  
   c1->cd();
   //makepadratio
   TPad* padratio=new TPad("padratio","padratio",0,0,1,0.3);
   padratio->SetTopMargin(0);
-  padratio->SetBottomMargin(1.1);
+//   padratio->SetBottomMargin(0.3);
   padratio->Draw();
   padratio->cd();
   
@@ -88,22 +144,13 @@ void ratioplot(TFile *histos){
   ratio->SetTitle("");
   ratio->SetXTitle(xtitle);
   ratio->Sumw2();
-  ratio->SetStats(0);
   ratio->Divide(h_pt3_pt3cut);
-  ratio->SetMarkerStyle(20);
-  ratio->SetMarkerSize(0.5);
   ratio->Draw("E0");
   ratio->SetMaximum(1.6);
   ratio->SetMinimum(0.4);
   //set_ratioattributes  
-  ratio->GetYaxis()->SetNdivisions(510);
-  ratio->GetYaxis()->SetLabelSize(0.1);
-  ratio->GetXaxis()->SetTitle(xtitle);
-  ratio->GetXaxis()->SetTitleSize(0.11);
-  ratio->GetXaxis()->SetNdivisions(510);
-  ratio->GetXaxis()->SetLabelSize(0.1);    
+  Styleratio(ratio,xtitle,"data/MC");
   line->Draw();  
-
   c1->SaveAs("h_pt3_pt3cut.pdf");
 
   ////////////////////////
@@ -144,9 +191,7 @@ void ratioplot(TFile *histos){
   text->DrawLatex(0.175, 0.815, cutlabel);
   c1->cd();
   //makepadratio
-//   TPad* padratio=new TPad("padratio","padratio",0,0,1,0.3);
-  padratio->SetTopMargin(0);
-  padratio->SetBottomMargin(1.1);
+
   padratio->Draw();
   padratio->cd();
   
@@ -166,7 +211,7 @@ void ratioplot(TFile *histos){
   ratio2->GetYaxis()->SetNdivisions(510);
   ratio2->GetYaxis()->SetLabelSize(0.1);
   ratio2->GetXaxis()->SetTitle(xtitle);
-  ratio2->GetXaxis()->SetTitleSize(0.11);
+  ratio2->GetXaxis()->SetTitleSize(0.2);
   ratio2->GetXaxis()->SetNdivisions(510);
   ratio2->GetXaxis()->SetLabelSize(0.1);    
   line->Draw();  
@@ -211,9 +256,7 @@ void ratioplot(TFile *histos){
   text->DrawLatex(0.175, 0.815, cutlabel);
   c1->cd();
   //makepadratio
-//   TPad* padratio=new TPad("padratio","padratio",0,0,1,0.3);
-  padratio->SetTopMargin(0);
-  padratio->SetBottomMargin(1.1);
+
   padratio->Draw();
   padratio->cd();
   
@@ -230,12 +273,12 @@ void ratioplot(TFile *histos){
   ratio3->SetMaximum(1.6);
   ratio3->SetMinimum(0.4);
   //set_ratioattributes  
-  ratio3->GetYaxis()->SetNdivisions(510);
-  ratio3->GetYaxis()->SetLabelSize(0.1);
-  ratio3->GetXaxis()->SetTitle(xtitle);
-  ratio3->GetXaxis()->SetTitleSize(0.11);
-  ratio3->GetXaxis()->SetNdivisions(510);
-  ratio3->GetXaxis()->SetLabelSize(0.1);    
+//   ratio3->GetYaxis()->SetNdivisions(510);
+//   ratio3->GetYaxis()->SetLabelSize(0.1);
+//   ratio3->GetXaxis()->SetTitle(xtitle);
+//   ratio3->GetXaxis()->SetTitleSize(0.2);
+//   ratio3->GetXaxis()->SetNdivisions(510);
+//   ratio3->GetXaxis()->SetLabelSize(0.1);    
   line->Draw();  
   c1->SaveAs("h_pt3overavg.pdf");
   
@@ -247,16 +290,12 @@ void ratioplot(TFile *histos){
   line->SetLineColor(kBlack);
   TH1F* h_eta0_data = (TH1F*)histos->Get("h_eta0_data");
   TH1F* h_eta0 = (TH1F*)histos->Get("h_eta0");
-//   TLegend* leg=new TLegend(0.75,0.4,0.9,0.8);
-//   leg->AddEntry(h_eta0_data,"data");
-//   leg->AddEntry(h_eta0,"MC");
   leg->SetFillStyle(0);
   leg->SetBorderSize(0);
   
 //   TCanvas *c1=new TCanvas();
   c1->cd();
   //makepadhist
-//   TPad* padhist=new TPad("padhist","padhist",0,0.3,1,1);
   padhist->SetBottomMargin(0);
   padhist->Draw();
   padhist->cd();
@@ -264,14 +303,13 @@ void ratioplot(TFile *histos){
   mcevents=h_eta0->Integral();
   dataevents=h_eta0_data->Integral();
   cout << "eta0"<<endl;
-  cout << "data events: "<< dataevents  << endl;
-  
+  cout << "data events: "<< dataevents  << endl;  
   cout << "mcevents : " << mcevents << endl;  
-//   xtitle="Pt 3rd Jet";
-//     //draw histos
-//   h_eta0->Sumw2();
-//   h_eta0_data->Sumw2();
   h_eta0->Draw("histE0");
+  Style(h_eta0,"","events");
+  h_eta0->SetTitle("#eta of hardest Jet");
+  h_eta0->SetStats(0);
+  
   h_eta0_data->SetMarkerStyle(20);
   h_eta0_data->SetMarkerSize(0.5);
   h_eta0_data->Draw("sameE0");
@@ -280,9 +318,7 @@ void ratioplot(TFile *histos){
   text->DrawLatex(0.175, 0.815, cutlabel);
   c1->cd();
   //makepadratio
-//   TPad* padratio=new TPad("padratio","padratio",0,0,1,0.3);
-  padratio->SetTopMargin(0);
-  padratio->SetBottomMargin(1.1);
+
   padratio->Draw();
   padratio->cd();
   
@@ -299,12 +335,7 @@ void ratioplot(TFile *histos){
   ratio3->SetMaximum(1.6);
   ratio3->SetMinimum(0.4);
   //set_ratioattributes  
-  ratio3->GetYaxis()->SetNdivisions(510);
-  ratio3->GetYaxis()->SetLabelSize(0.1);
-  ratio3->GetXaxis()->SetTitle(xtitle);
-  ratio3->GetXaxis()->SetTitleSize(0.11);
-  ratio3->GetXaxis()->SetNdivisions(510);
-  ratio3->GetXaxis()->SetLabelSize(0.1);    
+  Styleratio(ratio3,"#eta of hardest Jet","data/MC");  
   lineeta->Draw();  
   c1->SaveAs("h_eta0.pdf");
   
@@ -315,16 +346,11 @@ void ratioplot(TFile *histos){
   line->SetLineColor(kBlack);
   TH1F* h_eta1_data = (TH1F*)histos->Get("h_eta1_data");
   TH1F* h_eta1 = (TH1F*)histos->Get("h_eta1");
-//   TLegend* leg=new TLegend(0.75,0.4,0.9,0.8);
-//   leg->AddEntry(h_eta1_data,"data");
-//   leg->AddEntry(h_eta1,"MC");
   leg->SetFillStyle(0);
   leg->SetBorderSize(0);
-  
-//   TCanvas *c1=new TCanvas();
+
   c1->cd();
   //makepadhist
-//   TPad* padhist=new TPad("padhist","padhist",0,0.3,1,1);
   padhist->SetBottomMargin(0);
   padhist->Draw();
   padhist->cd();
@@ -332,14 +358,13 @@ void ratioplot(TFile *histos){
   mcevents=h_eta1->Integral();
   dataevents=h_eta1_data->Integral();
   cout << "eta1"<<endl;
-  cout << "data events: "<< dataevents  << endl;
-  
+  cout << "data events: "<< dataevents  << endl;  
   cout << "mcevents : " << mcevents << endl;  
-//   xtitle="Pt 3rd Jet";
-//     //draw histos
-//   h_eta1->Sumw2();
-//   h_eta1_data->Sumw2();
+  
   h_eta1->Draw("histE0");
+  Style(h_eta1,"","events"); 
+  h_eta1->SetTitle("#eta of 2nd-hardest Jet");
+  h_eta1->SetStats(0);  
   h_eta1_data->SetMarkerStyle(20);
   h_eta1_data->SetMarkerSize(0.5);
   h_eta1_data->Draw("sameE0");
@@ -348,9 +373,7 @@ void ratioplot(TFile *histos){
   text->DrawLatex(0.175, 0.815, cutlabel);
   c1->cd();
   //makepadratio
-//   TPad* padratio=new TPad("padratio","padratio",0,0,1,0.3);
-  padratio->SetTopMargin(0);
-  padratio->SetBottomMargin(1.1);
+
   padratio->Draw();
   padratio->cd();
   
@@ -367,12 +390,9 @@ void ratioplot(TFile *histos){
   ratio3->SetMaximum(1.6);
   ratio3->SetMinimum(0.4);
   //set_ratioattributes  
-  ratio3->GetYaxis()->SetNdivisions(510);
-  ratio3->GetYaxis()->SetLabelSize(0.1);
-  ratio3->GetXaxis()->SetTitle(xtitle);
-  ratio3->GetXaxis()->SetTitleSize(0.11);
-  ratio3->GetXaxis()->SetNdivisions(510);
-  ratio3->GetXaxis()->SetLabelSize(0.1);    
+  Styleratio(ratio3,"#eta of 2nd-hardest Jet","data/MC");
+
+  
   lineeta->Draw();  
   c1->SaveAs("h_eta1.pdf");
   
@@ -417,9 +437,7 @@ void ratioplot(TFile *histos){
   text->DrawLatex(0.175, 0.815, cutlabel);
   c1->cd();
   //makepadratio
-//   TPad* padratio=new TPad("padratio","padratio",0,0,1,0.3);
-  padratio->SetTopMargin(0);
-  padratio->SetBottomMargin(1.1);
+
   padratio->Draw();
   padratio->cd();
   
@@ -439,7 +457,7 @@ void ratioplot(TFile *histos){
   ratio3->GetYaxis()->SetNdivisions(510);
   ratio3->GetYaxis()->SetLabelSize(0.1);
   ratio3->GetXaxis()->SetTitle(xtitle);
-  ratio3->GetXaxis()->SetTitleSize(0.11);
+  ratio3->GetXaxis()->SetTitleSize(0.2);
   ratio3->GetXaxis()->SetNdivisions(510);
   ratio3->GetXaxis()->SetLabelSize(0.1);    
   lineeta->Draw();  
@@ -492,9 +510,7 @@ void ratioplot(TFile *histos){
   text->DrawLatex(0.175, 0.815, cutlabel);
   c1->cd();
   //makepadratio
-//   TPad* padratio=new TPad("padratio","padratio",0,0,1,0.3);
-  padratio->SetTopMargin(0);
-  padratio->SetBottomMargin(1.1);
+
   padratio->Draw();
   padratio->cd();
   
@@ -514,7 +530,7 @@ void ratioplot(TFile *histos){
   ratio->GetYaxis()->SetNdivisions(510);
   ratio->GetYaxis()->SetLabelSize(0.1);
   ratio->GetXaxis()->SetTitle(xtitle);
-  ratio->GetXaxis()->SetTitleSize(0.11);
+  ratio->GetXaxis()->SetTitleSize(0.2);
   ratio->GetXaxis()->SetNdivisions(510);
   ratio->GetXaxis()->SetLabelSize(0.1);    
   line->Draw();  
@@ -561,9 +577,7 @@ void ratioplot(TFile *histos){
   text->DrawLatex(0.175, 0.815, cutlabel);
   c1->cd();
   //makepadratio
-//   TPad* padratio=new TPad("padratio","padratio",0,0,1,0.3);
-  padratio->SetTopMargin(0);
-  padratio->SetBottomMargin(1.1);
+
   padratio->Draw();
   padratio->cd();
   
@@ -583,7 +597,7 @@ void ratioplot(TFile *histos){
   ratio2->GetYaxis()->SetNdivisions(510);
   ratio2->GetYaxis()->SetLabelSize(0.1);
   ratio2->GetXaxis()->SetTitle(xtitle);
-  ratio2->GetXaxis()->SetTitleSize(0.11);
+  ratio2->GetXaxis()->SetTitleSize(0.2);
   ratio2->GetXaxis()->SetNdivisions(510);
   ratio2->GetXaxis()->SetLabelSize(0.1);    
   line->Draw();  
@@ -629,8 +643,7 @@ void ratioplot(TFile *histos){
   c1->cd();
   //makepadratio
 //   TPad* padratio=new TPad("padratio","padratio",0,0,1,0.3);
-  padratio->SetTopMargin(0);
-  padratio->SetBottomMargin(1.1);
+
   padratio->Draw();
   padratio->cd();
   
@@ -650,7 +663,7 @@ void ratioplot(TFile *histos){
   ratio3->GetYaxis()->SetNdivisions(510);
   ratio3->GetYaxis()->SetLabelSize(0.1);
   ratio3->GetXaxis()->SetTitle(xtitle);
-  ratio3->GetXaxis()->SetTitleSize(0.11);
+  ratio3->GetXaxis()->SetTitleSize(0.2);
   ratio3->GetXaxis()->SetNdivisions(510);
   ratio3->GetXaxis()->SetLabelSize(0.1);    
   line->Draw();  
@@ -697,9 +710,6 @@ void ratioplot(TFile *histos){
   text->DrawLatex(0.175, 0.815, cutlabel);
   c1->cd();
   //makepadratio
-//   TPad* padratio=new TPad("padratio","padratio",0,0,1,0.3);
-  padratio->SetTopMargin(0);
-  padratio->SetBottomMargin(1.1);
   padratio->Draw();
   padratio->cd();
   
@@ -719,7 +729,7 @@ void ratioplot(TFile *histos){
   ratio3->GetYaxis()->SetNdivisions(510);
   ratio3->GetYaxis()->SetLabelSize(0.1);
   ratio3->GetXaxis()->SetTitle(xtitle);
-  ratio3->GetXaxis()->SetTitleSize(0.11);
+  ratio3->GetXaxis()->SetTitleSize(0.2);
   ratio3->GetXaxis()->SetNdivisions(510);
   ratio3->GetXaxis()->SetLabelSize(0.1);    
   lineeta->Draw();  
@@ -765,9 +775,6 @@ void ratioplot(TFile *histos){
   text->DrawLatex(0.175, 0.815, cutlabel);
   c1->cd();
   //makepadratio
-//   TPad* padratio=new TPad("padratio","padratio",0,0,1,0.3);
-  padratio->SetTopMargin(0);
-  padratio->SetBottomMargin(1.1);
   padratio->Draw();
   padratio->cd();
   
@@ -787,7 +794,7 @@ void ratioplot(TFile *histos){
   ratio3->GetYaxis()->SetNdivisions(510);
   ratio3->GetYaxis()->SetLabelSize(0.1);
   ratio3->GetXaxis()->SetTitle(xtitle);
-  ratio3->GetXaxis()->SetTitleSize(0.11);
+  ratio3->GetXaxis()->SetTitleSize(0.2);
   ratio3->GetXaxis()->SetNdivisions(510);
   ratio3->GetXaxis()->SetLabelSize(0.1);    
   lineeta->Draw();  
@@ -834,9 +841,6 @@ void ratioplot(TFile *histos){
   text->DrawLatex(0.175, 0.815, cutlabel);
   c1->cd();
   //makepadratio
-//   TPad* padratio=new TPad("padratio","padratio",0,0,1,0.3);
-  padratio->SetTopMargin(0);
-  padratio->SetBottomMargin(1.1);
   padratio->Draw();
   padratio->cd();
   
@@ -856,7 +860,7 @@ void ratioplot(TFile *histos){
   ratio3->GetYaxis()->SetNdivisions(510);
   ratio3->GetYaxis()->SetLabelSize(0.1);
   ratio3->GetXaxis()->SetTitle(xtitle);
-  ratio3->GetXaxis()->SetTitleSize(0.11);
+  ratio3->GetXaxis()->SetTitleSize(0.2);
   ratio3->GetXaxis()->SetNdivisions(510);
   ratio3->GetXaxis()->SetLabelSize(0.1);    
   lineeta->Draw();  
@@ -897,6 +901,9 @@ void ratioplot(TFile *histos){
 //   h_eta2->Sumw2();
 //   h_eta2_data->Sumw2();
   h_npv->Draw("histE0");
+  h_npv->SetTitle("Number of primary vertices");
+  h_npv->GetYaxis()->SetTitle("events");
+  Style(h_npv,"","events");
   h_npv_data->SetMarkerStyle(20);
   h_npv_data->SetMarkerSize(0.5);
   h_npv_data->Draw("sameE0");
@@ -905,9 +912,6 @@ void ratioplot(TFile *histos){
   text->DrawLatex(0.175, 0.815, cutlabel_npv);
   c1->cd();
   //makepadratio
-//   TPad* padratio=new TPad("padratio","padratio",0,0,1,0.3);
-  padratio->SetTopMargin(0);
-  padratio->SetBottomMargin(1.1);
   padratio->Draw();
   padratio->cd();
   
@@ -924,12 +928,7 @@ void ratioplot(TFile *histos){
   ratio3->SetMaximum(1.6);
   ratio3->SetMinimum(0.4);
   //set_ratioattributes  
-  ratio3->GetYaxis()->SetNdivisions(510);
-  ratio3->GetYaxis()->SetLabelSize(0.1);
-  ratio3->GetXaxis()->SetTitle(xtitle);
-  ratio3->GetXaxis()->SetTitleSize(0.11);
-  ratio3->GetXaxis()->SetNdivisions(510);
-  ratio3->GetXaxis()->SetLabelSize(0.1);    
+  Styleratio(ratio3,"number of primary vertices","data/MC");
   line_npv->Draw();  
   c1->SaveAs("h_npv.pdf");
   
@@ -942,42 +941,32 @@ void ratioplot(TFile *histos){
   line->SetLineColor(kBlack);
   TH1F* h_ptave3_data = (TH1F*)histos->Get("PtAve_data_w_dijetselec");
   TH1F* h_ptave3_mc = (TH1F*)histos->Get("PtAve_mc_w_dijetselec");
-//   TLegend* leg=new TLegend(0.75,0.4,0.9,0.8);
-//   leg->AddEntry(h_ptave3_data,"data");
-//   leg->AddEntry(h_ptave3_mc,"MC");
   leg->SetFillStyle(0);
   leg->SetBorderSize(0);
   
 //   TCanvas *c1=new TCanvas();
   c1->cd();
   //makepadhist
-//   TPad* padhist=new TPad("padhist","padhist",0,0.3,1,1);
-  padhist->SetBottomMargin(0);
   padhist->Draw();
   padhist->cd();
 
   mcevents=h_ptave3_mc->Integral();
   dataevents=h_ptave3_data->Integral();
   cout << "PtAve w/ Dijetselec"<<endl;
-  cout << "data events: "<< dataevents  << endl;
-  
+  cout << "data events: "<< dataevents  << endl;  
   cout << "mcevents : " << mcevents << endl;  
-//   xtitle="Pt 3rd Jet";
-//     //draw histos
-//   h_eta1->Sumw2();
-//   h_eta1_data->Sumw2();
+
   h_ptave3_mc->Draw("histE0");
+  Style(h_ptave3_mc,"","events");
+  h_ptave3_mc->SetTitle("");
   h_ptave3_data->SetMarkerStyle(20);
   h_ptave3_data->SetMarkerSize(0.5);
   h_ptave3_data->Draw("sameE0");
 //   leg->Draw();
-  text->DrawLatex(0.175, 0.863, text_cms);
-  text->DrawLatex(0.175, 0.815, cutlabel);
+  text->DrawLatex(0.23, 0.863, text_cms);
+  text->DrawLatex(0.23, 0.815, cutlabel);
   c1->cd();
   //makepadratio
-//   TPad* padratio=new TPad("padratio","padratio",0,0,1,0.3);
-  padratio->SetTopMargin(0);
-  padratio->SetBottomMargin(1.1);
   padratio->Draw();
   padratio->cd();
   
@@ -994,12 +983,7 @@ void ratioplot(TFile *histos){
   ratio3->SetMaximum(1.6);
   ratio3->SetMinimum(0.4);
   //set_ratioattributes  
-  ratio3->GetYaxis()->SetNdivisions(510);
-  ratio3->GetYaxis()->SetLabelSize(0.1);
-  ratio3->GetXaxis()->SetTitle(xtitle);
-  ratio3->GetXaxis()->SetTitleSize(0.11);
-  ratio3->GetXaxis()->SetNdivisions(510);
-  ratio3->GetXaxis()->SetLabelSize(0.1);    
+  Styleratio(ratio3,"p_{T}^{Avg} with Dijetselection","data/MC");   
   line->Draw();  
   c1->SaveAs("h_ptave_w_dijetselec.pdf");
 
@@ -1043,9 +1027,6 @@ void ratioplot(TFile *histos){
   text->DrawLatex(0.175, 0.815, cutlabel);
   c1->cd();
   //makepadratio
-//   TPad* padratio=new TPad("padratio","padratio",0,0,1,0.3);
-  padratio->SetTopMargin(0);
-  padratio->SetBottomMargin(1.1);
   padratio->Draw();
   padratio->cd();
   
@@ -1065,7 +1046,7 @@ void ratioplot(TFile *histos){
   ratio3->GetYaxis()->SetNdivisions(510);
   ratio3->GetYaxis()->SetLabelSize(0.1);
   ratio3->GetXaxis()->SetTitle(xtitle);
-  ratio3->GetXaxis()->SetTitleSize(0.11);
+  ratio3->GetXaxis()->SetTitleSize(0.2);
   ratio3->GetXaxis()->SetNdivisions(510);
   ratio3->GetXaxis()->SetLabelSize(0.1);    
   line->Draw();  
@@ -1079,9 +1060,6 @@ void ratioplot(TFile *histos){
   line->SetLineColor(kBlack);
   TH1F* h_ptave2_data = (TH1F*)histos->Get("PtAve_data_wo_dijetselec");
   TH1F* h_ptave2_mc = (TH1F*)histos->Get("PtAve_mc_wo_dijetselec");
-//   TLegend* leg=new TLegend(0.75,0.4,0.9,0.8);
-//   leg->AddEntry(h_ptave2_data,"data");
-//   leg->AddEntry(h_ptave2_mc,"MC");
   leg->SetFillStyle(0);
   leg->SetBorderSize(0);
   
@@ -1099,22 +1077,18 @@ void ratioplot(TFile *histos){
   cout << "data events: "<< dataevents  << endl;
   
   cout << "mcevents : " << mcevents << endl;  
-//   xtitle="Pt 3rd Jet";
-//     //draw histos
-//   h_eta1->Sumw2();
-//   h_eta1_data->Sumw2();
   h_ptave2_mc->Draw("histE0");
+  h_ptave2_mc->SetStats(0);
+  Style(h_ptave2_mc,"","events");
+  h_ptave2_mc->SetTitle("p_{T}^{Avg} without Dijetselection");  
   h_ptave2_data->SetMarkerStyle(20);
-  h_ptave2_data->SetMarkerSize(0.5);
+  h_ptave2_data->SetMarkerSize(0.5);  
   h_ptave2_data->Draw("sameE0");
-//   leg->Draw();
+  leg->Draw();
   text->DrawLatex(0.175, 0.863, text_cms);
-  text->DrawLatex(0.175, 0.815, cutlabel);
+
   c1->cd();
   //makepadratio
-//   TPad* padratio=new TPad("padratio","padratio",0,0,1,0.3);
-  padratio->SetTopMargin(0);
-  padratio->SetBottomMargin(1.1);
   padratio->Draw();
   padratio->cd();
   
@@ -1131,12 +1105,8 @@ void ratioplot(TFile *histos){
   ratio3->SetMaximum(1.6);
   ratio3->SetMinimum(0.4);
   //set_ratioattributes  
-  ratio3->GetYaxis()->SetNdivisions(510);
-  ratio3->GetYaxis()->SetLabelSize(0.1);
-  ratio3->GetXaxis()->SetTitle(xtitle);
-  ratio3->GetXaxis()->SetTitleSize(0.11);
-  ratio3->GetXaxis()->SetNdivisions(510);
-  ratio3->GetXaxis()->SetLabelSize(0.1);    
+  Styleratio(ratio3,"p_{T}^{Avg} in GeV/c","data/MC") ;
+//   padratio->SetBottomMargin(0.3);
   line->Draw();  
   c1->SaveAs("h_ptave_wo_dijetselec.pdf");
   
@@ -1146,43 +1116,33 @@ void ratioplot(TFile *histos){
   ///////////////////////7/
   TH1F* h_pt0_data = (TH1F*)histos->Get("h_pt0_data");
   TH1F* h_pt0 = (TH1F*)histos->Get("h_pt0");
-//   TLegend* leg=new TLegend(0.75,0.4,0.9,0.8);
-//   leg->AddEntry(h_pt0_data,"data");
-//   leg->AddEntry(h_pt0,"MC");
   leg->SetFillStyle(0);
   leg->SetBorderSize(0);
-  
-//   TCanvas *c1=new TCanvas();
+
   c1->cd();
   //makepadhist
-//   TPad* padhist=new TPad("padhist","padhist",0,0.3,1,1);
-  padhist->SetBottomMargin(0);
   padhist->Draw();
   padhist->cd();
 
   mcevents=h_pt0->Integral();
   dataevents=h_pt0_data->Integral();
   cout << "pt0"<<endl;
-  cout << "data events: "<< dataevents  << endl;
-  
+  cout << "data events: "<< dataevents  << endl;  
   cout << "mcevents : " << mcevents << endl; 
-  
-//   xtitle="Pt 3rd Jet";
-//     //draw histos
+
   h_pt0->Sumw2();
   h_pt0_data->Sumw2();
   h_pt0->Draw("histE0");
+  Style(h_pt0,"","events");
+  h_pt0->SetTitle("");
   h_pt0_data->SetMarkerStyle(20);
   h_pt0_data->SetMarkerSize(0.5);
   h_pt0_data->Draw("SAMEE0");
 //   leg->Draw();
-  text->DrawLatex(0.175, 0.863, text_cms);
-  text->DrawLatex(0.175, 0.815, cutlabel);
+  text->DrawLatex(0.23, 0.863, text_cms);
+  text->DrawLatex(0.23, 0.815, cutlabel);
   c1->cd();
   //makepadratio
-//   TPad* padratio=new TPad("padratio","padratio",0,0,1,0.3);
-  padratio->SetTopMargin(0);
-  padratio->SetBottomMargin(1.1);
   padratio->Draw();
   padratio->cd();
   
@@ -1199,12 +1159,7 @@ void ratioplot(TFile *histos){
   ratio2->SetMaximum(1.6);
   ratio2->SetMinimum(0.4);
   //set_ratioattributes  
-  ratio2->GetYaxis()->SetNdivisions(510);
-  ratio2->GetYaxis()->SetLabelSize(0.1);
-  ratio2->GetXaxis()->SetTitle(xtitle);
-  ratio2->GetXaxis()->SetTitleSize(0.11);
-  ratio2->GetXaxis()->SetNdivisions(510);
-  ratio2->GetXaxis()->SetLabelSize(0.1);    
+  Styleratio(ratio2,"p_{T} of hardest Jet","data/MC");    
   line->Draw();  
   c1->SaveAs("h_pt0.pdf");
   
@@ -1216,43 +1171,33 @@ void ratioplot(TFile *histos){
   ///////////////////////7/
   TH1F* h_pt1_data = (TH1F*)histos->Get("h_pt1_data");
   TH1F* h_pt1 = (TH1F*)histos->Get("h_pt1");
-//   TLegend* leg=new TLegend(0.75,0.4,0.9,0.8);
-//   leg->AddEntry(h_pt1_data,"data");
-//   leg->AddEntry(h_pt1,"MC");
   leg->SetFillStyle(0);
   leg->SetBorderSize(0);
-  
-//   TCanvas *c1=new TCanvas();
+
   c1->cd();
-  //makepadhist
-//   TPad* padhist=new TPad("padhist","padhist",0,0.3,1,1);
-  padhist->SetBottomMargin(0);
+//makepadhist
   padhist->Draw();
   padhist->cd();
 
   mcevents=h_pt1->Integral();
   dataevents=h_pt1_data->Integral();
   cout << "pt1"<<endl;
-  cout << "data events: "<< dataevents  << endl;
-  
+  cout << "data events: "<< dataevents  << endl;  
   cout << "mcevents : " << mcevents << endl; 
-  
-//   xtitle="Pt 3rd Jet";
-//     //draw histos
+
   h_pt1->Sumw2();
   h_pt1_data->Sumw2();
   h_pt1->Draw("histE0");
+  Style(h_pt1,"","events");
+  h_pt1->SetTitle("");
   h_pt1_data->SetMarkerStyle(20);
   h_pt1_data->SetMarkerSize(0.5);
   h_pt1_data->Draw("SAMEE0");
 //   leg->Draw();
-  text->DrawLatex(0.175, 0.863, text_cms);
-  text->DrawLatex(0.175, 0.815, cutlabel);
+  text->DrawLatex(0.23, 0.863, text_cms);
+  text->DrawLatex(0.23, 0.815, cutlabel);
   c1->cd();
   //makepadratio
-//   TPad* padratio=new TPad("padratio","padratio",0,0,1,0.3);
-  padratio->SetTopMargin(0);
-  padratio->SetBottomMargin(1.1);
   padratio->Draw();
   padratio->cd();
   
@@ -1269,12 +1214,7 @@ void ratioplot(TFile *histos){
   ratio2->SetMaximum(1.6);
   ratio2->SetMinimum(0.4);
   //set_ratioattributes  
-  ratio2->GetYaxis()->SetNdivisions(510);
-  ratio2->GetYaxis()->SetLabelSize(0.1);
-  ratio2->GetXaxis()->SetTitle(xtitle);
-  ratio2->GetXaxis()->SetTitleSize(0.11);
-  ratio2->GetXaxis()->SetNdivisions(510);
-  ratio2->GetXaxis()->SetLabelSize(0.1);    
+  Styleratio(ratio2,"p_{T} of 2nd-hardest Jet","data/MC");   
   line->Draw();  
   c1->SaveAs("h_pt1.pdf");
   
@@ -1284,46 +1224,39 @@ void ratioplot(TFile *histos){
   ///////////////////////7/
   TH1F* h_dphi_data = (TH1F*)histos->Get("h_dphi_data");
   TH1F* h_dphi = (TH1F*)histos->Get("h_dphi");
-//   TLegend* leg=new TLegend(0.75,0.4,0.9,0.8);
-//   leg->AddEntry(h_dphi_data,"data");
-//   leg->AddEntry(h_dphi,"MC");
+  TLine* dphiline=new TLine(0,1,3.5,1);
   leg->SetFillStyle(0);
   leg->SetBorderSize(0);
   
 //   TCanvas *c1=new TCanvas();
   c1->cd();
   //makepadhist
-//   TPad* padhist=new TPad("padhist","padhist",0,0.3,1,1);
-  padhist->SetBottomMargin(0);
   padhist->Draw();
   padhist->cd();
 
   mcevents=h_dphi->Integral();
   dataevents=h_dphi_data->Integral();
   cout << "dphi"<<endl;
-  cout << "data events: "<< dataevents  << endl;
-  
+  cout << "data events: "<< dataevents  << endl;  
   cout << "mcevents : " << mcevents << endl; 
   
-//   xtitle="Pt 3rd Jet";
-//     //draw histos
+  //draw histos
   h_dphi->Sumw2();
   h_dphi_data->Sumw2();
   h_dphi->Draw("histE0");
+  Style(h_dphi,"","events");
+  h_dphi->SetTitle("#Delta #Phi between two hardest Jets");
+  h_dphi->SetStats(0);  
   h_dphi_data->SetMarkerStyle(20);
   h_dphi_data->SetMarkerSize(0.5);
   h_dphi_data->Draw("SAMEE0");
 //   leg->Draw();
   text->DrawLatex(0.175, 0.863, text_cms);
-  text->DrawLatex(0.175, 0.815, cutlabel);
+//   text->DrawLatex(0.175, 0.815, cutlabel);
   c1->cd();
   //makepadratio
-//   TPad* padratio=new TPad("padratio","padratio",0,0,1,0.3);
-  padratio->SetTopMargin(0);
-  padratio->SetBottomMargin(1.1);
   padratio->Draw();
-  padratio->cd();
-  
+  padratio->cd();  
   //makeratio    
   ratio2=(TH1F*)h_dphi_data->Clone(); 
   ratio2->SetTitle("");
@@ -1337,13 +1270,8 @@ void ratioplot(TFile *histos){
   ratio2->SetMaximum(1.6);
   ratio2->SetMinimum(0.4);
   //set_ratioattributes  
-  ratio2->GetYaxis()->SetNdivisions(510);
-  ratio2->GetYaxis()->SetLabelSize(0.1);
-  ratio2->GetXaxis()->SetTitle(xtitle);
-  ratio2->GetXaxis()->SetTitleSize(0.11);
-  ratio2->GetXaxis()->SetNdivisions(510);
-  ratio2->GetXaxis()->SetLabelSize(0.1);    
-  line->Draw();  
+  Styleratio(ratio2,"#Delta #Phi","data/MC"); 
+  dphiline->Draw();  
   c1->SaveAs("h_dphi.pdf");
   
   ////////////////////////
@@ -1368,7 +1296,7 @@ void ratioplot(TFile *histos){
 
   mcevents=h_ptave1_mc->Integral();
   dataevents=h_ptave1_data->Integral();
-  cout << "dphi"<<endl;
+  cout << "ptave"<<endl;
   cout << "data events: "<< dataevents  << endl;
   
   cout << "mcevents : " << mcevents << endl; 
@@ -1386,9 +1314,6 @@ void ratioplot(TFile *histos){
   text->DrawLatex(0.175, 0.815, cutlabel);
   c1->cd();
   //makepadratio
-//   TPad* padratio=new TPad("padratio","padratio",0,0,1,0.3);
-  padratio->SetTopMargin(0);
-  padratio->SetBottomMargin(1.1);
   padratio->Draw();
   padratio->cd();
   
@@ -1408,7 +1333,7 @@ void ratioplot(TFile *histos){
   ratio2->GetYaxis()->SetNdivisions(510);
   ratio2->GetYaxis()->SetLabelSize(0.1);
   ratio2->GetXaxis()->SetTitle(xtitle);
-  ratio2->GetXaxis()->SetTitleSize(0.11);
+  ratio2->GetXaxis()->SetTitleSize(0.2);
   ratio2->GetXaxis()->SetNdivisions(510);
   ratio2->GetXaxis()->SetLabelSize(0.1);    
   line->Draw();  
@@ -1454,9 +1379,6 @@ void ratioplot(TFile *histos){
   text->DrawLatex(0.175, 0.815, cutlabel);
   c1->cd();
   //makepadratio
-//   TPad* padratio=new TPad("padratio","padratio",0,0,1,0.3);
-  padratio->SetTopMargin(0);
-  padratio->SetBottomMargin(1.1);
   padratio->Draw();
   padratio->cd();
   
@@ -1476,7 +1398,7 @@ void ratioplot(TFile *histos){
   ratio2->GetYaxis()->SetNdivisions(510);
   ratio2->GetYaxis()->SetLabelSize(0.1);
   ratio2->GetXaxis()->SetTitle(xtitle);
-  ratio2->GetXaxis()->SetTitleSize(0.11);
+  ratio2->GetXaxis()->SetTitleSize(0.2);
   ratio2->GetXaxis()->SetNdivisions(510);
   ratio2->GetXaxis()->SetLabelSize(0.1);    
   line->Draw();  
@@ -1522,9 +1444,6 @@ void ratioplot(TFile *histos){
   text->DrawLatex(0.175, 0.815, cutlabel);
   c1->cd();
   //makepadratio
-//   TPad* padratio=new TPad("padratio","padratio",0,0,1,0.3);
-  padratio->SetTopMargin(0);
-  padratio->SetBottomMargin(1.1);
   padratio->Draw();
   padratio->cd();
   
@@ -1544,7 +1463,7 @@ void ratioplot(TFile *histos){
   ratio2->GetYaxis()->SetNdivisions(510);
   ratio2->GetYaxis()->SetLabelSize(0.1);
   ratio2->GetXaxis()->SetTitle(xtitle);
-  ratio2->GetXaxis()->SetTitleSize(0.11);
+  ratio2->GetXaxis()->SetTitleSize(0.2);
   ratio2->GetXaxis()->SetNdivisions(510);
   ratio2->GetXaxis()->SetLabelSize(0.1);    
   line->Draw();  
@@ -1556,43 +1475,33 @@ void ratioplot(TFile *histos){
   ///////////////////////7/
   TH1F* h_ptassym_data = (TH1F*)histos->Get("h_ptassym_data");
   TH1F* h_ptassym = (TH1F*)histos->Get("h_ptassym");
-//   TLegend* leg=new TLegend(0.75,0.4,0.9,0.8);
-//   leg->AddEntry(h_ptassym_data,"data");
-//   leg->AddEntry(h_ptassym,"MC");
   leg->SetFillStyle(0);
   leg->SetBorderSize(0);
   
-//   TCanvas *c1=new TCanvas();
   c1->cd();
   //makepadhist
-//   TPad* padhist=new TPad("padhist","padhist",0,0.3,1,1);
-  padhist->SetBottomMargin(0);
   padhist->Draw();
   padhist->cd();
 
   mcevents=h_ptassym->Integral();
   dataevents=h_ptassym_data->Integral();
   cout << "ptassym"<<endl;
-  cout << "data events: "<< dataevents  << endl;
-  
+  cout << "data events: "<< dataevents  << endl;  
   cout << "mcevents : " << mcevents << endl; 
-  
-//   xtitle="Pt 3rd Jet";
-//     //draw histos
+
   h_ptassym->Sumw2();
   h_ptassym_data->Sumw2();
   h_ptassym->Draw("histE0");
+  Style(h_ptassym,"","events");
+  h_ptassym->SetTitle("p_{T} asymmetry");
   h_ptassym_data->SetMarkerStyle(20);
   h_ptassym_data->SetMarkerSize(0.5);
   h_ptassym_data->Draw("SAMEE0");
 //   leg->Draw();
-  text->DrawLatex(0.175, 0.863, text_cms);
-  text->DrawLatex(0.175, 0.815, cutlabel);
+  text->DrawLatex(0.23, 0.863, text_cms);
+  text->DrawLatex(0.23, 0.815, cutlabel);
   c1->cd();
   //makepadratio
-//   TPad* padratio=new TPad("padratio","padratio",0,0,1,0.3);
-  padratio->SetTopMargin(0);
-  padratio->SetBottomMargin(1.1);
   padratio->Draw();
   padratio->cd();
   
@@ -1609,12 +1518,7 @@ void ratioplot(TFile *histos){
   ratio2->SetMaximum(1.6);
   ratio2->SetMinimum(0.4);
   //set_ratioattributes  
-  ratio2->GetYaxis()->SetNdivisions(510);
-  ratio2->GetYaxis()->SetLabelSize(0.1);
-  ratio2->GetXaxis()->SetTitle(xtitle);
-  ratio2->GetXaxis()->SetTitleSize(0.11);
-  ratio2->GetXaxis()->SetNdivisions(510);
-  ratio2->GetXaxis()->SetLabelSize(0.1);    
+  Styleratio(ratio2,"p_{T} asymmetry","data/MC");   
   line->Draw();  
   c1->SaveAs("h_ptassym.pdf");
   

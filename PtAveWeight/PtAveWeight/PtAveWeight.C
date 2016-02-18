@@ -26,7 +26,7 @@ using namespace std;
 vector<TH1F*>readhistos(TFile *file, char c){
   vector<TH1F*> res;
   if (c=='d'){
-    for (int i=0; i<6;++i){
+    for (int i=0; i<7;++i){
     stringstream ss;
     ss << i;
     TString counter=ss.str();
@@ -36,7 +36,7 @@ vector<TH1F*>readhistos(TFile *file, char c){
     }
   }
   else if (c=='p'){
-    for (int i=0; i<6;++i){
+    for (int i=0; i<7;++i){
     stringstream ss;
     ss << i;
     TString counter=ss.str();
@@ -54,7 +54,7 @@ void PtAveWeight(TFile *histos){
   cout << "Reading Histos from file" << endl;
   vector<TH1F*>h_data=readhistos(histos,'d');
   vector<TH1F*>h_mc=readhistos(histos,'p');
-  TH1F* h_PtAveWeight=new TH1F("PtAveWeight","PtAveWeight",6,0,6);
+  TH1F* h_PtAveWeight=new TH1F("PtAveWeight","PtAveWeight",7,0,7);
   
   
   char text_cms[]="CMS private Work";
@@ -69,10 +69,10 @@ void PtAveWeight(TFile *histos){
   float dataevents=0;
 
   
-  for (int i=0; i<6;++i){
+  for (int i=0; i<7;++i){
     //makelegend
-   
-    TLegend* leg=new TLegend(0.75,0.4,0.9,0.8);
+    gStyle->SetPadLeftMargin(0.18);
+    TLegend* leg=new TLegend(0.7,0.5,0.9,0.8);
     leg->AddEntry(h_data.at(i),"data");
     leg->AddEntry(h_mc.at(i),"MC");
     leg->SetFillStyle(0);
@@ -101,13 +101,20 @@ void PtAveWeight(TFile *histos){
 //     h_mc.at(i)->Draw("histE0");
     h_data.at(i)->SetLineColor(kRed);
     h_data.at(i)->Draw("samehistE0");
-    h_data.at(i)->SetTitle("p_{T}^{Avg} Bin 1");
-    h_data.at(i)->GetXaxis()->SetTitle("p_{T}^{Avg}");
+    h_data.at(i)->SetTitle(" 89.6 GeV/c <= p_{T}^{Avg} < 155.6 GeV/c");
+    h_data.at(i)->GetXaxis()->SetTitle("p_{T}^{Avg} in GeV/c");
+    h_data.at(i)->GetXaxis()->SetTitleSize(0.05);
+    h_data.at(i)->GetXaxis()->SetTitleOffset(0.8);
+    h_data.at(i)->GetYaxis()->SetTitle("events");
+    h_data.at(i)->GetYaxis()->SetTitleSize(0.08);
+    h_data.at(i)->GetYaxis()->SetTitleOffset(0.8);
+    h_data.at(i)->SetStats(0);
+    
     mc_norm->Draw("samehistE0");
     mc_norm->SetLineColor(kBlack);
     leg->Draw();
 //     gPad->SetLogy();
-    text->DrawLatex(0.1, 0.9, text_cms);
+    text->DrawLatex(0.2, 0.85, text_cms);
 //     text->DrawLatex(0.175, 0.815, cutlabel);
     
     stringstream ss;

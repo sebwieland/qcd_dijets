@@ -54,28 +54,27 @@ TChain *createTChain(const TString &fileName) {
   
 }
 
-
-void fillhisto(TH1F* hist,float &ptave, float var, vector<float>Weight,char option,int hlt40=0,int hlt60=0,int hlt80=0,int hlt140=0,int hlt200=0,int hlt260=0,int hlt320=0,int hlt400=0,int hlt500=0)
+void fillhisto(TH1F* hist,float &ptave, float  var, vector<float>Weight,char option,int hlt40=0,int hlt60=0,int hlt80=0,int hlt140=0,int hlt200=0,int hlt260=0,int hlt320=0,int hlt400=0,int hlt500=0)
 {
   if(option=='m')
   {
-//     if (ptave < 67.6)				hist->Fill(var,Weight.at(0));
-    if (ptave >= 77 && ptave < 99)   	 	hist->Fill(var,Weight.at(0));
-    else if (ptave >= 99 && ptave < 165)  	hist->Fill(var,Weight.at(1));
-    else if (ptave >= 165 && ptave < 231)	hist->Fill(var,Weight.at(2));
-    else if (ptave >= 231 && ptave < 298) 	hist->Fill(var,Weight.at(3));
-    else if (ptave >= 298 && ptave < 365) 	hist->Fill(var,Weight.at(4));
-    else if (ptave >= 365 		) 	hist->Fill(var,Weight.at(5));
+    if (ptave >= 55 && ptave < 67.6)   	 	hist->Fill(var,Weight.at(0));
+    else if (ptave >= 67.6 && ptave < 89.6)   	hist->Fill(var,Weight.at(1));
+    else if (ptave >= 89.6 && ptave < 155.6)  	hist->Fill(var,Weight.at(2));
+    else if (ptave >= 155.6 && ptave < 221.6)	hist->Fill(var,Weight.at(3));
+    else if (ptave >= 221.6 && ptave < 287.6) 	hist->Fill(var,Weight.at(4));
+    else if (ptave >= 287.6 && ptave < 353.6) 	hist->Fill(var,Weight.at(5));
+    else if (ptave >= 353.6 		) 	hist->Fill(var,Weight.at(6));
   }
   else if (option=='d')
   {
-//     if (ptave<67.6 && hlt40==1)                          	hist->Fill(var);
-    if (ptave >= 77 && ptave < 99 && hlt60==1)   		hist->Fill(var);
-	else if (ptave >= 99 && ptave < 165 && hlt80==1)  	hist->Fill(var);
-	else if (ptave >= 165 && ptave < 231 && hlt140==1)	hist->Fill(var);
-	else if (ptave >= 231 && ptave < 298 && hlt200==1)	hist->Fill(var);
-	else if (ptave >= 298 && ptave < 365 && hlt260==1)	hist->Fill(var);
-	else if (ptave >= 365 && hlt320==1)			hist->Fill(var);
+    if (ptave>=55 && ptave < 67.6 && hlt40==1)                        	hist->Fill(var);
+    else if (ptave >= 67.6 && ptave < 89.6 && hlt60==1)   	hist->Fill(var);
+    else if (ptave >= 89.6 && ptave < 155.6 && hlt80==1)  	hist->Fill(var);
+    else if (ptave >= 155.6 && ptave < 221.6 && hlt140==1)	hist->Fill(var);
+    else if (ptave >= 221.6 && ptave < 287.6 && hlt200==1)	hist->Fill(var);
+    else if (ptave >= 287.6 && ptave < 353.6 && hlt260==1)	hist->Fill(var);
+    else if (ptave >= 353.6 && hlt320==1)			hist->Fill(var);
   }
 }
 
@@ -96,7 +95,7 @@ void analysetrees(const TString &datalist,const TString &mclist){
   TFile* f_PUWeight=new TFile("../PU_Reweighting/pu_weight/PUWeight.root");
   TH1F* h_PUWeight = (TH1F*)f_PUWeight->Get("PUWeight");
   vector<float> PtAveWeight;
-  for (int i=1; i<=6;++i){
+  for (int i=1; i<=7;++i){
     float tmp=h_ptaveweight->GetBinContent(i);
     PtAveWeight.push_back(tmp); 
     cout << tmp<<endl;
@@ -143,6 +142,7 @@ void analysetrees(const TString &datalist,const TString &mclist){
   TH1F* h_ptave3_mc=new TH1F("PtAve_mc_w_dijetselec","PtAve2_mc_w_dijetselec",80,0,1000);
   TH1F* h_ptave1_mc=new TH1F("PtAve_mc_w_dijetselec_1","PtAve1_mc_w_dijetselec",80,0,1000);
   TH1F* h_dphi=new TH1F("h_dphi","h_dphi w/ all Weights",45,0,3.5);
+  TH1F* h_dphi_cut=new TH1F("h_dphi_cut","h_dphi w/ all Weights and dphicut",45,0,3.5);
   TH1F* h_pt0=new TH1F("h_pt0","h_pt0 w/ all Weights",120,0,1000);
   TH1F* h_pt1=new TH1F("h_pt1","h_pt1 w/ all Weights",120,0,1000);
   TH1F* h_pt0_dijet=new TH1F("h_pt0_dijet","h_pt0_dijet w/ all Weights",120,0,1000);
@@ -174,7 +174,7 @@ void analysetrees(const TString &datalist,const TString &mclist){
   
   //initialize Weight
    vector<float> Weight;
-    for (int i=0; i<6;++i){
+    for (int i=0; i<7;++i){
       float tmp=PtAveWeight.at(i);
       Weight.push_back(tmp);    
     }
@@ -190,7 +190,7 @@ void analysetrees(const TString &datalist,const TString &mclist){
 //     if(iEntry>1000000) break;
     mcchain->GetEntry(iEntry);
     //calculate event weight
-    for (int i=0; i<6;++i){      
+    for (int i=0; i<7;++i){      
       Weight.at(i)=Weight_XS*PtAveWeight.at(i)*puweight.at(N_PV); 
     }
     float ptave=PtAve;  
@@ -207,6 +207,7 @@ void analysetrees(const TString &datalist,const TString &mclist){
 	  fillhisto(h_ptave1_mc,ptave, ptave, Weight,'m');
 	  fillhisto( h_pt0_dijet,ptave, Jet_Pt[0], Weight,'m'); 
 	  fillhisto( h_pt1_dijet,ptave, Jet_Pt[1], Weight,'m'); 
+	  fillhisto( h_dphi_cut,ptave, DeltaPhi, Weight,'m');
 	}
     
 	if(N_Jets==2 && DeltaPhi > dphicut){	
@@ -320,6 +321,7 @@ void analysetrees(const TString &datalist,const TString &mclist){
   TH1F* h_pt3_pt3cut_data=new TH1F("h_pt3_pt3cut_data","h_pt3_data  /w pt3cut",80,0,220);
   TH1F* h_pt3overavg_data=new TH1F("h_pt3overavg_data","h_pt3overavg_data",60,0,1.5);
   TH1F* h_dphi_data=new TH1F("h_dphi_data","h_dphi_data ",45,0,3.5);
+  TH1F* h_dphi_data_cut=new TH1F("h_dphi_data_Cut","h_dphi_data ",45,0,3.5);
   
   TH1F* h_ptassym_data=new TH1F("h_ptassym_data","Pt assymetry",50,0,1);
   
@@ -360,6 +362,7 @@ void analysetrees(const TString &datalist,const TString &mclist){
       fillhisto( h_pt1_data,ptave, Jet_Pt_data[1], Weight,'d',hlt40,hlt60,hlt80,hlt140,hlt200,hlt260,hlt320,hlt400,hlt500);
       fillhisto( h_ptassym_data,ptave, abs(Jet_Pt_data[0]-Jet_Pt_data[1])/(Jet_Pt_data[0]+Jet_Pt_data[1]), Weight,'d',hlt40,hlt60,hlt80,hlt140,hlt200,hlt260,hlt320,hlt400,hlt500);
       if (DeltaPhi_data > dphicut ){
+	fillhisto( h_dphi_data_cut,ptave, DeltaPhi_data, Weight,'d',hlt40,hlt60,hlt80,hlt140,hlt200,hlt260,hlt320,hlt400,hlt500);
 	fillhisto(h_ptave1_data,ptave, ptave, Weight,'d',hlt40,hlt60,hlt80,hlt140,hlt200,hlt260,hlt320,hlt400,hlt500);
 	fillhisto( h_pt0_data_dijet,ptave, Jet_Pt_data[0], Weight,'d',hlt40,hlt60,hlt80,hlt140,hlt200,hlt260,hlt320,hlt400,hlt500);
 	fillhisto( h_pt1_data_dijet,ptave, Jet_Pt_data[1], Weight,'d',hlt40,hlt60,hlt80,hlt140,hlt200,hlt260,hlt320,hlt400,hlt500);

@@ -23,6 +23,66 @@
 #include <fstream>
 
 using namespace std;
+void Stylestack(THStack* h, const char *xTitle, const char *yTitle)
+{
+  h->GetXaxis()->SetTitle(xTitle);
+  h->GetXaxis()->SetTitleFont(42);
+  h->GetXaxis()->SetLabelFont(42);
+  h->GetXaxis()->SetTitleColor(1);
+  h->GetXaxis()->SetTitleOffset(0.9);
+  h->GetXaxis()->SetTitleSize(0.1);
+  h->GetXaxis()->SetLabelSize(0.13);
+  h->GetXaxis()->SetNdivisions(510);
+
+  h->GetYaxis()->SetTitle(yTitle);
+  h->GetYaxis()->SetTitleFont(42);
+  h->GetYaxis()->SetLabelFont(42);
+  h->GetYaxis()->SetTitleOffset(0.7);
+  h->GetYaxis()->SetTitleSize(0.1);
+  h->GetYaxis()->SetLabelSize(0.07);
+  h->GetYaxis()->SetNdivisions(510);
+}
+
+void Style(TH1* h, const char *xTitle, const char *yTitle)
+{
+  h->GetXaxis()->SetTitle(xTitle);
+  h->GetXaxis()->SetTitleFont(42);
+  h->GetXaxis()->SetLabelFont(42);
+  h->GetXaxis()->SetTitleColor(1);
+  h->GetXaxis()->SetTitleOffset(0.9);
+  h->GetXaxis()->SetTitleSize(0.1);
+  h->GetXaxis()->SetLabelSize(0.13);
+  h->GetXaxis()->SetNdivisions(510);
+
+  h->GetYaxis()->SetTitle(yTitle);
+  h->GetYaxis()->SetTitleFont(42);
+  h->GetYaxis()->SetLabelFont(42);
+  h->GetYaxis()->SetTitleOffset(0.7);
+  h->GetYaxis()->SetTitleSize(0.1);
+  h->GetYaxis()->SetLabelSize(0.07);
+  h->GetYaxis()->SetNdivisions(510);
+}
+
+void Styleratio(TH1* h, const char *xTitle, const char *yTitle)
+{
+  h->GetXaxis()->SetTitle(xTitle);
+  h->GetXaxis()->SetTitleFont(42);
+  h->GetXaxis()->SetLabelFont(42);
+  h->GetXaxis()->SetTitleColor(1);
+  h->GetXaxis()->SetTitleOffset(1.1);
+  h->GetXaxis()->SetTitleSize(0.18);
+  h->GetXaxis()->SetLabelSize(0.13);
+  h->GetXaxis()->SetNdivisions(510);
+
+  h->GetYaxis()->SetTitle(yTitle);
+  h->GetYaxis()->SetTitleFont(42);
+  h->GetYaxis()->SetLabelFont(42);
+  h->GetYaxis()->SetTitleOffset(0.4);
+  h->GetYaxis()->SetTitleSize(0.1);
+  h->GetYaxis()->SetLabelSize(0.13);
+  h->GetYaxis()->SetNdivisions(510);
+}
+
 vector<vector<TH1F*>> readhistos(TFile *file, char c){
   int n_ptbins= 10;
   int n_etabins=4;
@@ -122,6 +182,21 @@ vector<vector<TH1F*>> readhistos(TFile *file, char c){
 }
 
 void calculate_sf(TFile *histos){
+  
+  gStyle->SetPadLeftMargin(0.15);
+  gStyle->SetPadRightMargin(0.05);
+  gStyle->SetPadTopMargin(0.08);
+  gStyle->SetPadBottomMargin(0.45);
+
+// Zero horizontal error bars
+  gStyle->SetErrorX(0);
+ 
+  //  For the statistics box:
+  gStyle->SetOptStat(0);
+
+  //  For the legend
+  gStyle->SetLegendBorderSize(0);
+  
   //outputfile
   TFile* outfile=new TFile("scalefactors.root","RECREATE");
   cout << "Reading Histos from file" << endl;
@@ -145,17 +220,6 @@ void calculate_sf(TFile *histos){
     }
   }
 
-
-//   //makestacks
-//   vector<vector<THStack*>>mc_stack;
-//   for (int i=0; i<7;++i){
-//    THStack* tmp=new THStack();
-//    tmp->Add(h_b[i][j]);
-//    tmp->Add(h_c[i][j]);
-//    tmp->Add(h_lf[i][j]);
-//    mc_stack.push_back(tmp);
-//    tmp->Delete();
-//   }
   float xmin=-0.1;
   float xmax=1;
   //text + line in ratio
@@ -219,8 +283,7 @@ void calculate_sf(TFile *histos){
       mcevents=mc->Integral();
       cout << "ptbin "<< i <<" etabin " <<j<< endl;
       dataevents=h_data[i][j]->Integral();
-      cout << "data events: "<< dataevents  << endl;
-      
+      cout << "data events: "<< dataevents  << endl;      
       cout << "mcevents before normalization: " << mcevents << endl;
       
       if(ptnorm==true){
@@ -244,16 +307,17 @@ void calculate_sf(TFile *histos){
   //     //draw histos
       h_data[i][j]->Sumw2();
       mc_stack_hf_normalized->Draw("histE0");
+      Stylestack(mc_stack_hf_normalized,"","events");
+      h_data[i][j]->Draw("sameE0");
       h_data[i][j]->SetMarkerStyle(20);
-      h_data[i][j]->Draw("SAMEE0");
+   
       leg_hf->Draw();
-      text->DrawLatex(0.175, 0.863, text_cms);
-      text->DrawLatex(0.175, 0.815, cutlabel);
+      text->DrawLatex(0.4, 0.863, text_cms);
+      text->DrawLatex(0.4, 0.815, cutlabel);
       c1->cd();
       //makepadratio
       TPad* padratio_hf=new TPad("padratio_hf","padratio_hf",0,0,1,0.3);
       padratio_hf->SetTopMargin(0);
-      padratio_hf->SetBottomMargin(1.1);
       padratio_hf->Draw();
       padratio_hf->cd();
       
@@ -268,20 +332,14 @@ void calculate_sf(TFile *histos){
       ratio_hf->Draw("SAMEE0");
       ratio_hf->SetMaximum(1.6);
       ratio_hf->SetMinimum(0.4);
-      //set_ratioattributes  
-      ratio_hf->GetYaxis()->SetNdivisions(510);
-      ratio_hf->GetYaxis()->SetLabelSize(0.1);
-      ratio_hf->GetXaxis()->SetTitle(xtitle_hf);
-      ratio_hf->GetXaxis()->SetTitleSize(0.11);
-      ratio_hf->GetXaxis()->SetNdivisions(510);
-      ratio_hf->GetXaxis()->SetLabelSize(0.1);
-  
+      //set_ratioattributes
+      Styleratio(ratio_hf,xtitle_hf,"data/MC"); 
       
       line->Draw();
       stringstream ss;
       ss << i;
       TString counter=ss.str();
-      c1->SaveAs("CSV_ratio_hf_ptbin"+pt_counter+"_etabin"+eta_counter+".pdf");
+      c1->SaveAs("CSV_ratio_hf_ptbin"+pt_counter+"_etabin"+eta_counter+"_nodrcut.pdf");
 
 
       //subtract LF contamination
@@ -303,7 +361,7 @@ void calculate_sf(TFile *histos){
       nonlf_hf->SetLineColor(kRed);
       nonlf_hf->Write();
       c2->BuildLegend(0.2,0.8,0.7,0.9);
-      c2->SaveAs("diff_hf_ptbin"+pt_counter+"_etabin"+eta_counter+".pdf");
+      c2->SaveAs("diff_hf_ptbin"+pt_counter+"_etabin"+eta_counter+"_nodrcut.pdf");
     
       //calculate hfSF
       TH1F* hfsf=(TH1F*)diff_hf->Clone();
@@ -321,7 +379,7 @@ void calculate_sf(TFile *histos){
       line->Draw();
       hfsf->Write();
       hfsf->GetXaxis()->SetTitle("hfSF");
-      c2->SaveAs("hfSF_ptbin"+pt_counter+"_etabin"+eta_counter+".pdf");
+      c2->SaveAs("hfSF_ptbin"+pt_counter+"_etabin"+eta_counter+"_nodrcut.pdf");
 
     
       

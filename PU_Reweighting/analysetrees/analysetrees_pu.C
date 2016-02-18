@@ -58,23 +58,23 @@ void fillhisto(TH1F* hist,float &ptave, int  &var, vector<float>Weight,char opti
 {
   if(option=='m')
   {
-//     if (ptave < 67.6)				hist->Fill(var,Weight.at(0));
-    if (ptave >= 77 && ptave < 99)   	 	hist->Fill(var,Weight.at(0));
-    else if (ptave >= 99 && ptave < 165)  	hist->Fill(var,Weight.at(1));
-    else if (ptave >= 165 && ptave < 231)	hist->Fill(var,Weight.at(2));
-    else if (ptave >= 231 && ptave < 298) 	hist->Fill(var,Weight.at(3));
-    else if (ptave >= 298 && ptave < 365) 	hist->Fill(var,Weight.at(4));
-    else if (ptave >= 365 		) 	hist->Fill(var,Weight.at(5));
+    if (ptave >= 55 && ptave < 67.6)   	 	hist->Fill(var,Weight.at(0));
+    else if (ptave >= 67.6 && ptave < 89.6)   	hist->Fill(var,Weight.at(1));
+    else if (ptave >= 89.6 && ptave < 155.6)  	hist->Fill(var,Weight.at(2));
+    else if (ptave >= 155.6 && ptave < 221.6)	hist->Fill(var,Weight.at(3));
+    else if (ptave >= 221.6 && ptave < 287.6) 	hist->Fill(var,Weight.at(4));
+    else if (ptave >= 287.6 && ptave < 353.6) 	hist->Fill(var,Weight.at(5));
+    else if (ptave >= 353.6 		) 	hist->Fill(var,Weight.at(6));
   }
   else if (option=='d')
   {
-//     if (ptave<67.6 && hlt40==1)                          	hist->Fill(var);
-  if (ptave >= 77 && ptave < 99 && hlt60==1)   		hist->Fill(var);
-    else if (ptave >= 99 && ptave < 165 && hlt80==1)  	hist->Fill(var);
-    else if (ptave >= 165 && ptave < 231 && hlt140==1)	hist->Fill(var);
-    else if (ptave >= 231 && ptave < 298 && hlt200==1)	hist->Fill(var);
-    else if (ptave >= 298 && ptave < 365 && hlt260==1)	hist->Fill(var);
-    else if (ptave >= 365 && hlt320==1)			hist->Fill(var);
+    if (ptave>=55 && hlt40==1)                          	hist->Fill(var);
+    else if (ptave >= 67.6 && ptave < 89.6 && hlt60==1)   		hist->Fill(var);
+    else if (ptave >= 89.6 && ptave < 155.6 && hlt80==1)  	hist->Fill(var);
+    else if (ptave >= 155.6 && ptave < 221.6 && hlt140==1)	hist->Fill(var);
+    else if (ptave >= 221.6 && ptave < 287.6 && hlt200==1)	hist->Fill(var);
+    else if (ptave >= 287.6 && ptave < 353.6 && hlt260==1)	hist->Fill(var);
+    else if (ptave >= 353.6 && hlt320==1)			hist->Fill(var);
   }
 }
 
@@ -89,7 +89,7 @@ void analysetrees(const TString &datalist,const TString &mclist){
   TFile* f_ptaveweight=new TFile("~/qcd_dijets/PtAveWeight/PtAveWeight/ptaveweight.root");
   TH1F* h_ptaveweight = (TH1F*)f_ptaveweight->Get("PtAveWeight");
   vector<float> PtAveWeight;
-  for (int i=1; i<=6;++i){
+  for (int i=1; i<=7;++i){
     float tmp=h_ptaveweight->GetBinContent(i);
     PtAveWeight.push_back(tmp); 
     cout << tmp<<endl;
@@ -136,7 +136,7 @@ void analysetrees(const TString &datalist,const TString &mclist){
   
   //initialize Weight
    vector<float> Weight;
-    for (int i=0; i<6;++i){
+    for (int i=0; i<7;++i){
       float tmp=PtAveWeight.at(i);
       Weight.push_back(tmp);    
     }
@@ -148,7 +148,7 @@ void analysetrees(const TString &datalist,const TString &mclist){
 //     if(iEntry>1000000) break;
     mcchain->GetEntry(iEntry);
     //calculate event weight
-    for (int i=0; i<6;++i){
+    for (int i=0; i<7;++i){
       Weight.at(i)=Weight_XS*PtAveWeight.at(i);   
     }
     float ptave=PtAve;  
