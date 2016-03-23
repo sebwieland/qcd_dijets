@@ -173,11 +173,11 @@ void compare_lf(){
 	
 	tmpJECover->Add(hist);
 	tmpJEClower->Add(hist,1);
-// 	tmpJEClower->Scale(-1);
+//	tmpJEClower->Scale(-1);
 	
 	tmpHFover->Add(hist);
 	tmpHFlower->Add(hist,1);
-// 	tmpHFlower->Scale(-1);
+ //	tmpHFlower->Scale(-1);
 	
 	uncover[i][j]=tmpover;
 	unclower[i][j]=tmplower;
@@ -202,6 +202,7 @@ void compare_lf(){
   TCanvas* c2=new TCanvas();
   TCanvas* c3=new TCanvas();
   TCanvas* c4=new TCanvas();
+  TCanvas* c5=new TCanvas();
   TLine* line=new TLine(-0.02,1,1,1);
   line->SetLineColor(kBlack);
   TLegend* leg=new TLegend(0.75,0.4,0.9,0.8);
@@ -258,7 +259,7 @@ void compare_lf(){
       leg->AddEntry(uncover[i][j],"combined systematic uncertainty","L");
       leg->AddEntry(staterror[i][j],"statistical uncertainty","L");
       leg->Draw("same");
-      c->SaveAs("LFSF_pt"+pt_counter+"_eta"+eta_counter+"_final.pdf"); 
+      c->SaveAs("LFSF_pt"+pt_counter+"_eta"+eta_counter+"_final.png"); 
       c->Write();
       leg->Delete();
       
@@ -277,7 +278,7 @@ void compare_lf(){
       leg2->AddEntry(nominal[i][j],"nominal LFSF");
       leg2->AddEntry(JECover[i][j],"JEC uncertainty");
       leg2->Draw("same");
-      c2->SaveAs("LFSF_pt"+pt_counter+"_eta"+eta_counter+"_JEConly.pdf"); 
+      c2->SaveAs("LFSF_pt"+pt_counter+"_eta"+eta_counter+"_JEConly.png"); 
       c2->Write();
       leg2->Delete();
       
@@ -296,9 +297,32 @@ void compare_lf(){
       leg3->AddEntry(nominal[i][j],"nominal LFSF");
       leg3->AddEntry(HFover[i][j],"HF uncertainty");
       leg3->Draw("same");
-      c3->SaveAs("LFSF_pt"+pt_counter+"_eta"+eta_counter+"_HFonly.pdf"); 
+      c3->SaveAs("LFSF_pt"+pt_counter+"_eta"+eta_counter+"_HFonly.png"); 
       c3->Write();
       leg3->Delete();
+      
+      //plot both systematics
+      c5->cd();
+      TLegend* leg5=new TLegend(0.1,0.7,0.48,0.9);
+      leg5->SetFillStyle(0);
+      leg5->SetBorderSize(0);  
+      nominal[i][j]->Draw("");
+      nominaldots[i][j]->Draw("sameeo");
+ 
+      HFover[i][j]->Draw("same");
+      HFlower[i][j]->Draw("same");
+      JECover[i][j]->Draw("same");
+      JEClower[i][j]->Draw("same");
+      
+      line->Draw("same");
+      leg5->AddEntry(nominal[i][j],"nominal LFSF");
+      leg5->AddEntry(HFover[i][j],"HF uncertainty");
+      leg5->AddEntry(JECover[i][j],"JEC uncertainty");
+      leg5->Draw("same");
+      c5->SaveAs("LFSF_pt"+pt_counter+"_eta"+eta_counter+"_systematicsonly.png"); 
+      c5->Write();
+      leg5->Delete();
+      
       
       //plot only Statistical
       c4->cd();
@@ -312,16 +336,92 @@ void compare_lf(){
       leg4->AddEntry(nominal[i][j],"nominal LFSF");
       leg4->AddEntry(staterror[i][j],"statistical uncertainty");
       leg4->Draw("same");
-      c4->SaveAs("LFSF_pt"+pt_counter+"_eta"+eta_counter+"_statonly.pdf"); 
+      c4->SaveAs("LFSF_pt"+pt_counter+"_eta"+eta_counter+"_statonly.png"); 
       c4->Write();
       leg4->Delete();
     }
   }
 
+  outfile->Close();
   
+  //compare to official SF
+  TFile* officialfile=new TFile("csv_rwt_fit_lf_2015_11_20.root");
+  n_ptbins= 4;
+  n_etabins=3;
+  vector<vector<TH1F*>> official;
+  official.resize(n_ptbins, vector<TH1F*>(n_etabins, 0));
+  cout << "read official histos" << endl;
+  for (int i=0; i<n_ptbins;++i){
+      if (i==0) pt_counter="0";
+      else if (i==1) pt_counter="1";
+      else if (i==2) pt_counter="2";
+      else if (i==3) pt_counter="3";
+      for ( int j=0; j<n_etabins;++j){   
+	if (j==0) eta_counter="0";
+	else if (j==1) eta_counter="1";
+	else if (j==2) eta_counter="2";   
+	TH1F* h = (TH1F*)officialfile->Get("csv_ratio_Pt"+pt_counter+"_Eta"+eta_counter+"_final");
+	official[i][j]=h;
+	official[i][j]->SetStats(0);
+      }
+  }
   
+  TFile* outfile_comp=new TFile("comparison.root","RECREATE"); 
+  TCanvas* c_comp=new TCanvas();
+  for (int i=1; i<n_ptbins;++i){
+      if (i==0) pt_counter="0";
+      else if (i==1) pt_counter="1";
+      else if (i==2) pt_counter="2";
+      else if (i==3) pt_counter="3";
+      for ( int j=1; j<n_etabins;++j){   
+	if (j==0) eta_counter="0";
+	else if (j==1) eta_counter="1";
+	else if (j==2) eta_counter="2";   
+      c_comp->cd(); 
+      TLegend* leg=new TLegend(0.1,0.6,0.48,0.9);
+      leg->SetFillStyle(0);
+      leg->SetBorderSize(0);  
+      leg->SetTextSize(0.05),
+      
+      nominal[i][j]->SetMarkerStyle(5);
+      nominal[i][j]->SetMarkerSize(0.7);
+      nominal[i][j]->SetTitle("");
+      nominal[i][j]->GetXaxis()->SetTitle("CSV");
+      nominal[i][j]->GetXaxis()->SetTitleSize(0.05);
+      nominal[i][j]->GetXaxis()->SetTitleOffset(0.8);
+      nominal[i][j]->GetYaxis()->SetTitle("SF");
+      nominal[i][j]->GetYaxis()->SetTitleSize(0.08);
+      nominal[i][j]->GetYaxis()->SetTitleOffset(0.45);
+      nominal[i][j]->Draw("");   
+      nominal[i][j]->SetLineColor(kRed);
+      nominal[i][j]->SetMaximum(2);
+      nominal[i][j]->SetMinimum(0);
+      nominal[i][j]->SetLineWidth(3);
+      
+      staterror[i][j]->Draw("same e3");
+      staterror[i][j]->SetLineColor(kGreen);
+      staterror[i][j]->SetFillColorAlpha(kGreen,0.35);
+      
+      nominaldots[i][j]->Draw("sameeo");
+      uncover[i][j]->Draw("same");
+      unclower[i][j]->Draw("same");  
+      
+      official[i][j]->Draw("same");
+      official[i][j]->SetLineColor(kBlue);
+      official[i][j]->SetLineWidth(3);
+      
+      line->Draw("same");
+      leg->AddEntry(official[i][j],"official LFSF","L");
+      leg->AddEntry(nominal[i][j],"nominal LFSF","L");
+      leg->AddEntry(uncover[i][j],"combined systematic uncertainty","L");
+      leg->AddEntry(staterror[i][j],"statistical uncertainty","L");
 
-
+      leg->Draw("same");
+      c_comp->SaveAs("LFSF_pt"+pt_counter+"_eta"+eta_counter+"_comparison.pdf"); 
+      c_comp->Write();
+      leg->Delete();
+      }
+  }
 
 
   
@@ -330,11 +430,11 @@ void compare_lf(){
 //   outfile->Write();
 
 
+  outfile_comp->Close();
 
-  outfile->Close();
   
   
-  
+		     
 }
   
 

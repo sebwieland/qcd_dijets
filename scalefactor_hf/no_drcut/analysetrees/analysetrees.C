@@ -202,7 +202,14 @@ void analysetrees(const TString &datalist,const TString &mclist){
   hCSV_mc_c.resize(n_ptbins, vector<TH1F*>(n_etabins, 0));
   vector<vector<TH1F*>> hCSV_mc_lf;
   hCSV_mc_lf.resize(n_ptbins, vector<TH1F*>(n_etabins, 0));
-
+  
+  TH1F* hCSV_mc_b_tag = new TH1F("hCSV_mc_b_tag","hCSV_mc_b_tag",25,0.98,1);
+  TH1F* hCSV_mc_c_tag = new TH1F("hCSV_mc_c_tag","hCSV_mc_c_tag",25,0.98,1);
+  TH1F* hCSV_mc_lf_tag = new TH1F("hCSV_mc_lf_tag","hCSV_mc_lf_tag",25,0.98,1);
+  hCSV_mc_b_tag->SetDrawOption("histe0");
+  hCSV_mc_c_tag->SetDrawOption("histe0");
+  hCSV_mc_lf_tag->SetDrawOption("histe0");
+   
   vector<TH1F*>hptave_mc;
   TString eta_counter="0";
   TString pt_counter="0";
@@ -328,8 +335,10 @@ void analysetrees(const TString &datalist,const TString &mclist){
 	      else if (Jet_Pt[0]>=300 && Jet_Pt[0] <400) ptbin=7;
 	      else if (Jet_Pt[0]>=400 && Jet_Pt[0] <500) ptbin=8;
 	      else if (Jet_Pt[0]>=500) ptbin=9;			
-	      fillcsv_mc(j,hCSV_mc_c[ptbin][etabin], hCSV_mc_b[ptbin][etabin], hCSV_mc_lf[ptbin][etabin],ptave, Jet_CSV,Jet_HadFlav , Weight, Jet_Phi, Jet_Eta, N_Jets);
 	    }
+	    fillcsv_mc(j,hCSV_mc_c[ptbin][etabin], hCSV_mc_b[ptbin][etabin], hCSV_mc_lf[ptbin][etabin],ptave, Jet_CSV,Jet_HadFlav , Weight, Jet_Phi, Jet_Eta, N_Jets);
+	    if (j==0) fillcsv_mc(1,hCSV_mc_c_tag, hCSV_mc_b_tag, hCSV_mc_lf_tag,ptave, Jet_CSV,Jet_HadFlav , Weight, Jet_Phi, Jet_Eta, N_Jets);
+	    if (j==1) fillcsv_mc(0,hCSV_mc_c_tag, hCSV_mc_b_tag, hCSV_mc_lf_tag,ptave, Jet_CSV,Jet_HadFlav , Weight, Jet_Phi, Jet_Eta, N_Jets);
 	  }	  
 	}
       }
@@ -384,6 +393,7 @@ void analysetrees(const TString &datalist,const TString &mclist){
 
  
   //define histos
+  TH1F* hCSV_data_tag = new TH1F("hCSV_data_tag","hCSV_data_tag",25,0.98,1);
   vector<vector<TH1F*>> hCSV_data;
   hCSV_data.resize(n_ptbins, vector<TH1F*>(n_etabins, 0));
   vector<TH1F*> hptave_data;
@@ -460,6 +470,8 @@ void analysetrees(const TString &datalist,const TString &mclist){
 	      else if (Jet_Pt_data[0]>=500 ) ptbin=9;	           
 	    }
 	      fillcsv_data(j,hCSV_data[ptbin][etabin], ptave, Jet_CSV_data, Weight ,Jet_Phi_data, Jet_Eta_data, N_Jets_data,hlt40, hlt60, hlt80, hlt140, hlt200, hlt260, hlt320, hlt400, hlt500);
+	      if (j==0) fillcsv_data(1,hCSV_data_tag, ptave, Jet_CSV_data, Weight ,Jet_Phi_data, Jet_Eta_data, N_Jets_data,hlt40, hlt60, hlt80, hlt140, hlt200, hlt260, hlt320, hlt400, hlt500);
+	      if (j==1) fillcsv_data(0,hCSV_data_tag, ptave, Jet_CSV_data, Weight ,Jet_Phi_data, Jet_Eta_data, N_Jets_data,hlt40, hlt60, hlt80, hlt140, hlt200, hlt260, hlt320, hlt400, hlt500);
 	    }
 	  }
 	}

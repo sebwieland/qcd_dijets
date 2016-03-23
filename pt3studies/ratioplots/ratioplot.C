@@ -88,11 +88,18 @@ void ratioplot(TFile *histos){
   TH1F* h_pt3 = (TH1F*)histos->Get("h_pt3");
   TH1F* h_pt3_data = (TH1F*)histos->Get("h_pt3_data");
 
-    TLegend* leg=new TLegend(0.75,0.4,0.9,0.8);
+  TLegend* leg=new TLegend(0.75,0.4,0.9,0.8);
   leg->AddEntry(h_pt3_pt3cut_data,"data");
   leg->AddEntry(h_pt3_pt3cut,"MC");
   leg->SetFillStyle(0);
   leg->SetBorderSize(0);
+  
+  TLegend* leg_dphi=new TLegend(0.2,0.4,0.35,0.8);
+  leg_dphi->AddEntry(h_pt3_pt3cut_data,"data");
+  leg_dphi->AddEntry(h_pt3_pt3cut,"MC");
+  leg_dphi->SetFillStyle(0);
+  leg_dphi->SetBorderSize(0);
+  
   
   TCanvas *c1=new TCanvas();
   c1->cd();
@@ -146,8 +153,8 @@ void ratioplot(TFile *histos){
   ratio->Sumw2();
   ratio->Divide(h_pt3_pt3cut);
   ratio->Draw("E0");
-  ratio->SetMaximum(1.6);
-  ratio->SetMinimum(0.4);
+  ratio->SetMaximum(1.59);
+  ratio->SetMinimum(0.39);
   //set_ratioattributes  
   Styleratio(ratio,xtitle,"data/MC");
   line->Draw();  
@@ -205,8 +212,8 @@ void ratioplot(TFile *histos){
   ratio2->SetMarkerStyle(20);
   ratio2->SetMarkerSize(0.5);
   ratio2->Draw("E0");
-  ratio2->SetMaximum(1.6);
-  ratio2->SetMinimum(0.4);
+  ratio2->SetMaximum(1.59);
+  ratio2->SetMinimum(0.39);
   //set_ratioattributes  
   ratio2->GetYaxis()->SetNdivisions(510);
   ratio2->GetYaxis()->SetLabelSize(0.1);
@@ -270,8 +277,8 @@ void ratioplot(TFile *histos){
   ratio3->SetMarkerStyle(20);
   ratio3->SetMarkerSize(0.5);
   ratio3->Draw("E0");
-  ratio3->SetMaximum(1.6);
-  ratio3->SetMinimum(0.4);
+  ratio3->SetMaximum(1.59);
+  ratio3->SetMinimum(0.39);
   //set_ratioattributes  
 //   ratio3->GetYaxis()->SetNdivisions(510);
 //   ratio3->GetYaxis()->SetLabelSize(0.1);
@@ -306,6 +313,7 @@ void ratioplot(TFile *histos){
   cout << "data events: "<< dataevents  << endl;  
   cout << "mcevents : " << mcevents << endl;  
   h_eta0->Draw("histE0");
+  h_eta0->SetMinimum(0.01);
   Style(h_eta0,"","events");
   h_eta0->SetTitle("#eta of hardest Jet");
   h_eta0->SetStats(0);
@@ -313,7 +321,7 @@ void ratioplot(TFile *histos){
   h_eta0_data->SetMarkerStyle(20);
   h_eta0_data->SetMarkerSize(0.5);
   h_eta0_data->Draw("sameE0");
-//   leg->Draw();
+  leg_dphi->Draw();
   text->DrawLatex(0.175, 0.863, text_cms);
   text->DrawLatex(0.175, 0.815, cutlabel);
   c1->cd();
@@ -332,8 +340,8 @@ void ratioplot(TFile *histos){
   ratio3->SetMarkerStyle(20);
   ratio3->SetMarkerSize(0.5);
   ratio3->Draw("E0");
-  ratio3->SetMaximum(1.6);
-  ratio3->SetMinimum(0.4);
+  ratio3->SetMaximum(1.59);
+  ratio3->SetMinimum(0.39);
   //set_ratioattributes  
   Styleratio(ratio3,"#eta of hardest Jet","data/MC");  
   lineeta->Draw();  
@@ -362,13 +370,14 @@ void ratioplot(TFile *histos){
   cout << "mcevents : " << mcevents << endl;  
   
   h_eta1->Draw("histE0");
+  h_eta1->SetMinimum(0.01);
   Style(h_eta1,"","events"); 
   h_eta1->SetTitle("#eta of 2nd-hardest Jet");
   h_eta1->SetStats(0);  
   h_eta1_data->SetMarkerStyle(20);
   h_eta1_data->SetMarkerSize(0.5);
   h_eta1_data->Draw("sameE0");
-//   leg->Draw();
+  leg_dphi->Draw();
   text->DrawLatex(0.175, 0.863, text_cms);
   text->DrawLatex(0.175, 0.815, cutlabel);
   c1->cd();
@@ -387,8 +396,8 @@ void ratioplot(TFile *histos){
   ratio3->SetMarkerStyle(20);
   ratio3->SetMarkerSize(0.5);
   ratio3->Draw("E0");
-  ratio3->SetMaximum(1.6);
-  ratio3->SetMinimum(0.4);
+  ratio3->SetMaximum(1.59);
+  ratio3->SetMinimum(0.39);
   //set_ratioattributes  
   Styleratio(ratio3,"#eta of 2nd-hardest Jet","data/MC");
 
@@ -451,8 +460,8 @@ void ratioplot(TFile *histos){
   ratio3->SetMarkerStyle(20);
   ratio3->SetMarkerSize(0.5);
   ratio3->Draw("E0");
-  ratio3->SetMaximum(1.6);
-  ratio3->SetMinimum(0.4);
+  ratio3->SetMaximum(1.59);
+  ratio3->SetMinimum(0.39);
   //set_ratioattributes  
   ratio3->GetYaxis()->SetNdivisions(510);
   ratio3->GetYaxis()->SetLabelSize(0.1);
@@ -524,8 +533,8 @@ void ratioplot(TFile *histos){
   ratio->SetMarkerStyle(20);
   ratio->SetMarkerSize(0.5);
   ratio->Draw("E0");
-  ratio->SetMaximum(1.6);
-  ratio->SetMinimum(0.4);
+  ratio->SetMaximum(1.59);
+  ratio->SetMinimum(0.39);
   //set_ratioattributes  
   ratio->GetYaxis()->SetNdivisions(510);
   ratio->GetYaxis()->SetLabelSize(0.1);
@@ -591,8 +600,8 @@ void ratioplot(TFile *histos){
   ratio2->SetMarkerStyle(20);
   ratio2->SetMarkerSize(0.5);
   ratio2->Draw("E0");
-  ratio2->SetMaximum(1.6);
-  ratio2->SetMinimum(0.4);
+  ratio2->SetMaximum(1.59);
+  ratio2->SetMinimum(0.39);
   //set_ratioattributes  
   ratio2->GetYaxis()->SetNdivisions(510);
   ratio2->GetYaxis()->SetLabelSize(0.1);
@@ -657,8 +666,8 @@ void ratioplot(TFile *histos){
   ratio3->SetMarkerStyle(20);
   ratio3->SetMarkerSize(0.5);
   ratio3->Draw("E0");
-  ratio3->SetMaximum(1.6);
-  ratio3->SetMinimum(0.4);
+  ratio3->SetMaximum(1.59);
+  ratio3->SetMinimum(0.39);
   //set_ratioattributes  
   ratio3->GetYaxis()->SetNdivisions(510);
   ratio3->GetYaxis()->SetLabelSize(0.1);
@@ -723,8 +732,8 @@ void ratioplot(TFile *histos){
   ratio3->SetMarkerStyle(20);
   ratio3->SetMarkerSize(0.5);
   ratio3->Draw("E0");
-  ratio3->SetMaximum(1.6);
-  ratio3->SetMinimum(0.4);
+  ratio3->SetMaximum(1.59);
+  ratio3->SetMinimum(0.39);
   //set_ratioattributes  
   ratio3->GetYaxis()->SetNdivisions(510);
   ratio3->GetYaxis()->SetLabelSize(0.1);
@@ -788,8 +797,8 @@ void ratioplot(TFile *histos){
   ratio3->SetMarkerStyle(20);
   ratio3->SetMarkerSize(0.5);
   ratio3->Draw("E0");
-  ratio3->SetMaximum(1.6);
-  ratio3->SetMinimum(0.4);
+  ratio3->SetMaximum(1.59);
+  ratio3->SetMinimum(0.39);
   //set_ratioattributes  
   ratio3->GetYaxis()->SetNdivisions(510);
   ratio3->GetYaxis()->SetLabelSize(0.1);
@@ -854,8 +863,8 @@ void ratioplot(TFile *histos){
   ratio3->SetMarkerStyle(20);
   ratio3->SetMarkerSize(0.5);
   ratio3->Draw("E0");
-  ratio3->SetMaximum(1.6);
-  ratio3->SetMinimum(0.4);
+  ratio3->SetMaximum(1.59);
+  ratio3->SetMinimum(0.39);
   //set_ratioattributes  
   ratio3->GetYaxis()->SetNdivisions(510);
   ratio3->GetYaxis()->SetLabelSize(0.1);
@@ -901,6 +910,7 @@ void ratioplot(TFile *histos){
 //   h_eta2->Sumw2();
 //   h_eta2_data->Sumw2();
   h_npv->Draw("histE0");
+  h_npv->SetMinimum(0.01);
   h_npv->SetTitle("Number of primary vertices");
   h_npv->GetYaxis()->SetTitle("events");
   Style(h_npv,"","events");
@@ -925,8 +935,8 @@ void ratioplot(TFile *histos){
   ratio3->SetMarkerStyle(20);
   ratio3->SetMarkerSize(0.5);
   ratio3->Draw("E0");
-  ratio3->SetMaximum(1.6);
-  ratio3->SetMinimum(0.4);
+  ratio3->SetMaximum(1.59);
+  ratio3->SetMinimum(0.39);
   //set_ratioattributes  
   Styleratio(ratio3,"number of primary vertices","data/MC");
   line_npv->Draw();  
@@ -957,12 +967,13 @@ void ratioplot(TFile *histos){
   cout << "mcevents : " << mcevents << endl;  
 
   h_ptave3_mc->Draw("histE0");
+  h_ptave3_mc->SetMinimum(0.01);
   Style(h_ptave3_mc,"","events");
   h_ptave3_mc->SetTitle("");
   h_ptave3_data->SetMarkerStyle(20);
   h_ptave3_data->SetMarkerSize(0.5);
   h_ptave3_data->Draw("sameE0");
-//   leg->Draw();
+  leg->Draw();
   text->DrawLatex(0.23, 0.863, text_cms);
   text->DrawLatex(0.23, 0.815, cutlabel);
   c1->cd();
@@ -980,8 +991,8 @@ void ratioplot(TFile *histos){
   ratio3->SetMarkerStyle(20);
   ratio3->SetMarkerSize(0.5);
   ratio3->Draw("E0");
-  ratio3->SetMaximum(1.6);
-  ratio3->SetMinimum(0.4);
+  ratio3->SetMaximum(1.59);
+  ratio3->SetMinimum(0.39);
   //set_ratioattributes  
   Styleratio(ratio3,"p_{T}^{Avg} with Dijetselection","data/MC");   
   line->Draw();  
@@ -1040,8 +1051,8 @@ void ratioplot(TFile *histos){
   ratio3->SetMarkerStyle(20);
   ratio3->SetMarkerSize(0.5);
   ratio3->Draw("E0");
-  ratio3->SetMaximum(1.6);
-  ratio3->SetMinimum(0.4);
+  ratio3->SetMaximum(1.59);
+  ratio3->SetMinimum(0.39);
   //set_ratioattributes  
   ratio3->GetYaxis()->SetNdivisions(510);
   ratio3->GetYaxis()->SetLabelSize(0.1);
@@ -1078,14 +1089,15 @@ void ratioplot(TFile *histos){
   
   cout << "mcevents : " << mcevents << endl;  
   h_ptave2_mc->Draw("histE0");
+  h_ptave2_mc->SetMinimum(0.01);
   h_ptave2_mc->SetStats(0);
   Style(h_ptave2_mc,"","events");
-  h_ptave2_mc->SetTitle("p_{T}^{Avg} without Dijetselection");  
+  h_ptave2_mc->SetTitle("");  
   h_ptave2_data->SetMarkerStyle(20);
   h_ptave2_data->SetMarkerSize(0.5);  
   h_ptave2_data->Draw("sameE0");
   leg->Draw();
-  text->DrawLatex(0.175, 0.863, text_cms);
+  text->DrawLatex(0.25, 0.863, text_cms);
 
   c1->cd();
   //makepadratio
@@ -1102,8 +1114,8 @@ void ratioplot(TFile *histos){
   ratio3->SetMarkerStyle(20);
   ratio3->SetMarkerSize(0.5);
   ratio3->Draw("E0");
-  ratio3->SetMaximum(1.6);
-  ratio3->SetMinimum(0.4);
+  ratio3->SetMaximum(1.59);
+  ratio3->SetMinimum(0.39);
   //set_ratioattributes  
   Styleratio(ratio3,"p_{T}^{Avg} in GeV/c","data/MC") ;
 //   padratio->SetBottomMargin(0.3);
@@ -1133,6 +1145,7 @@ void ratioplot(TFile *histos){
   h_pt0->Sumw2();
   h_pt0_data->Sumw2();
   h_pt0->Draw("histE0");
+  h_pt0->SetMinimum(0.01);
   Style(h_pt0,"","events");
   h_pt0->SetTitle("");
   h_pt0_data->SetMarkerStyle(20);
@@ -1156,8 +1169,8 @@ void ratioplot(TFile *histos){
   ratio2->SetMarkerStyle(20);
   ratio2->SetMarkerSize(0.5);
   ratio2->Draw("E0");
-  ratio2->SetMaximum(1.6);
-  ratio2->SetMinimum(0.4);
+  ratio2->SetMaximum(1.59);
+  ratio2->SetMinimum(0.39);
   //set_ratioattributes  
   Styleratio(ratio2,"p_{T} of hardest Jet","data/MC");    
   line->Draw();  
@@ -1188,6 +1201,7 @@ void ratioplot(TFile *histos){
   h_pt1->Sumw2();
   h_pt1_data->Sumw2();
   h_pt1->Draw("histE0");
+  h_pt1->SetMinimum(0.01);
   Style(h_pt1,"","events");
   h_pt1->SetTitle("");
   h_pt1_data->SetMarkerStyle(20);
@@ -1211,8 +1225,8 @@ void ratioplot(TFile *histos){
   ratio2->SetMarkerStyle(20);
   ratio2->SetMarkerSize(0.5);
   ratio2->Draw("E0");
-  ratio2->SetMaximum(1.6);
-  ratio2->SetMinimum(0.4);
+  ratio2->SetMaximum(1.59);
+  ratio2->SetMinimum(0.39);
   //set_ratioattributes  
   Styleratio(ratio2,"p_{T} of 2nd-hardest Jet","data/MC");   
   line->Draw();  
@@ -1225,8 +1239,11 @@ void ratioplot(TFile *histos){
   TH1F* h_dphi_data = (TH1F*)histos->Get("h_dphi_data");
   TH1F* h_dphi = (TH1F*)histos->Get("h_dphi");
   TLine* dphiline=new TLine(0,1,3.5,1);
-  leg->SetFillStyle(0);
-  leg->SetBorderSize(0);
+
+  leg_dphi->SetFillStyle(0);
+  leg_dphi->SetBorderSize(0);
+  //leg_dphi->AddEntry(h_dphi,"MC");
+  //leg_dphi->AddEntry(h_dphi_data,"data");  
   
 //   TCanvas *c1=new TCanvas();
   c1->cd();
@@ -1244,13 +1261,14 @@ void ratioplot(TFile *histos){
   h_dphi->Sumw2();
   h_dphi_data->Sumw2();
   h_dphi->Draw("histE0");
+  h_dphi->SetMinimum(0.01);
   Style(h_dphi,"","events");
   h_dphi->SetTitle("#Delta #Phi between two hardest Jets");
   h_dphi->SetStats(0);  
   h_dphi_data->SetMarkerStyle(20);
   h_dphi_data->SetMarkerSize(0.5);
   h_dphi_data->Draw("SAMEE0");
-//   leg->Draw();
+  leg_dphi->Draw();
   text->DrawLatex(0.175, 0.863, text_cms);
 //   text->DrawLatex(0.175, 0.815, cutlabel);
   c1->cd();
@@ -1267,8 +1285,8 @@ void ratioplot(TFile *histos){
   ratio2->SetMarkerStyle(20);
   ratio2->SetMarkerSize(0.5);
   ratio2->Draw("E0");
-  ratio2->SetMaximum(1.6);
-  ratio2->SetMinimum(0.4);
+  ratio2->SetMaximum(1.59);
+  ratio2->SetMinimum(0.39);
   //set_ratioattributes  
   Styleratio(ratio2,"#Delta #Phi","data/MC"); 
   dphiline->Draw();  
@@ -1327,8 +1345,8 @@ void ratioplot(TFile *histos){
   ratio2->SetMarkerStyle(20);
   ratio2->SetMarkerSize(0.5);
   ratio2->Draw("E0");
-  ratio2->SetMaximum(1.6);
-  ratio2->SetMinimum(0.4);
+  ratio2->SetMaximum(1.59);
+  ratio2->SetMinimum(0.39);
   //set_ratioattributes  
   ratio2->GetYaxis()->SetNdivisions(510);
   ratio2->GetYaxis()->SetLabelSize(0.1);
@@ -1392,8 +1410,8 @@ void ratioplot(TFile *histos){
   ratio2->SetMarkerStyle(20);
   ratio2->SetMarkerSize(0.5);
   ratio2->Draw("E0");
-  ratio2->SetMaximum(1.6);
-  ratio2->SetMinimum(0.4);
+  ratio2->SetMaximum(1.59);
+  ratio2->SetMinimum(0.39);
   //set_ratioattributes  
   ratio2->GetYaxis()->SetNdivisions(510);
   ratio2->GetYaxis()->SetLabelSize(0.1);
@@ -1457,8 +1475,8 @@ void ratioplot(TFile *histos){
   ratio2->SetMarkerStyle(20);
   ratio2->SetMarkerSize(0.5);
   ratio2->Draw("E0");
-  ratio2->SetMaximum(1.6);
-  ratio2->SetMinimum(0.4);
+  ratio2->SetMaximum(1.59);
+  ratio2->SetMinimum(0.39);
   //set_ratioattributes  
   ratio2->GetYaxis()->SetNdivisions(510);
   ratio2->GetYaxis()->SetLabelSize(0.1);
@@ -1477,7 +1495,8 @@ void ratioplot(TFile *histos){
   TH1F* h_ptassym = (TH1F*)histos->Get("h_ptassym");
   leg->SetFillStyle(0);
   leg->SetBorderSize(0);
-  
+  TLine* line_assym=new TLine(0,1,1,1);
+  line_assym->SetLineColor(kBlack);
   c1->cd();
   //makepadhist
   padhist->Draw();
@@ -1492,12 +1511,13 @@ void ratioplot(TFile *histos){
   h_ptassym->Sumw2();
   h_ptassym_data->Sumw2();
   h_ptassym->Draw("histE0");
+  h_ptassym->SetMinimum(0.01);
   Style(h_ptassym,"","events");
   h_ptassym->SetTitle("p_{T} asymmetry");
   h_ptassym_data->SetMarkerStyle(20);
   h_ptassym_data->SetMarkerSize(0.5);
   h_ptassym_data->Draw("SAMEE0");
-//   leg->Draw();
+  leg->Draw();
   text->DrawLatex(0.23, 0.863, text_cms);
   text->DrawLatex(0.23, 0.815, cutlabel);
   c1->cd();
@@ -1515,11 +1535,11 @@ void ratioplot(TFile *histos){
   ratio2->SetMarkerStyle(20);
   ratio2->SetMarkerSize(0.5);
   ratio2->Draw("E0");
-  ratio2->SetMaximum(1.6);
-  ratio2->SetMinimum(0.4);
+  ratio2->SetMaximum(1.59);
+  ratio2->SetMinimum(0.39);
   //set_ratioattributes  
   Styleratio(ratio2,"p_{T} asymmetry","data/MC");   
-  line->Draw();  
+  line_assym->Draw();  
   c1->SaveAs("h_ptassym.pdf");
   
 }

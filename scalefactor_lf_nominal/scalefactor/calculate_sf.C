@@ -85,13 +85,13 @@ void Styleratio(TH1* h, const char *xTitle, const char *yTitle)
   h->GetYaxis()->SetLabelSize(0.13);
   h->GetYaxis()->SetNdivisions(510);
 }
-vector<vector<TH1F*>> readhistos(TFile *file, char c){
+vector<vector<TH1F*> > readhistos(TFile *file, char c){
   int n_ptbins= 10;
   int n_etabins=4;
   TString eta_counter="0";
   TString pt_counter="0";
-  vector<vector<TH1F*>> res;
-  res.resize(n_ptbins, vector<TH1F*>(n_etabins, 0));
+  vector< vector<TH1F*> > res;
+  res.resize(n_ptbins, vector<TH1F* >(n_etabins, 0));
   if (c=='d'){
     for (int i=0; i<n_ptbins;++i){
       if (i==0) pt_counter="0";
@@ -202,20 +202,20 @@ void calculate_sf(TFile *histos){
   
 
   cout << "Reading Histos from file" << endl;
-  vector<vector<TH1F*>>h_data=readhistos(histos,'d');
-  vector<vector<TH1F*>>h_b=readhistos(histos,'b');
-  vector<vector<TH1F*>>h_c=readhistos(histos,'c');
-  vector<vector<TH1F*>>h_lf=readhistos(histos,'l');
+  vector<vector<TH1F*> >h_data=readhistos(histos,'d');
+  vector<vector<TH1F*> >h_b=readhistos(histos,'b');
+  vector<vector<TH1F*> >h_c=readhistos(histos,'c');
+  vector<vector<TH1F*> >h_lf=readhistos(histos,'l');
   
   TString eta_counter="0";
   TString pt_counter="0";
   bool comp=false;
-  bool normpt=false;
+  bool normpt=true;
   //read official SF
   TFile* officialfile=new TFile("~/qcd_dijets/comparison_lf/csv_rwt_fit_lf_2015_11_20.root");
   int n_ptbins= 10;
   int n_etabins=3;
-  vector<vector<TH1F*>> official;
+  vector< vector<TH1F*> > official;
   official.resize(n_ptbins, vector<TH1F*>(n_etabins, 0));
   if(comp==true){
     for (int i=0; i<n_ptbins;++i){
@@ -339,6 +339,7 @@ void calculate_sf(TFile *histos){
   //     //draw histos
       h_data[i][j]->Sumw2();
       mc_stack_lf_normalized->Draw("histE0");
+      mc_stack_lf_normalized->SetMinimum(0.01);
       Stylestack(mc_stack_lf_normalized,"","events");
       h_data[i][j]->SetMarkerStyle(20);
       h_data[i][j]->Draw("SAMEE0");
@@ -362,8 +363,8 @@ void calculate_sf(TFile *histos){
       ratio_lf->Divide(mc_norm);
       ratio_lf->SetMarkerStyle(20);
       ratio_lf->Draw("SAMEE0");
-      ratio_lf->SetMaximum(1.6);
-      ratio_lf->SetMinimum(0.4);
+      ratio_lf->SetMaximum(1.59);
+      ratio_lf->SetMinimum(0.39);
       //set_ratioattributes  
       Styleratio(ratio_lf,xtitle_lf,"data/MC");  
       

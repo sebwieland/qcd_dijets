@@ -103,18 +103,21 @@ void PtAveWeight(TFile *histos){
     h_data.at(i)->Draw("samehistE0");
     h_data.at(i)->SetTitle(" 89.6 GeV/c <= p_{T}^{Avg} < 155.6 GeV/c");
     h_data.at(i)->GetXaxis()->SetTitle("p_{T}^{Avg} in GeV/c");
-    h_data.at(i)->GetXaxis()->SetTitleSize(0.05);
-    h_data.at(i)->GetXaxis()->SetTitleOffset(0.8);
+    h_data.at(i)->GetXaxis()->SetTitleSize(0.047);
+    h_data.at(i)->GetXaxis()->SetTitleOffset(0.9);
+    if (i==2){
+      h_data.at(i)->GetXaxis()->SetRangeUser(80, 170);
+    }
     h_data.at(i)->GetYaxis()->SetTitle("events");
     h_data.at(i)->GetYaxis()->SetTitleSize(0.08);
-    h_data.at(i)->GetYaxis()->SetTitleOffset(0.8);
+    h_data.at(i)->GetYaxis()->SetTitleOffset(1.2);
     h_data.at(i)->SetStats(0);
     
     mc_norm->Draw("samehistE0");
     mc_norm->SetLineColor(kBlack);
     leg->Draw();
 //     gPad->SetLogy();
-    text->DrawLatex(0.2, 0.85, text_cms);
+    text->DrawLatex(0.4, 0.85, text_cms);
 //     text->DrawLatex(0.175, 0.815, cutlabel);
     
     stringstream ss;

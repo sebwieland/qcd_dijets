@@ -205,6 +205,14 @@ void calculate_sf(TFile *histos){
   vector<vector<TH1F*>>h_c=readhistos(histos,'c');
   vector<vector<TH1F*>>h_lf=readhistos(histos,'l');
 
+  TH1F* hCSV_mc_b_tag = (TH1F*)histos->Get("hCSV_mc_b_tag");
+  TH1F* hCSV_mc_c_tag = (TH1F*)histos->Get("hCSV_mc_c_tag");
+  TH1F* hCSV_mc_lf_tag = (TH1F*)histos->Get("hCSV_mc_lf_tag");
+  hCSV_mc_b_tag->SetFillColor(kRed);
+  hCSV_mc_c_tag->SetFillColor(kBlue);
+  hCSV_mc_lf_tag->SetFillColor(kGreen);
+  
+  TH1F* hCSV_data_tag = (TH1F*)histos->Get("hCSV_data_tag");
   
   TString eta_counter="0";
   TString pt_counter="0";
@@ -307,6 +315,7 @@ void calculate_sf(TFile *histos){
   //     //draw histos
       h_data[i][j]->Sumw2();
       mc_stack_hf_normalized->Draw("histE0");
+      mc_stack_hf_normalized->SetMinimum(0.01);
       Stylestack(mc_stack_hf_normalized,"","events");
       h_data[i][j]->Draw("sameE0");
       h_data[i][j]->SetMarkerStyle(20);
@@ -330,8 +339,8 @@ void calculate_sf(TFile *histos){
       ratio_hf->Divide(mc_norm);
       ratio_hf->SetMarkerStyle(20);
       ratio_hf->Draw("SAMEE0");
-      ratio_hf->SetMaximum(1.6);
-      ratio_hf->SetMinimum(0.4);
+      ratio_hf->SetMaximum(1.59);
+      ratio_hf->SetMinimum(0.39);
       //set_ratioattributes
       Styleratio(ratio_hf,xtitle_hf,"data/MC"); 
       
@@ -396,7 +405,99 @@ void calculate_sf(TFile *histos){
       outfile->Write();
     } 
   }
- 
+  //////////////////////////////////////////////////
+  //////////// Plot CSV of TagJet///////////////////
+  //////////////////////////////////////////////////
+       TLegend* leg_hf=new TLegend(0.75,0.4,0.9,0.8);
+      leg_hf->AddEntry(hCSV_data_tag,"data");
+      leg_hf->AddEntry(hCSV_mc_b_tag,"b");
+      leg_hf->AddEntry(hCSV_mc_c_tag,"c");
+      leg_hf->AddEntry(hCSV_mc_lf_tag,"lf");
+      leg_hf->SetFillStyle(0);
+      leg_hf->SetBorderSize(0);
+      
+      TLine* line_tag=new TLine(0.98,1,1,1);
+      
+      TCanvas *c1=new TCanvas();
+      c1->cd();
+      //makepadhist
+      TPad* padhist_hf=new TPad("padhist_hf","padhist_hf",0,0.3,1,1);
+      padhist_hf->SetBottomMargin(0);
+      padhist_hf->Draw();
+      padhist_hf->cd();
+      TH1F* mc=(TH1F*)hCSV_mc_b_tag->Clone(); 
+      mc->Add(hCSV_mc_c_tag);
+      mc->Add(hCSV_mc_lf_tag);
+  //     mc_stack[i][j]->Print();
+  //     TH1F* mc=(TH1F*)mc_stack[i][j]->GetStack();
+      n_events_hf=hCSV_mc_c_tag->Integral()+hCSV_mc_b_tag->Integral();
+      mcevents=mc->Integral();
+      cout << "TAGJET"<< endl;
+      dataevents=hCSV_data_tag->Integral();
+      cout << "data events: "<< dataevents  << endl;      
+      cout << "mcevents before normalization: " << mcevents << endl;
+      
+      if(ptnorm==true){
+	if (mcevents!=0) normratio=dataevents/mcevents;
+	  else normratio=1;
+	hCSV_mc_b_tag->Scale(normratio);
+	hCSV_mc_c_tag->Scale(normratio);
+	hCSV_mc_lf_tag->Scale(normratio);
+      }
+//       h_b[i][j]->Sumw2();
+//       h_c[i][j]->Sumw2();
+//       h_lf[i][j]->Sumw2();
+      THStack* mc_stack_hf_normalized=new THStack();
+      mc_stack_hf_normalized->Add(hCSV_mc_b_tag);
+      mc_stack_hf_normalized->Add(hCSV_mc_c_tag);
+      mc_stack_hf_normalized->Add(hCSV_mc_lf_tag);
+      TH1F* mc_norm=(TH1F*)mc_stack_hf_normalized->GetStack()->Last();
+      cout << "mcevents after normalization: " << mc_norm->Integral() << endl;
+      cout << "Purity: " << n_events_hf/mcevents << endl;
+    
+  //     //draw histos
+      hCSV_data_tag->Sumw2();
+      mc_stack_hf_normalized->Draw("histE0");
+      mc_stack_hf_normalized->SetMinimum(0.01);
+      Stylestack(mc_stack_hf_normalized,"","events");
+      hCSV_data_tag->Draw("sameE0");
+      hCSV_data_tag->SetMarkerStyle(20);
+   
+      leg_hf->Draw();
+      text->DrawLatex(0.4, 0.863, text_cms);
+      text->DrawLatex(0.4, 0.815, cutlabel);
+      c1->cd();
+      //makepadratio
+      TPad* padratio_hf=new TPad("padratio_hf","padratio_hf",0,0,1,0.3);
+      padratio_hf->SetTopMargin(0);
+      padratio_hf->Draw();
+      padratio_hf->cd();
+      
+      //makeratio    
+      TH1F* ratio_hf=(TH1F*)hCSV_data_tag->Clone(); 
+      ratio_hf->SetTitle("");
+      ratio_hf->SetXTitle(xtitle_hf);
+      ratio_hf->Sumw2();
+      ratio_hf->SetStats(0);
+      ratio_hf->Divide(mc_norm);
+      ratio_hf->SetMarkerStyle(20);
+      ratio_hf->Draw("SAMEE0");
+      ratio_hf->SetMaximum(1.59);
+      ratio_hf->SetMinimum(0.38);
+      //set_ratioattributes
+      Styleratio(ratio_hf,"CSV tag Jet (HF)","data/MC"); 
+      
+      line_tag->Draw();
+
+      c1->SaveAs("CSV_ratio_hf_TagJet.pdf");
+
+      
+      outfile->Write();
+  
+  
+  
+  
+  
   outfile->Close();
 
 }

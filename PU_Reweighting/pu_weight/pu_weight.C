@@ -60,7 +60,7 @@ void Styleratio(TH1* h, const char *xTitle, const char *yTitle)
   h->GetYaxis()->SetTitleOffset(0.4);
   h->GetYaxis()->SetTitleSize(0.1);
   h->GetYaxis()->SetLabelSize(0.13);
-  h->GetYaxis()->SetNdivisions(510);
+  h->GetYaxis()->SetNdivisions(505);
 }
 void PUWeight(TFile *histos){
   
@@ -131,13 +131,14 @@ void PUWeight(TFile *histos){
   h_npv_mc->Sumw2();
   h_npv_data->Sumw2();
   h_npv_mc->Draw("histE0");
+  h_npv_mc->SetMinimum(0.01);
   h_npv_mc->SetTitle("number of primary vertices");
   h_npv_mc->SetTitleSize(0.08);
 
   Style(h_npv_mc,"","events");
   h_npv_data->SetMarkerStyle(20);
   h_npv_data->SetMarkerSize(0.5);
-  h_npv_data->Draw("SAMEE0");
+  h_npv_data->Draw("SAMEE0");  
   leg->Draw();
   text->DrawLatex(0.175, 0.863, text_cms);
   text->DrawLatex(0.175, 0.815, cutlabel);
@@ -158,8 +159,8 @@ void PUWeight(TFile *histos){
   ratio->SetMarkerStyle(20);
   ratio->SetMarkerSize(0.5);
   ratio->Draw("E0");
-  ratio->SetMaximum(2.5);
-  ratio->SetMinimum(0);
+  ratio->SetMaximum(2.49);
+  ratio->SetMinimum(0.09);
   
   //set_ratioattributes 
   Styleratio(ratio,"number of primary vertices","data/MC"); 
