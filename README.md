@@ -1,4 +1,5 @@
 # qcd_dijets
 studys on QCD Dijet Events
 
-Folder C++ is defaul
+calculation of csv-weights using dijet-events
+
